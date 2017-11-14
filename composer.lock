@@ -4,8 +4,65 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9b115aba46578f88f3e5ce3ebf7d144a",
+    "content-hash": "f3ebae5eceaecc193e332189573f05b1",
     "packages": [
+        {
+            "name": "cakephp/chronos",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cakephp/chronos.git",
+                "reference": "0621b191334d8dcb56907688986dd24eb8c38234"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cakephp/chronos/zipball/0621b191334d8dcb56907688986dd24eb8c38234",
+                "reference": "0621b191334d8dcb56907688986dd24eb8c38234",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.9"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1",
+                "cakephp/cakephp-codesniffer": "~2.3",
+                "phpbench/phpbench": "@dev",
+                "phpstan/phpstan": "^0.6.4",
+                "phpunit/phpunit": "<6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cake\\Chronos\\": "src"
+                },
+                "files": [
+                    "src/carbon_compat.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Nesbitt",
+                    "email": "brian@nesbot.com",
+                    "homepage": "http://nesbot.com"
+                },
+                {
+                    "name": "The CakePHP Team",
+                    "homepage": "http://cakephp.org"
+                }
+            ],
+            "description": "A simple API extension for DateTime.",
+            "homepage": "http://cakephp.org",
+            "keywords": [
+                "date",
+                "datetime",
+                "time"
+            ],
+            "time": "2017-04-27T01:27:49+00:00"
+        },
         {
             "name": "dingo/api",
             "version": "v2.0.0-alpha1",
@@ -413,6 +470,50 @@
             "time": "2017-07-30T17:40:00+00:00"
         },
         {
+            "name": "dotzero/amocrm",
+            "version": "v0.3.26",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dotzero/amocrm-php.git",
+                "reference": "425b09bf149669ac52842a44c5b492ba8c2c5db6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dotzero/amocrm-php/zipball/425b09bf149669ac52842a44c5b492ba8c2c5db6",
+                "reference": "425b09bf149669ac52842a44c5b492ba8c2c5db6",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AmoCRM\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "dotzero",
+                    "email": "mail@dotzero.ru"
+                }
+            ],
+            "description": "Удобный и быстрый клиент для работы с API amoCRM",
+            "keywords": [
+                "amoCRM",
+                "api",
+                "crm"
+            ],
+            "time": "2017-11-06T09:09:00+00:00"
+        },
+        {
             "name": "egulias/email-validator",
             "version": "2.1.2",
             "source": {
@@ -468,6 +569,115 @@
                 "validator"
             ],
             "time": "2017-01-30T22:07:36+00:00"
+        },
+        {
+            "name": "elasticquent/elasticquent",
+            "version": "v1.0.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elasticquent/Elasticquent.git",
+                "reference": "96811af5af96e6e38c636dd67e8f0890babb1d34"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elasticquent/Elasticquent/zipball/96811af5af96e6e38c636dd67e8f0890babb1d34",
+                "reference": "96811af5af96e6e38c636dd67e8f0890babb1d34",
+                "shasum": ""
+            },
+            "require": {
+                "elasticsearch/elasticsearch": ">1.0 <2.1",
+                "illuminate/config": "~4.2|^5",
+                "illuminate/database": "~4.2|^5",
+                "nesbot/carbon": "~1.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Elasticquent\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Fairholm",
+                    "email": "adam.fairholm@gmail.com",
+                    "homepage": "http://adamfairholm.com"
+                }
+            ],
+            "description": "Maps Laravel Eloquent models to Elasticsearch types.",
+            "homepage": "https://github.com/elasticquent/Elasticquent",
+            "keywords": [
+                "elasticsearch",
+                "eloquent",
+                "laravel"
+            ],
+            "time": "2016-01-28T04:23:05+00:00"
+        },
+        {
+            "name": "elasticsearch/elasticsearch",
+            "version": "v2.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/elastic/elasticsearch-php.git",
+                "reference": "9ce5bd7606f6c185d434de4f80863f998f74e179"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/9ce5bd7606f6c185d434de4f80863f998f74e179",
+                "reference": "9ce5bd7606f6c185d434de4f80863f998f74e179",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/ringphp": "~1.0",
+                "php": ">=5.4",
+                "psr/log": "~1.0"
+            },
+            "require-dev": {
+                "athletic/athletic": "~0.1",
+                "cpliakas/git-wrapper": "~1.0",
+                "mockery/mockery": "dev-master@dev",
+                "phpunit/phpunit": "3.7.*",
+                "symfony/yaml": "2.4.3 as 2.4.2",
+                "twig/twig": "1.*"
+            },
+            "suggest": {
+                "ext-curl": "*",
+                "monolog/monolog": "Allows for client-level logging and tracing"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Elasticsearch\\": "src/Elasticsearch/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache 2"
+            ],
+            "authors": [
+                {
+                    "name": "Zachary Tong"
+                }
+            ],
+            "description": "PHP Client for Elasticsearch",
+            "keywords": [
+                "client",
+                "elasticsearch",
+                "search"
+            ],
+            "time": "2015-11-05T15:29:21+00:00"
         },
         {
             "name": "erusev/parsedown",
@@ -569,6 +779,107 @@
             "time": "2017-06-15T17:19:42+00:00"
         },
         {
+            "name": "guzzlehttp/ringphp",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/RingPHP.git",
+                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/RingPHP/zipball/dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
+                "reference": "dbbb91d7f6c191e5e405e900e3102ac7f261bc0b",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/streams": "~3.0",
+                "php": ">=5.4.0",
+                "react/promise": "~2.0"
+            },
+            "require-dev": {
+                "ext-curl": "*",
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "ext-curl": "Guzzle will use specific adapters if cURL is present"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Ring\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Provides a simple API and specification that abstracts away the details of HTTP into a single PHP function.",
+            "time": "2015-05-20T03:37:09+00:00"
+        },
+        {
+            "name": "guzzlehttp/streams",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/streams.git",
+                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/streams/zipball/47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
+                "reference": "47aaa48e27dae43d39fc1cea0ccf0d84ac1a2ba5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GuzzleHttp\\Stream\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Provides a simple abstraction over streams of data",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "Guzzle",
+                "stream"
+            ],
+            "time": "2014-10-12T19:18:40+00:00"
+        },
+        {
             "name": "jakub-onderka/php-console-color",
             "version": "0.1",
             "source": {
@@ -654,6 +965,122 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "jenssegers/mongodb",
+            "version": "v3.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/laravel-mongodb.git",
+                "reference": "5454ac96a9748b1e812f7a5b3bcbf304bee80e0d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/laravel-mongodb/zipball/5454ac96a9748b1e812f7a5b3bcbf304bee80e0d",
+                "reference": "5454ac96a9748b1e812f7a5b3bcbf304bee80e0d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/container": "^5.5",
+                "illuminate/database": "^5.5",
+                "illuminate/events": "^5.5",
+                "illuminate/support": "^5.5",
+                "mongodb/mongodb": "^1.0.0"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^2.5",
+                "mockery/mockery": "^0.9",
+                "orchestra/testbench": "^3.1",
+                "phpunit/phpunit": "^6.0",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "suggest": {
+                "jenssegers/mongodb-sentry": "Add Sentry support to Laravel-MongoDB",
+                "jenssegers/mongodb-session": "Add MongoDB session support to Laravel-MongoDB"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Jenssegers\\Mongodb\\MongodbServiceProvider",
+                        "Jenssegers\\Mongodb\\MongodbQueueServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Jenssegers\\Mongodb": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "A MongoDB based Eloquent model and Query builder for Laravel (Moloquent)",
+            "homepage": "https://github.com/jenssegers/laravel-mongodb",
+            "keywords": [
+                "database",
+                "eloquent",
+                "laravel",
+                "model",
+                "moloquent",
+                "mongo",
+                "mongodb"
+            ],
+            "time": "2017-11-03T15:32:10+00:00"
+        },
+        {
+            "name": "laravel-shield/shield",
+            "version": "v1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel-shield/shield.git",
+                "reference": "69e1e94a918f81a953a8831523ccaa664f4e3aa4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel-shield/shield/zipball/69e1e94a918f81a953a8831523ccaa664f4e3aa4",
+                "reference": "69e1e94a918f81a953a8831523ccaa664f4e3aa4",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": "^5.5",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "laravel-shield/testing": "~1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Shield\\Shield\\Providers\\ShieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Shield\\Shield\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ashley Clarke",
+                    "email": "me@ashleyclarke.me"
+                }
+            ],
+            "description": "A laravel middleware to shield against unverified webhooks from 3rd party services.",
+            "time": "2017-10-31T20:20:12+00:00"
         },
         {
             "name": "laravel/framework",
@@ -785,6 +1212,74 @@
                 "laravel"
             ],
             "time": "2017-10-25T19:10:45+00:00"
+        },
+        {
+            "name": "laravel/horizon",
+            "version": "v1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/horizon.git",
+                "reference": "20ec777c3f007a4b026b93f63be6672b2fa3b43b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/20ec777c3f007a4b026b93f63be6672b2fa3b43b",
+                "reference": "20ec777c3f007a4b026b93f63be6672b2fa3b43b",
+                "shasum": ""
+            },
+            "require": {
+                "cakephp/chronos": "^1.0",
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/contracts": "~5.5",
+                "illuminate/queue": "~5.5",
+                "illuminate/support": "~5.5",
+                "php": ">=7.1.0",
+                "predis/predis": "^1.1",
+                "ramsey/uuid": "^3.5",
+                "symfony/debug": "~3.3"
+            },
+            "require-dev": {
+                "mockery/mockery": "~1.0",
+                "orchestra/database": "~3.5",
+                "orchestra/testbench": "~3.5",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Horizon\\HorizonServiceProvider"
+                    ],
+                    "aliases": {
+                        "Horizon": "Laravel\\Horizon\\Horizon"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Horizon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Dashboard and code-driven configuration for Laravel queues.",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "time": "2017-11-04T18:13:57+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -995,6 +1490,66 @@
                 "rest"
             ],
             "time": "2017-06-12T11:04:56+00:00"
+        },
+        {
+            "name": "mongodb/mongodb",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mongodb/mongo-php-library.git",
+                "reference": "5cffeb33b893b6bb04195b99ddc3955a29252339"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mongodb/mongo-php-library/zipball/5cffeb33b893b6bb04195b99ddc3955a29252339",
+                "reference": "5cffeb33b893b6bb04195b99ddc3955a29252339",
+                "shasum": ""
+            },
+            "require": {
+                "ext-hash": "*",
+                "ext-json": "*",
+                "ext-mongodb": "^1.3.0",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MongoDB\\": "src/"
+                },
+                "files": [
+                    "src/functions.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Jeremy Mikola",
+                    "email": "jmikola@gmail.com"
+                },
+                {
+                    "name": "Hannes Magnusson",
+                    "email": "bjori@mongodb.com"
+                },
+                {
+                    "name": "Derick Rethans",
+                    "email": "github@derickrethans.nl"
+                }
+            ],
+            "description": "MongoDB driver library",
+            "homepage": "https://jira.mongodb.org/browse/PHPLIB",
+            "keywords": [
+                "database",
+                "driver",
+                "mongodb",
+                "persistence"
+            ],
+            "time": "2017-10-27T19:42:57+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -1269,6 +1824,76 @@
                 "random"
             ],
             "time": "2017-09-27T21:40:39+00:00"
+        },
+        {
+            "name": "php-amqplib/php-amqplib",
+            "version": "v2.6.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-amqplib/php-amqplib.git",
+                "reference": "fa2f0d4410a11008cb36b379177291be7ee9e4f6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-amqplib/php-amqplib/zipball/fa2f0d4410a11008cb36b379177291be7ee9e4f6",
+                "reference": "fa2f0d4410a11008cb36b379177291be7ee9e4f6",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "replace": {
+                "videlalvaro/php-amqplib": "self.version"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "scrutinizer/ocular": "^1.1",
+                "squizlabs/php_codesniffer": "^2.5"
+            },
+            "suggest": {
+                "ext-sockets": "Use AMQPSocketConnection"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PhpAmqpLib\\": "PhpAmqpLib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Alvaro Videla",
+                    "role": "Original Maintainer"
+                },
+                {
+                    "name": "John Kelly",
+                    "email": "johnmkelly86@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Raúl Araya",
+                    "email": "nubeiro@gmail.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Formerly videlalvaro/php-amqplib.  This library is a pure PHP implementation of the AMQP protocol. It's been tested against RabbitMQ.",
+            "homepage": "https://github.com/php-amqplib/php-amqplib/",
+            "keywords": [
+                "message",
+                "queue",
+                "rabbitmq"
+            ],
+            "time": "2016-04-11T14:30:01+00:00"
         },
         {
             "name": "phpdocumentor/reflection-common",
@@ -1766,6 +2391,52 @@
             "time": "2017-09-22T20:46:04+00:00"
         },
         {
+            "name": "react/promise",
+            "version": "v2.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/reactphp/promise.git",
+                "reference": "62785ae604c8d69725d693eb370e1d67e94c4053"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/reactphp/promise/zipball/62785ae604c8d69725d693eb370e1d67e94c4053",
+                "reference": "62785ae604c8d69725d693eb370e1d67e94c4053",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "React\\Promise\\": "src/"
+                },
+                "files": [
+                    "src/functions_include.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Sorgalla",
+                    "email": "jsorgalla@gmail.com"
+                }
+            ],
+            "description": "A lightweight implementation of CommonJS Promises/A for PHP",
+            "keywords": [
+                "promise",
+                "promises"
+            ],
+            "time": "2017-03-25T12:08:31+00:00"
+        },
+        {
             "name": "spatie/db-dumper",
             "version": "2.7.3",
             "source": {
@@ -1887,6 +2558,72 @@
                 "spatie"
             ],
             "time": "2017-10-14T23:47:20+00:00"
+        },
+        {
+            "name": "spatie/laravel-failed-job-monitor",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-failed-job-monitor.git",
+                "reference": "fbd8c6db068f2cd33846e4c7dd150a18fba7e1e5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-failed-job-monitor/zipball/fbd8c6db068f2cd33846e4c7dd150a18fba7e1e5",
+                "reference": "fbd8c6db068f2cd33846e4c7dd150a18fba7e1e5",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.5.0",
+                "illuminate/notifications": "~5.5.0",
+                "illuminate/queue": "~5.5.0",
+                "illuminate/support": "~5.5.0",
+                "php": "^7.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "~3.5.0",
+                "phpunit/phpunit": "^6.3"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Allows notifications to be sent via Slack"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\FailedJobMonitor\\FailedJobMonitorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\FailedJobMonitor\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Freek Van der Herten",
+                    "email": "freek@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Get notified when a queued job fails",
+            "homepage": "https://github.com/spatie/laravel-failed-job-monitor",
+            "keywords": [
+                "job",
+                "laravel-failed-job-monitor",
+                "monitor",
+                "notify",
+                "queue",
+                "slack",
+                "spatie"
+            ],
+            "time": "2017-09-01T10:07:20+00:00"
         },
         {
             "name": "spatie/temporary-directory",
@@ -2782,6 +3519,57 @@
             "description": "CssToInlineStyles is a class that enables you to convert HTML-pages/files into HTML-pages/files with inline styles. This is very useful when you're sending emails.",
             "homepage": "https://github.com/tijsverkoyen/CssToInlineStyles",
             "time": "2016-09-20T12:50:39+00:00"
+        },
+        {
+            "name": "vladimir-yuldashev/laravel-queue-rabbitmq",
+            "version": "5.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vyuldashev/laravel-queue-rabbitmq.git",
+                "reference": "3be5e3eed0a95e2d3c8149c220eb9ca47b9f0a47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vyuldashev/laravel-queue-rabbitmq/zipball/3be5e3eed0a95e2d3c8149c220eb9ca47b9f0a47",
+                "reference": "3be5e3eed0a95e2d3c8149c220eb9ca47b9f0a47",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "5.5.*",
+                "illuminate/queue": "5.5.*",
+                "illuminate/support": "5.5.*",
+                "php": ">=7.0",
+                "php-amqplib/php-amqplib": "2.6.*"
+            },
+            "require-dev": {
+                "mockery/mockery": "^0.9.5",
+                "phpunit/phpunit": "~6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "VladimirYuldashev\\LaravelQueueRabbitMQ\\LaravelQueueRabbitMQServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "VladimirYuldashev\\LaravelQueueRabbitMQ\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vladimir Yuldashev",
+                    "email": "misterio92@gmail.com"
+                }
+            ],
+            "description": "RabbitMQ driver for Laravel Queue",
+            "time": "2017-09-06T18:51:57+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
