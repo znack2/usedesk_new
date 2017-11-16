@@ -33,7 +33,7 @@ class MacrosesController extends BaseController {
 
     public function postSave() 
     {
-       return ['redirect' => URL::route('user.macroses.get_edit', ['id'=> $macros_id, 'success' => 'Y'])];
+       // return ['redirect' => URL::route('user.macroses.get_edit', ['id'=> $macros_id, 'success' => 'Y'])];
     }
 
     public function getDelete($id, $isPost = false)

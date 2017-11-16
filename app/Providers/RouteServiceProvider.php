@@ -78,17 +78,18 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
              ->namespace($this->webNamespace)
              ->group(function($router){
-                require base_path('routes/web/auth.php');
-                require base_path('routes/web/automatization.php');
-                require base_path('routes/web/blocks.php');
-                require base_path('routes/web/channels.php');
-                require base_path('routes/web/clients.php');
-                require base_path('routes/web/other.php');
-                require base_path('routes/web/pages.php');
-                require base_path('routes/web/reports.php');
-                require base_path('routes/web/settings.php');
-                require base_path('routes/web/support.php');
-                require base_path('routes/web/tickets.php');
+                require base_path('routes/web/test.php');
+                // require base_path('routes/web/auth.php');
+                // require base_path('routes/web/automatization.php');
+                // require base_path('routes/web/blocks.php');
+                // require base_path('routes/web/channels.php');
+                // require base_path('routes/web/clients.php');
+                // require base_path('routes/web/other.php');
+                // require base_path('routes/web/pages.php');
+                // require base_path('routes/web/reports.php');
+                // require base_path('routes/web/settings.php');
+                // require base_path('routes/web/support.php');
+                // require base_path('routes/web/tickets.php');
              });
 
 
@@ -115,8 +116,8 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('api')
              ->namespace($this->apiNamespace)
              ->group(function($router){
-                require base_path('routes/api/chat.php');
-                require base_path('routes/api/usedesk.php');
+                // require base_path('routes/api/chat.php');
+                // require base_path('routes/api/usedesk.php');
             });
 //             ->group(base_path('routes/api/api.php'));
 
@@ -133,10 +134,10 @@ class RouteServiceProvider extends ServiceProvider
              ->middleware('admin')
              ->namespace($this->adminNamespace)
              ->group(function($router){
-                require base_path('routes/admin/auth.php');
-                require base_path('routes/admin/config.php');
-                require base_path('routes/admin/management.php');
-                require base_path('routes/admin/companies.php');
+                // require base_path('routes/admin/auth.php');
+                // require base_path('routes/admin/config.php');
+                // require base_path('routes/admin/management.php');
+                // require base_path('routes/admin/companies.php');
              });
     }
 }

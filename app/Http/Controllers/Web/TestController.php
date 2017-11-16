@@ -16,17 +16,22 @@
 // Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException	401
 // Symfony\Component\HttpKernel\Exception\UnsupportedMediaTypeHttpException	415
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Web;
 
-use Dingo\Api\Routing\Helpers;
+use App\Http\Controllers\Controller;
+use App\Http\Resources\Users as UserResource;
+use App\Http\Resources\UserCollection;
+
+// use Dingo\Api\Routing\Helpers;
+
 /**
  * User resource representation.
  *
  * @Resource("Users", uri="/users")
  */
-class TestController
+class TestController extends Controller 
 {
-	use Helpers;
+	// use Helpers;
 
 	public function test()
 	{
@@ -47,17 +52,22 @@ class TestController
 	 */
 	public function index()
 	{
-		$users = User::all();
+		$users = \App\Models\User::all();
 
-		return $this->response
-					->collection($users, new UserTransformer);
+		 return new UserCollection($users);
+
+		// return $this->response
+		// 			->collection($users, new UserTransformer);
 	}
+	
 	public function show($id)
 	{
-		$user = User::findOrFail($id);
+		$user = \App\Models\User::findOrFail($id);
 
-		return $this->response
-					->item($user, new UserTransformer);
+		return new UserResource($user);
+
+		// return $this->response
+		// 			->item($user, new UserTransformer);
 	}
 	/**
 	 * Register user

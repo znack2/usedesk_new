@@ -29,7 +29,7 @@ class TriggersController extends BaseController {
 
     public function postEdit($id = null) 
     {
-        return ['redirect' => URL::route('user.triggers.get_index')];
+        // return ['redirect' => URL::route('user.triggers.get_index')];
     }
     
     public function getDelete($id) 
