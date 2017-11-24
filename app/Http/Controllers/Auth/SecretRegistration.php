@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Repository\RequestRepository;
-use App\Http\Requests\postSecretRegistration;
+use App\Http\Requests\Auth\postSecretRegistration;
 /**
  * User resource representation.
  *

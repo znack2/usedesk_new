@@ -10,9 +10,4 @@ class SmsConfirmation extends BaseModel {
     public function registrationRequest() {
         return $this->hasOne('RegistrationRequest');
     }
-
-    public function setRandomCode() {
-        $this->code = rand(1000, 9999);
-    }
-
 }

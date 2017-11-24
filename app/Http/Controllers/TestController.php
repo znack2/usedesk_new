@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\Users as UserResource;
-use App\Http\Resources\UserCollection;
+use App\Http\Resources\User\Users as UserResource;
+use App\Http\Resources\User\UserCollection;
 use App\Models\User;
 use App\Jobs\TestJob;
 

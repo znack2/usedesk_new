@@ -15,10 +15,4 @@ class Article extends BaseModel
         'created_at',
         'category_id',
     ];
-
-    public function getCategoryId()
-    {
-        return $this->category_id;
-    }
-
 }

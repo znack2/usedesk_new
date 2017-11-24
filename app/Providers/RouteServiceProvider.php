@@ -78,18 +78,18 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
              ->namespace($this->webNamespace)
              ->group(function($router){
-                require base_path('routes/web/test.php');
                 // require base_path('routes/web/auth.php');
-                // require base_path('routes/web/automatization.php');
-                // require base_path('routes/web/blocks.php');
+                require base_path('routes/web/blocks.php');
+                require base_path('routes/web/wiki.php');
+
                 // require base_path('routes/web/channels.php');
                 // require base_path('routes/web/clients.php');
                 // require base_path('routes/web/other.php');
                 // require base_path('routes/web/pages.php');
                 // require base_path('routes/web/reports.php');
                 // require base_path('routes/web/settings.php');
-                // require base_path('routes/web/support.php');
                 // require base_path('routes/web/tickets.php');
+                // require base_path('routes/web/automatization.php');
              });
 
 

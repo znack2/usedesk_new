@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AccountRequest;
+use App\Http\Resources\Wiki\AccountResource;
+use App\Http\Resources\Wiki\AccountCollection;
+use App\Models\Account;
 
 class AccountController extends Controller
 {
@@ -14,7 +18,9 @@ class AccountController extends Controller
      */
     public function index()
     {
-        //
+        $accounts = Account::all();
+
+        return new AccountCollection($accounts);
     }
 
     /**
@@ -33,7 +39,7 @@ class AccountController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AccountRequest $request)
     {
         //
     }
@@ -46,7 +52,9 @@ class AccountController extends Controller
      */
     public function show($id)
     {
-        //
+        $account = Account::find($id);
+
+        return new AccountResource($account);
     }
 
     /**
@@ -67,7 +75,7 @@ class AccountController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AccountRequest $request, $id)
     {
         //
     }

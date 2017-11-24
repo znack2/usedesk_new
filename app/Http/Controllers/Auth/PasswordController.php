@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-use App\Repository\RequestRepository;
+use App\Repository\Auth\RequestRepository;
 use App\Service\Mailer;
 use App\Http\Requests\postPasswordRestore;
 use App\Http\Requests\postPasswordRestoreNew;

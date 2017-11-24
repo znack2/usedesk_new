@@ -34,6 +34,7 @@ class Integration extends BaseModel
     const TYPE_COBROWSING = 'cobrowsing';
     const TYPE_RETAIL_CRM = 'retail_crm';
     const TYPE_SYNC_ENGINE = 'sync_engine';
+    
     protected $fillable = [
         'name',
         'keyword',

@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\Wiki\ArticleResource;
+use App\Http\Resources\Wiki\ArticleCollection;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
@@ -14,7 +18,9 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articles = Article::all();
+
+        return new ArticleCollection($articles);
     }
 
     /**
@@ -33,7 +39,7 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
         //
     }
@@ -46,7 +52,9 @@ class ArticleController extends Controller
      */
     public function show($id)
     {
-        //
+        $article = Article::find($id);
+
+        return new ArticleResource($article);
     }
 
     /**
@@ -67,7 +75,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
         //
     }

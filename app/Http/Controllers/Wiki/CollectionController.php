@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CollectionRequest;
+use App\Http\Resources\Wiki\CollectionResource;
+use App\Http\Resources\Wiki\CollectionCollection;
+use App\Models\Collection;
 
 class CollectionController extends Controller
 {
@@ -14,7 +18,9 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        //
+        $collections = Collection::all();
+
+        return new CollectionCollection($collections);
     }
 
     /**
@@ -33,7 +39,7 @@ class CollectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CollectionRequest $request)
     {
         //
     }
@@ -46,7 +52,9 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
-        //
+        $collection = Collection::find($id);
+
+        return new CollectionResource($collection);
     }
 
     /**
@@ -67,7 +75,7 @@ class CollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CollectionRequest $request, $id)
     {
         //
     }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Repository\RequestRepository;
+use App\Repository\Auth\RequestRepository;
 use App\Service\Sms;
 use App\Service\PhoneService;
 use App\Http\Requests\postRegistrationConfirmation;

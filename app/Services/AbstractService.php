@@ -14,7 +14,7 @@ abstract class AbstractService
     public __construct()
     {
     	$this->curlhelper = new CurlHelper;
-        $this->now = Carbon; //date('Y-m-d H:i:s')
+        $this->now = new Carbon; //date('Y-m-d H:i:s')
         $this->user = Auth::user()->user()
     }
 }

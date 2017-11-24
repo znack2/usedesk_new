@@ -10,9 +10,9 @@ abstract class AbstractRepository
     public $now;
     public $user;
 
-    public __construct()
+    public function __construct()
     {
-        $this->now = Carbon; //date('Y-m-d H:i:s')
-        $this->user = Auth::user()->user()
+        $this->now = new Carbon; //date('Y-m-d H:i:s')
+        $this->user = Auth::user()->user();
     }
 }
