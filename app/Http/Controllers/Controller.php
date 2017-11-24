@@ -17,11 +17,11 @@ class Controller extends BaseController
     public $CurrentCompany;
     public $now = null;
 
-    public function __construct(Auth $auth)
+    public function __construct()
     {
-        $this->currentUser = $auth->user();
-        $this->now = Carbon::now();
-        $this->CurrentCompany = Company::current(); // $this->request->get('company_id') ?: Company::current();
+        // $this->currentUser = $auth->user();//Auth $auth
+        // $this->now = Carbon::now();
+        // $this->CurrentCompany = Company::current(); // $this->request->get('company_id') ?: Company::current();
     }
     
     public function logs($e)

@@ -1,9 +1,14 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
+
 use App\Repository\RequestRepository;
 use App\Service\Sms;
 use App\Service\PhoneService;
 use App\Http\Requests\postRegistrationConfirmation;
+
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 /**
  * User resource representation.
  *
@@ -11,12 +16,22 @@ use App\Http\Requests\postRegistrationConfirmation;
  */
 class RegistrationController extends BaseController
 {
+    use RegistersUsers;
+
+    /**
+     * Where to redirect()->route users after registration.
+     *
+     * @var string
+     */
+    protected redirect()->routeTo = '/home';
+
     protected $requestRepository;
     protected $smsService;
     protected $phoneService;
 
     function __construct(RequestRepository $requestRepository)
     {
+        $this->middleware('guest');
         $this->requestRepository = $requestRepository;
         $this->smsService = new Sms;
         $this->phoneService = new PhoneService;

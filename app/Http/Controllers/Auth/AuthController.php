@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
+
+use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use App\Http\Controllers\BaseController;
 use App\Repository\UserRepository;
 use App\Repository\RequestRepository;
 /**
@@ -9,11 +13,26 @@ use App\Repository\RequestRepository;
  */
 class AuthController extends BaseController
 {
+    use AuthenticatesUsers;
+
+    /**
+     * Where to redirect()->route users after login.
+     *
+     * @var string
+     */
+    protected redirect()->routeTo = '/home';
+
     protected $userRepository;
     protected $requestRepository;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     function __construct(UserRepository $userRepository,RequestRepository $requestRepository)
     {
+        $this->middleware('guest')->except('logout');
         $this->userRepository = $userRepository;
         $this->requestRepository = $requestRepository;
     }

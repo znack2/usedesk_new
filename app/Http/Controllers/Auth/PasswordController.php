@@ -1,9 +1,16 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
+
+use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Foundation\Auth\ResetsPasswords;
+
 use App\Repository\RequestRepository;
 use App\Service\Mailer;
 use App\Http\Requests\postPasswordRestore;
 use App\Http\Requests\postPasswordRestoreNew;
+use App\Http\Controllers\BaseController;
+
 /**
  * User resource representation.
  *
@@ -11,11 +18,27 @@ use App\Http\Requests\postPasswordRestoreNew;
  */
 class PasswordController extends BaseController
 {
+    use SendsPasswordResetEmails;
+    use ResetsPasswords;
+
+    /**
+     * Where to redirect()->route users after resetting their password.
+     *
+     * @var string
+     */
+    protected redirect()->routeTo = '/home';
+
     protected $requestRepository;
     protected $mailer;
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     function __construct(RequestRepository $requestRepository)
     {
+        $this->middleware('guest');
         $this->requestRepository = $requestRepository;
         $this->mailer = new Mailer;
     }

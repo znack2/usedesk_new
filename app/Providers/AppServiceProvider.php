@@ -15,9 +15,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //only admin can see it
-        Horizon::auth(function(){
-            return ($auth()->user()->id == 1) && ($auth()->user()->role == 'ADMIN');
-        });
+        // Horizon::auth(function($auth){
+        //     return ($auth()->user()->id == 1) && ($auth()->user()->role == 'ADMIN');
+        // });
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\Auth;
+
 use App\Repository\RequestRepository;
 use App\Service\TelegramService;
 use App\Service\DemoData'
