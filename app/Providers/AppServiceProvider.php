@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Laravel\Horizon\Horizon;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        //only admin can see it
+        Horizon::auth(function(){
+            return ($auth()->user()->id == 1) && ($auth()->user()->role == 'ADMIN');
+        });
     }
 
     /**

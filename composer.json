@@ -26,9 +26,10 @@
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "~1.0",
-        "pragmarx/ci": "^0.9.5",
         "mpociot/laravel-test-factory-helper": "^0.5.0",
-        "phpunit/phpunit": "~6.0"
+        "nunomaduro/collision": "^1.1",
+        "phpunit/phpunit": "~6.0",
+        "pragmarx/ci": "^0.9.5"
     },
     "autoload": {
         "classmap": [
