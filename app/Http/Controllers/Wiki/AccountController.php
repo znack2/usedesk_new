@@ -4,13 +4,26 @@ namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AccountRequest;
+use App\Http\Requests\wiki\AccountRequest;
 use App\Http\Resources\Wiki\AccountResource;
 use App\Http\Resources\Wiki\AccountCollection;
-use App\Models\Account;
+use App\Repository\Wiki\AccountRepository;
 
 class AccountController extends Controller
 {
+    /**
+     * @var AccountRepository
+     */
+    protected $accountRepository;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    function __construct(AccountRepository $accountRepository)
+    {
+        $this->accountRepository = $accountRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +31,7 @@ class AccountController extends Controller
      */
     public function index()
     {
-        $accounts = Account::all();
+        $accounts = $this->accountRepository->getAll();
 
         return new AccountCollection($accounts);
     }

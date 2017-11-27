@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Laravel\Horizon\Horizon;
+use App\Models\User;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,35 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+//        User::observe(UserObserver::class);
+//        Client
+//        Ticket
+//        Sla
+//        SlaOption
+//        ClientCompany
+//        TriggerCondition
+//        TriggerChange
+//        TicketFieldValue
+//        TicketField
+//        TicketComment
+//        CompanyWorkingDay
+//        CompanyIntegration
+//        CompanyBilling
+//        ClientEmail
+
+//        usergroup
+//        ticketFieldOption
+//        companyCustomBlockParam
+//        companyCustomBlock
+//        copanyContacts
+//        twitter
+//        blackWhiteList
+//        TicketReference
+//        npsSetting
+//        nps
+
+
+
         //only admin can see it
         // Horizon::auth(function($auth){
         //     return ($auth()->user()->id == 1) && ($auth()->user()->role == 'ADMIN');

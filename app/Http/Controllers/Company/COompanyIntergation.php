@@ -1,29 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Wiki;
+namespace App\Http\Controllers\Company;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\wiki\CollectionRequest;
-use App\Http\Resources\Wiki\CollectionResource;
-use App\Http\Resources\Wiki\CollectionCollection;
-use App\Repository\Wiki\CollectionRepository;
 
-class CollectionController extends Controller
+class CompanyIntergation extends Controller
 {
-    /**
-     * @var BlockRepository
-     */
-    protected $collectionRepository;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    function __construct(CollectionRepository $collectionRepository)
-    {
-        $this->collectionRepository = $collectionRepository;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +14,7 @@ class CollectionController extends Controller
      */
     public function index()
     {
-        $collections = $this->collectionRepository->getAll();
-
-        return new CollectionCollection($collections);
+        //
     }
 
     /**
@@ -52,7 +33,7 @@ class CollectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CollectionRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -65,9 +46,7 @@ class CollectionController extends Controller
      */
     public function show($id)
     {
-        $collection = Collection::find($id);
-
-        return new CollectionResource($collection);
+        //
     }
 
     /**
@@ -88,7 +67,7 @@ class CollectionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CollectionRequest $request, $id)
+    public function update(Request $request, $id)
     {
         //
     }

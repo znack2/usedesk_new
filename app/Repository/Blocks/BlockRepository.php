@@ -7,41 +7,62 @@ use App\Repository\AbstractRepository;
 
 class BlockRepository extends AbstractRepository
 {
+    /**
+     * @param int $type
+     * @param int $companyId
+     * @return $customBlock
+     */
     public function getAll($type = null,$company_id = null,$active = 0)//$data['blockId']
     {
-         $model = DB::table('companyCustomBlock');
+        $customBlock = DB::table('company_custom_blocks');
             if($type){
-                $model->where('type', $type);
+                $customBlock->where('type', $type);
             }
 
             // ->where('company_id', $company_id)
             // ->where('active', $active)
-        return $model->orderBy('sort')
+        $customBlock->orderBy('sort')
             ->orderBy('title')
             ->get();
+        return $customBlock;
     }
-
+    /**
+     * @param int $company_id
+     * @param int $active
+     * @return $customBlock
+     */
     public function getParams($company_id,$active = 1)//$data['blockId']
     {
-        return DB::table('companyCustomBlockParams')
+        $customBlock = DB::table('companyCustomBlockParams')
             ->where('company_id', $company_id)
             ->where('active', $active)
             ->orderBy('sort')
             ->orderBy('title')
             ->get();
+        return $customBlock;
     }
-
+    /**
+     * @param int $type
+     * @param int $id
+     * @return $customBlock
+     */
     public function getById($type = null,$id)
     {
-        return DB::table('companyCustomBlock')
+        $customBlock = DB::table('company_custom_blocks')
+            ->where('type', $type)
             ->where('id', $id)
             ->get();
+        return $customBlock;
     }
-
-    public function createYandexDefaultBlock($company_id)
+    /**
+     * @param int $company_id
+     * @param int $url
+     * @return $customBlock
+     */
+    public function createYandexDefaultBlock($company_id,$url)
     {
         if (!$this->getCustomBlock($company_id,$url)->exists()) {
-            $customBlock =  DB::table('companyCustomBlock')->create([
+            $customBlock =  DB::table('company_custom_blocks')->create([
                 'company_id' => $company_id,
                 'type' => $this->TYPE_STATIC,
                 'name' => 'Яндекс',
@@ -54,13 +75,18 @@ class BlockRepository extends AbstractRepository
 //                'key' => 'subdomain',
 //                'value' => '',
 //            ]);
+            return $customBlock;
         }
     }
-
+    /**
+     * @param int $company_id
+     * @param int $url
+     * @return $customBlock
+     */
     public function addRetailCrmBlock($company_id,$url)
     {
         if (!$this->getCustomBlock($company_id,$url)->exists()) {
-            $customBlock = DB::table('companyCustomBlock')->create([
+            $customBlock = DB::table('company_custom_blocks')->create([
                 'name' => 'Retail CRM',
                 'title' => 'Retail CRM',
                 'type' => static::TYPE_DYNAMIC,
@@ -75,34 +101,54 @@ class BlockRepository extends AbstractRepository
                 'key' => 'subdomain',
                 'value' => '',
             ]);
+            return $customBlock;
         }
     }
-
+    /**
+     * @param int $company_id
+     * @param int $url
+     * @return $customBlock
+     */
     public function getCustomBlock($company_id,$url)//'%/blocks/retail_crm%'
     {
-        return DB::table('companyCustomBlock')
+        $customBlock = DB::table('company_custom_blocks')
             ->where('company_id', $company_id)
             ->where('url', 'like', $url);
+        return $customBlock;
     }
-
+    /**
+     * @param int $customBlock_id
+     * @return $customBlock
+     */
     public function getCustomBlockParams($customBlock_id)////$block->id
     {
-        return DB::table('companyCustomBlockParams')->where('company_custom_block_id', $customBlock_id);
+        $customBlock = DB::table('companyCustomBlockParams')->where('company_custom_block_id', $customBlock_id);
+        return $customBlock;
     }
-
+    /**
+     * @param int $company_id
+     * @param int $url
+     * @return $customBlock
+     */
     public function delete($company_id,$url) //$id
     {
-        return $this->getCustomBlock($company_id,$url)->delete();
+        $customBlock = $this->getCustomBlock($company_id,$url)->delete();
+        return $customBlock;
     }
-
+    /**
+     * @param int $customBlock_id
+     * @param int $data
+     * @return $customBlock
+     */
     public function deleteParam($customBlock_id,$data)
     {
-        $model = $this->getCustomBlockParams($customBlock_id);
+        $customBlock = $this->getCustomBlockParams($customBlock_id,$data);
 
-        if ($paramIds = array_filter(array_fetch($data['params', []], 'id')))
+        if ($paramIds = array_filter(array_fetch($data['params'], []), 'id'))
         {
-            $model->whereNotIn('id', $paramIds);
+            $customBlock->whereNotIn('id', $paramIds);
         }
-        return $model->delete();
+        $customBlock->delete();
+        return $customBlock;
     }
 }

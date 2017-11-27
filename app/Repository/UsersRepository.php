@@ -6,7 +6,10 @@ use Illuminate\Support\Facades\DB;
 
 class UsersRepository extends AbstractRepository
 {
-
+    /**
+     * @param int $user
+     * @return $user
+     */
     public function setLastLoginAt($user)
     {
         $company = $user->company;
@@ -14,7 +17,11 @@ class UsersRepository extends AbstractRepository
         $company->save();
         return true;
     }
-      
+    /**
+     * @param int $token
+     * @param int $active
+     * @return $customBlock
+     */
     public function ByToken($token)
 	{
 	    $date = new Carbon();

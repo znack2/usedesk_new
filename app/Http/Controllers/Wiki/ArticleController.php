@@ -4,13 +4,26 @@ namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\Wiki\ArticleRequest;
 use App\Http\Resources\Wiki\ArticleResource;
 use App\Http\Resources\Wiki\ArticleCollection;
-use App\Models\Article;
+use App\Repository\Wiki\ArticleRepository;
 
 class ArticleController extends Controller
 {
+    /**
+     * @var BlockRepository
+     */
+    protected $articleRepository;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    function __construct(ArticleRepository $articleRepository)
+    {
+        $this->articleRepository = $articleRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +31,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = $this->articleRepository->getAll();
 
         return new ArticleCollection($articles);
     }

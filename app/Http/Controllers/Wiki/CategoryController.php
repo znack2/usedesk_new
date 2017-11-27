@@ -4,13 +4,26 @@ namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\Wiki\CategoryRequest;
 use App\Http\Resources\Wiki\CategoryResource;
 use App\Http\Resources\Wiki\CategoryCollection;
-use App\Models\Category;
+use App\Repository\Wiki\CategoryRepository;
 
 class CategoryController extends Controller
 {
+    /**
+     * @var BlockRepository
+     */
+    protected $categoryRepository;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -18,7 +31,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
+        $categories = $this->categoryRepository->getAll();
 
         return new CategoryCollection($categories);
     }

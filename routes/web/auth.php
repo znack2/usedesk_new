@@ -23,10 +23,10 @@ $api->version('v1', function ($api) {
 //	$api->view('/secretsignup', 'user.auth.secret_registration');
 //	$api->view('/password-restore', 'user.auth.password_restore');
 
-    $api->get('/login', 							['uses' => 'LoginController@getLogin', 									'as' => 'user.auth.get_login']);
-    $api->get('/secretsignup', 						['uses' => 'RegistrationController@getSecretRegistration', 				'as' => 'user.auth.get_secret_registration']);
-    $api->get('/password-restore', 					['uses' => 'PasswordController@getPasswordRestore', 					'as' => 'user.auth.get_password_restore']);
-    $api->get('/thank-you', 						['uses' => 'LoginController@getThankYou', 								'as' => 'user.auth.get_thank_you']);
+//    $api->get('/login', 							['uses' => 'LoginController@getLogin', 									'as' => 'user.auth.get_login']);
+//    $api->get('/secretsignup', 						['uses' => 'RegistrationController@getSecretRegistration', 				'as' => 'user.auth.get_secret_registration']);
+//    $api->get('/password-restore', 					['uses' => 'PasswordController@getPasswordRestore', 					'as' => 'user.auth.get_password_restore']);
+//    $api->get('/thank-you', 						['uses' => 'LoginController@getThankYou', 								'as' => 'user.auth.get_thank_you']);
 
 
 	$api->post('/login', 							['uses' => 'LoginController@postLogin', 								'as' => 'user.auth.post_login']);
