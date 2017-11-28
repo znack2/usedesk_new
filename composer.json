@@ -20,13 +20,14 @@
         "predis/predis": "^1.1",
         "spatie/laravel-backup": "^5.0.0",
         "spatie/laravel-failed-job-monitor": "^3.0",
+        "themsaid/laravel-mail-preview": "^2.0",
         "vladimir-yuldashev/laravel-queue-rabbitmq": "^5.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.1",
         "filp/whoops": "~2.0",
         "fzaninotto/faker": "~1.4",
-        "mockery/mockery": "~1.0",
+        "mockery/mockery": "0.9.x-dev",
         "mpociot/laravel-test-factory-helper": "^0.5.0",
         "nunomaduro/collision": "^1.1",
         "phpunit/phpunit": "~6.0",

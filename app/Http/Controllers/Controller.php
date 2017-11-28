@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use \Carbon\Carbon;
+use Carbon\Carbon;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -23,7 +23,7 @@ class Controller extends BaseController
     public function __construct(Auth $auth)
     {
         // $this->currentUser = $auth->user();//Auth $auth
-         $this->now = Carbon::now();
+         $this->now = new Carbon;
          $this->CurrentCompany = $auth->user()->user()->company;
 
          // $this->request->get('company_id') ?: Company::current();

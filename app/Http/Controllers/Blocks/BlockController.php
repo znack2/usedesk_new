@@ -36,37 +36,12 @@ class BlockController extends Controller
      */
     public function index(Request $request)
     {
-        return $this->sendResponse([], 'Post created successfully.');
         $keyword = $request->get('search');
-        $perPage = 25;
 
-        // if (!empty($keyword)) {
-        //     $posts = Post::where('title', 'LIKE', "%$keyword%")
-        //         ->orWhere('content', 'LIKE', "%$keyword%")
-        //         ->orWhere('category', 'LIKE', "%$keyword%")
-        //         ->paginate($perPage);
-        // } else {
-        //     $posts = Post::paginate($perPage);
-        // }
-        $blocks = $this->blockRepository->getAll($keyword,$perPage);
+        $blocks = $this->blockRepository->getAll($keyword,$perPage = 25);
 
         return new BlockCollection($blocks);
     }
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \App\Http\Resources\Blocks\BlockResource
-     */
-    public function create()
-    {
-        $block = $this->blockRepository->getById($id);
-
-        if (is_null($block)) {
-            return $this->sendError('Post not found.');
-        }
-        return new BlockResource($block);
-    }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -78,12 +53,19 @@ class BlockController extends Controller
     public function store(BlockRequest $request)
     {
         $requestData = $request->all();
+        $company_id = $this->CurrentCompany->id;
 
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
+//        if($validator->fails()){
+//            return $this->sendError('Validation Error.', $validator->errors());
+//        }
 
-        $block = $this->blockRepository->create($requestData);
+        $block = $this->blockRepository->createCustomBlock(
+            $requestData['name'],
+            $requestData['title'],
+            $requestData['type'],
+            $company_id,
+            $requestData['url']
+        );
 
         // return response()->json('Post added!',200);
 
@@ -135,12 +117,12 @@ class BlockController extends Controller
      */
     public function update(BlockRequest $request, $id)
     {
-
         $requestData = $request->all();
+        $company_id = $this->CurrentCompany->id;
 
-        if($validator->fails()){
-            return $this->sendError('Validation Error.', $validator->errors());
-        }
+//        if($validator->fails()){
+//            return $this->sendError('Validation Error.', $validator->errors());
+//        }
 
         $block = $this->blockRepository->getById($id);
 
@@ -148,7 +130,13 @@ class BlockController extends Controller
             return $this->sendError('Post not found.');
         }
 
-        $block = $this->blockRepository->update($requestData);
+        $block = $this->blockRepository->update(
+            $requestData['name'],
+            $requestData['title'],
+            $requestData['type'],
+            $company_id,
+            $requestData['url']
+        );
 
         return $this->sendResponse($block->toArray(), 'Post updated successfully.');
         // return redirect('admin/posts')->with('flash_message', 'Post updated!');

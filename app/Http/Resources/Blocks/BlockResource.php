@@ -14,6 +14,15 @@ class BlockResource extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'title' => $this->title,
+            'url' => $this->url,
+            'company_id' => $this->company_id,
+            'type' => $this->type,
+            'active' => $this->active,
+//            'posts' => Post::collection($this->posts),
+        ];
     }
 }

@@ -8,4 +8,9 @@ class RandomHelper
         $this->code = rand(1000, 9999);
     }
 }
- 
+//if (!function_exists('name')) {
+//    function name(String $param)
+//    {
+//
+//    }
+//}

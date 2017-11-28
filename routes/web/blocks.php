@@ -5,11 +5,8 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-
-	$api->get('/test', 						function(){
-	    return 'ok';
-    });
 	$api->get('/blocks', 						['uses' => 'App\Http\Controllers\Blocks\BlockController@index', 					'as' => 'user.company_custom_blocks.get_index']);
+	$api->get('/blocks/{id}', 					['uses' => 'App\Http\Controllers\Blocks\BlockController@show', 					    'as' => 'user.company_custom_blocks.get']);
 	$api->get('/blocks/delete/{id}', 			['uses' => 'App\Http\Controllers\Blocks\BlockController@delete', 					'as' => 'user.company_custom_blocks.get_delete']);
 	$api->post('/blocks/sort', 					['uses' => 'App\Http\Controllers\Blocks\BlockController@postSort', 					'as' => 'user.company_custom_blocks.post_sort']);
     /* ================== dynamic ================== */
@@ -28,20 +25,20 @@ $api->version('v1', function ($api) {
 	$api->post('/blocks/payu', 					['uses' => 'App\Http\Controllers\Blocks\CustomController@getPayuBlock', 			'as' => 'user.company_custom_blocks.get_payu_block']);
 	$api->post('/blocks/retail_crm', 			['uses' => 'App\Http\Controllers\Blocks\CustomController@getRetailCrmBlock', 		'as' => 'user.company_custom_blocks.get_retail_crm_block']);
 
-    $api->get('search/{query}', function ($query) {
-        echo "\n<br>Query: ".$query."\n\n<br><br><br>";
-        $orgs = \App\Models\CompanyCustomBlock::search($query);
-        if($orgs->totalHits()) {
-            foreach ($orgs as $org) {
-                echo $org->name."(".$org->documentScore().")<br>\n";
-            }
-        } else {
-            echo "No result";
-        }
-        echo "\n<br>totalHits: ".$orgs->totalHits()."\n<br>";
-        echo "\n<br>maxScore: ".$orgs->maxScore()."\n<br>";
-        echo "\n<br>took: ".$orgs->took()."\n<br>";
-    });
+//    $api->get('search/{query}', function ($query) {
+//        echo "\n<br>Query: ".$query."\n\n<br><br><br>";
+//        $orgs = \App\Models\CompanyCustomBlock::search($query);
+//        if($orgs->totalHits()) {
+//            foreach ($orgs as $org) {
+//                echo $org->name."(".$org->documentScore().")<br>\n";
+//            }
+//        } else {
+//            echo "No result";
+//        }
+//        echo "\n<br>totalHits: ".$orgs->totalHits()."\n<br>";
+//        echo "\n<br>maxScore: ".$orgs->maxScore()."\n<br>";
+//        echo "\n<br>took: ".$orgs->took()."\n<br>";
+//    });
 });
 
 

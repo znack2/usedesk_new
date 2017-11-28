@@ -50,6 +50,9 @@ class AppServiceProvider extends ServiceProvider
         // Horizon::auth(function($auth){
         //     return ($auth()->user()->id == 1) && ($auth()->user()->role == 'ADMIN');
         // });
+
+// just without wrap data
+//        Resource::withoutWrapping();
     }
 
     /**
