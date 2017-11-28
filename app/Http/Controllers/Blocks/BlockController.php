@@ -36,6 +36,7 @@ class BlockController extends Controller
      */
     public function index(Request $request)
     {
+        return $this->sendResponse([], 'Post created successfully.');
         $keyword = $request->get('search');
         $perPage = 25;
 

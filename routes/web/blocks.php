@@ -6,6 +6,9 @@ $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
 
+	$api->get('/test', 						function(){
+	    return 'ok';
+    });
 	$api->get('/blocks', 						['uses' => 'App\Http\Controllers\Blocks\BlockController@index', 					'as' => 'user.company_custom_blocks.get_index']);
 	$api->get('/blocks/delete/{id}', 			['uses' => 'App\Http\Controllers\Blocks\BlockController@delete', 					'as' => 'user.company_custom_blocks.get_delete']);
 	$api->post('/blocks/sort', 					['uses' => 'App\Http\Controllers\Blocks\BlockController@postSort', 					'as' => 'user.company_custom_blocks.post_sort']);

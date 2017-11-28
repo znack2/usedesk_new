@@ -9,7 +9,7 @@ class UserObserver
     /**
      * Listen to the User created event.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function created(User $user)
@@ -20,7 +20,7 @@ class UserObserver
     /**
      * Listen to the User deleting event.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User  $user
      * @return void
      */
     public function deleting(User $user)

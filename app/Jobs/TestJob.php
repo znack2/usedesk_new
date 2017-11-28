@@ -37,7 +37,7 @@ class TestJob implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
+     * @return mixed
      */
     public function tags()
     {

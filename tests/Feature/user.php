@@ -9,13 +9,20 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 class user extends TestCase
 {
     // use WithoutMiddleware;
+
     public function testBasicExample()
     {
-        $this->disableExceptionHandling();
-        $this->testSuccessfulLoginWithDefaultCredentials();
+        $response = $this->call('GET', '/');
+        $this->assertResponseOk();
+    }
 
-        $urls = [
-            route('admin.admins.get_index')
+//    public function testGET()
+//    {
+//        $this->disableExceptionHandling();
+//        $this->testSuccessfulLoginWithDefaultCredentials();
+
+//        $urls = [
+//            route('admin.admins.get_index')
             // route('voyager.media.index'),
             // route('voyager.settings.index'),
 
@@ -52,16 +59,16 @@ class user extends TestCase
             // route('voyager.database.bread.edit', ['table' => 'categories']),
             // route('voyager.database.edit', ['table' => 'categories']),
             // route('voyager.database.create'),
-        ];
+//        ];
 
-        foreach ($urls as $url) {
-            // $response = $this->withSession(['foo' => 'bar'])->get('/');
-            $response = $this->call('GET', $url);
-            // $this->client->request('GET', $url);
-            $this->assertEquals(200, $response->status(), $url.' did not return a 200');
-            // $this->assertTrue($this->client->getResponse()->isOk());
-        }
-    }
+//        foreach ($urls as $url) {
+//            // $response = $this->withSession(['foo' => 'bar'])->get('/');
+//            $response = $this->call('GET', $url);
+//            // $this->client->request('GET', $url);
+//            $this->assertEquals(200, $response->status(), $url.' did not return a 200');
+//            // $this->assertTrue($this->client->getResponse()->isOk());
+//        }
+//    }
 
     // public function testPOST()
     //    {
