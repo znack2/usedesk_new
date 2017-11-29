@@ -16,7 +16,7 @@ class CreateMacrosHistoryTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('macros_id')->unsigned()->index('macros_history_macros_id_foreign');
-			$table->dateTime('used_at')->default('0000-00-00 00:00:00')->index('used_at');
+			$table->dateTime('used_at');//->default('0000-00-00 00:00:00')->index('used_at');
 			$table->integer('ticket_id')->unsigned()->nullable();
 		});
 	}

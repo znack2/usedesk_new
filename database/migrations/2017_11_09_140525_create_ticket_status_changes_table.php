@@ -17,7 +17,7 @@ class CreateTicketStatusChangesTable extends Migration {
 			$table->increments('id');
 			$table->integer('ticket_id')->unsigned()->index('ticket_id');
 			$table->integer('ticket_status_id')->unsigned()->nullable()->index('ticket_status_id');
-			$table->dateTime('changed_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('changed_at');//->default('0000-00-00 00:00:00');
 			$table->index(['changed_at','ticket_id'], 'changed_at_ticket_id');
 		});
 	}

@@ -22,7 +22,7 @@ class CreateMacrosesTable extends Migration {
 			$table->integer('for_user_id')->nullable();
 			$table->enum('privacy', array('private','all','groups'))->default('all');
 			$table->boolean('sort')->default(0);
-			$table->dateTime('updated_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('updated_at');//->default('0000-00-00 00:00:00');
 			$table->integer('changed_by_user')->unsigned()->nullable()->index('	macroses_changed_by_user_foreign');
 			$table->boolean('deleted');
 		});

@@ -18,7 +18,7 @@ class CreateApiCodeUsersTable extends Migration {
 			$table->string('code', 40);
 			$table->integer('user')->unsigned()->index('api_code_users_user_foreign');
 			$table->integer('client')->unsigned()->index('api_code_users_client_foreign');
-			$table->dateTime('expired')->default('0000-00-00 00:00:00');
+			$table->dateTime('expired');//->default('0000-00-00 00:00:00')
 		});
 	}
 

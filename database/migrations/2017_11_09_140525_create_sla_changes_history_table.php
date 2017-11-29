@@ -17,7 +17,7 @@ class CreateSlaChangesHistoryTable extends Migration {
 			$table->integer('id')->unsigned();
 			$table->integer('sla_id')->unsigned()->index('sla_id');
 			$table->integer('user_id')->unsigned()->index('user_id');
-			$table->dateTime('changed_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('changed_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

@@ -23,7 +23,7 @@ class CreateSlaReplyHistoryTable extends Migration {
 			$table->integer('sla_option_id')->unsigned()->index('sla_option_id');
 			$table->integer('comment_time')->unsigned()->default(0);
 			$table->integer('work_time')->unsigned()->default(0);
-			$table->dateTime('published_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('published_at');//->default('0000-00-00 00:00:00');
 			$table->boolean('is_first')->default(0);
 			$table->boolean('success')->default(0);
 			$table->index(['ticket_id','published_at'], 'ticket_id_published_at');

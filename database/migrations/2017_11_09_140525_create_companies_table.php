@@ -21,7 +21,7 @@ class CreateCompaniesTable extends Migration {
 			$table->boolean('signature_enabled')->default(1);
 			$table->enum('blocked', array('none','activity','full'))->default('none');
 			$table->dateTime('last_login_at')->nullable();
-			$table->dateTime('registered_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('registered_at');//->default('0000-00-00 00:00:00');
 			$table->boolean('import_enabled')->default(0);
 			$table->boolean('get_started')->default(1);
 			$table->string('lang', 10)->default('ru');

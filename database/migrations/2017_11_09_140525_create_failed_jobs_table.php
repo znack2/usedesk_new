@@ -18,7 +18,7 @@ class CreateFailedJobsTable extends Migration {
 			$table->text('connection', 65535);
 			$table->text('queue', 65535);
 			$table->text('payload', 65535);
-			$table->dateTime('failed_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('failed_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

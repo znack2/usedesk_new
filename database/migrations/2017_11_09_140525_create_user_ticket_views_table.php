@@ -17,7 +17,7 @@ class CreateUserTicketViewsTable extends Migration {
 			$table->increments('id');
 			$table->integer('user_id')->unsigned()->index('user_ticket_views_user_id_foreign');
 			$table->integer('ticket_id')->unsigned()->index('user_ticket_views_ticket_id_foreign');
-			$table->dateTime('last_viewed_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('last_viewed_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

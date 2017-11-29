@@ -27,9 +27,9 @@ class CreateTicketsTable extends Migration {
 			$table->string('email_channel_email')->nullable();
 			$table->integer('company_id')->unsigned();
 			$table->string('social_id')->nullable();
-			$table->dateTime('status_updated_at')->default('0000-00-00 00:00:00');
-			$table->dateTime('last_updated_at')->default('0000-00-00 00:00:00')->index('last_updated_at');
-			$table->dateTime('published_at')->default('0000-00-00 00:00:00')->index('published_at');
+			$table->dateTime('status_updated_at');//->default('0000-00-00 00:00:00');
+			$table->dateTime('last_updated_at');//->default('0000-00-00 00:00:00')->index('last_updated_at');
+			$table->dateTime('published_at');//->default('0000-00-00 00:00:00')->index('published_at');
 			$table->dateTime('last_viewed_at')->nullable();
 			$table->string('zendesk_id')->nullable();
 			$table->integer('owner_id')->nullable();

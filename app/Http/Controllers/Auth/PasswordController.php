@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-use App\Repository\Auth\RequestRepository;
+use App\Repository\RequestRepository;
+use App\Repository\UserRepository;
 use App\Service\Mailer;
 use App\Http\Requests\postPasswordRestore;
 use App\Http\Requests\postPasswordRestoreNew;
 use App\Http\Controllers\BaseController;
 
 /**
- * User resource representation.
+ * Password representation.
  *
  * @Resource("Users", uri="/users")
  */
@@ -29,6 +30,7 @@ class PasswordController extends BaseController
     protected redirect()->routeTo = '/home';
 
     protected $requestRepository;
+    protected $userRepository;
     protected $mailer;
 
     /**
@@ -36,10 +38,11 @@ class PasswordController extends BaseController
      *
      * @return void
      */
-    function __construct(RequestRepository $requestRepository)
+    function __construct(RequestRepository $requestRepository,UserRepository $userRepository)
     {
         $this->middleware('guest');
         $this->requestRepository = $requestRepository;
+        $this->userRepository = $userRepository;
         $this->mailer = new Mailer;
     }
     /**
@@ -53,7 +56,7 @@ class PasswordController extends BaseController
     public function getPasswordRestore()
     {
         //output
-        return view('user.auth.password_restore');
+        return view('auth.password_restore');
     }
     /**
      * Show all users
@@ -70,10 +73,12 @@ class PasswordController extends BaseController
     {
         //get data
         $email = $request->input('email');
+        $hash = md5(uniqid(time()));
         
         //get from db
-        $request = $this->requestRepository->passwordRestoreByEmail($email);
-        $name = 'user.emails.password_restore';
+        $request = $this->requestRepository->passwordUpdate($email,$hash);
+
+        $name = 'emails.password_restore';
         $data = ['request' => $request];
         $subject = trans('text.password_recovery');
         //send mail
@@ -96,10 +101,10 @@ class PasswordController extends BaseController
      */
     public function getPasswordRestoreNew($hash)
     {
-        $this->PasswordRestoreRequestRepository->getByHash($hash);
+        $this->requestRepository->getPasswordByHash($hash);
         //output
         return $this->view
-                    ->make('user.auth.password_restore_new');
+                    ->make('auth.password_restore_new');
     }
     /**
      * Show all users
@@ -114,15 +119,16 @@ class PasswordController extends BaseController
      */
     public function postPasswordRestoreNew($hash)
     {
+        //get data
+        $input = $request->input('password');
+        $password = Hash::make($input);
         //get from db
-        $request = $this->requestRepository->getPasswordRestore($hash);
+        $request = $this->requestRepository->getPasswordByHash($hash);
         $request->delete();
         //
-        $user = $this->userRepository->ByEmail($request->email);
-        $user->password = $this->makeOrCheckHash();
-        $user->save();
+        $this->userRepository->setPassword($request->email,$password);
         //output
         return $this->redirect
-                    ->route('user.auth.get_login');
+                    ->route('auth.get_login');
     }
 }

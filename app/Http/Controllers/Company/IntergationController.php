@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Company;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CompanyIntergation extends Controller
+class IntergationController extends Controller
 {
     /**
      * Display a listing of the resource.

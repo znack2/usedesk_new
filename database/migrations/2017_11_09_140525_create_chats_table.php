@@ -19,7 +19,7 @@ class CreateChatsTable extends Migration {
 			$table->string('socket_id', 100);
 			$table->integer('company_id')->unsigned()->index('company_id');
 			$table->timestamp('connected_at')->default(DB::raw('CURRENT_TIMESTAMP'));
-			$table->dateTime('disconnected_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('disconnected_at');//->default('0000-00-00 00:00:00');
 			$table->integer('client_id')->unsigned()->nullable()->index('client_id');
 			$table->integer('user_id')->unsigned()->nullable()->index('user_id');
 			$table->boolean('status');

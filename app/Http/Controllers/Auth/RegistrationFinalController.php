@@ -5,9 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Repository\Auth\RequestRepository;
 use App\Service\TelegramService;
 use App\Service\DemoData'
-use App\Http\Requests\postRegistrationConfirmation;
+use App\Http\Requests\PostRegistrationFinal;
 /**
- * User resource representation.
+ * RegistrationFinal representation.
  *
  * @Resource("Users", uri="/users")
  */
@@ -16,10 +16,33 @@ class RegistrationFinalController extends BaseController
     protected $requestRepository;
     protected $demoService;
     protected $telegramService;
+    protected $MailChimpService;
+
+
+    companyRepository
+    companyEmailRepository + channelRepository
+    CompanyContactsRepository
+    CompanyBillingRepository
+    CompanyWorkingDayRepository
+    BlackWhiteListRepository
+    IntegrationRepository
+    GetStartedRepository
+
+
+    NotificationRepository
+    NotificationUserRepository
+    TextSettingsRepository
+    MonitoringRepository
+    MailingScheduleRepository
+    userRepository
+    UserGroupRepository
+    UserGroupPermissionRepository
+
 
     function __construct(RequestRepository $requestRepository)
     {
         $this->requestRepository = $requestRepository;
+        $this->MailChimpService = new MailChimpService;
         $this->phoneService = new PhoneService;
         $this->demoService = new DemoData;
     }
@@ -37,14 +60,16 @@ class RegistrationFinalController extends BaseController
      */
     public function getRegistrationFinal($hash)
     {
-        $registrationRequest = $this->requestRepository->getByHash($hash);
+        //get data
+        $hideBack = true;
+
+        $registrationRequest = $this->requestRepository->getRegistrationByHash($hash);
         if (!$registrationRequest || !$registrationRequest->confirmed) {
             return $this->redirect
-                        ->route('user.auth.get_registration');
+                        ->route('auth.get_registration');
         }
-        $hideBack = true;
         //output
-        return view('user.auth.registration_final', [
+        return view('auth.registration_final', [
             'hideBack'
         ]);
     }
@@ -60,11 +85,10 @@ class RegistrationFinalController extends BaseController
      *      @Parameter("limit", description="The amount of results per page.", default=10)
      * })
      */
-    public function postRegistrationFinal($hash)
+    public function postRegistrationFinal(PostRegistrationFinal $request,$hash)
     {
         //get data
         $referer = $request->server('HTTP_REFERER');
-
 
         $data =  $request->only([
             'user_email',
@@ -72,42 +96,57 @@ class RegistrationFinalController extends BaseController
             'company_users_number',
             '_ga_cid'
         ]);
+        $mailchimpListId = $this->config()->get('services.mailchimp.list_id');
+        $mailchimpKey = $this->config()->get('services.mailchimp.secret');
 
         //validate
-        $this->service->getValidation('postRegistrationFinal',$referer);
+        // $this->service->getValidation('postRegistrationFinal',$referer);
 
-        $this->telegramService->sendTelegramwithError();
+        $this->telegramService->sendTelegramWithError();
 
         //get from db
-        $registrationRequest = $this->requestRepository->getByHash($hash);
+        $registrationRequest = $this->requestRepository->getRegistrationByHash($hash);
         if (!$registrationRequest || !$registrationRequest->confirmed) {
             return $this->redirect
-                        ->route('user.auth.get_registration');
+                        ->route('auth.get_registration');
         }
          try {
             //update request
-            $registrationRequest->data = $registrationRequest->data + $data['user_password','company_users_number'];
-            if (!$secret_reg) {
-                $registrationRequest->data = $registrationRequest->data + $data['email'];
-            }
-            $registrationRequest->save();
+            $this->requestRepository->registrationUpdate($registrationRequest,$data);
             //add to mailchimp
-            $mailchimpListId = $this->config()->get('services.mailchimp.list_id');
-            $mailchimpKey = $this->config()->get('services.mailchimp.secret');
-            $this->userRepository->mailcimpAddList($registrationRequest->data['user_email'], "subscribed", $mailchimpListId, $mailchimpKey);
-            //create company
-            $company = $this->companyRepository->create($registrationRequest->data['company_name']);
-            //create integration
-            $integrations = $this->IntegrationRepository->getBy($status = true,$default_status = true);
-            foreach ($integrations as $integration) {
-                $this->IntegrationRepository->createCompany($integration->id,$company->id);
-            }
-            //create contacts
-            $companyContacts = $this->CompanyContactsRepository->create($company->id);
-            //create CompanyBilling
-            $this->CompanyBillingRepository->create($company->id,$registrationRequest->data['company_users_number']);
+            $this->MailChimpService->mailcimpAddList(
+                 $registrationRequest->data['user_email'],
+                 "subscribed", 
+                 $mailchimpListId, 
+                 $mailchimpKey
+             );
+
+
+
+                    //create company
+                    $company = $this->companyRepository->create($registrationRequest->data['company_name']);
+                    //create integration
+                    $integrations = $this->IntegrationRepository->getBy($status = true,$default_status = true);
+                    foreach ($integrations as $integration) {
+                        $this->IntegrationRepository->createCompany($integration->id,$company->id);
+                    }
+                    //create contacts
+                    $companyContacts = $this->CompanyContactsRepository->create($company->id);
+                    //create CompanyBilling
+                    $this->CompanyBillingRepository->create($company->id,$registrationRequest->data['company_users_number']);
+                    //create workingdays
+                    $this->CompanyWorkingDayRepository->create();
+                    //create BlackWhiteList
+                    $this->BlackWhiteListRepository->create();
+                    //create getStarted
+                    $this->GetStartedRepository->create();
+
+
+
+
+
              //create user
-            $this->userRepository->create($company->id,$registrationRequest->data[
+            $user = $this->userRepository->create($company->id,$registrationRequest->data[
                 'user_email',
                 'user_password',
                 'user_name',
@@ -118,16 +157,11 @@ class RegistrationFinalController extends BaseController
             foreach ($notifications as $notification) {
                $this->NotificationUserRepository->create($notification,$user->id);
             }
-            //create workingdays
-            $this->CompanyWorkingDayRepository->create();
-            //create getSterted
-            $this->GetStartedRepository->create();
+
             //create textSettings
             $this->TextSettingsRepository->create();
             //create monitoring
             $this->MonitoringRepository->create();
-            //create bandw
-            $this->BlackWhiteListRepository->create();
             // Заполняем аккаунт демо-данными
             $this->demoService->createDemoData($company);
 
@@ -153,12 +187,7 @@ class RegistrationFinalController extends BaseController
             }
             $group->users()->attach($user->id);
             $this->userRepository->update($user->id,$group->id);
-
-            $getStarted = $company->getStartedByKey(GetStarted::KEY_CHANNELS);
-            if($getStarted) {
-                $getStarted->done = true;
-                $getStarted->save();
-            }
+            $this->getStarted($company,GetStarted::KEY_CHANNELS);
         } 
         catch (Exception $e) {
             $this->logs($e);
@@ -174,6 +203,6 @@ class RegistrationFinalController extends BaseController
         $this->currentUser->login($user);
         //output
         return $this->redirect
-                    ->route('user.auth.get_thank_you');
+                    ->route('auth.get_thank_you');
     }
 }

@@ -19,7 +19,7 @@ class CreateCompanyIntegrationsLogTable extends Migration {
 			$table->integer('company_id')->unsigned()->index('company_id');
 			$table->integer('user_id')->unsigned()->nullable()->index('user_id');
 			$table->boolean('status');
-			$table->dateTime('updated_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('updated_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

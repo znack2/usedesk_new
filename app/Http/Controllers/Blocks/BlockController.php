@@ -15,7 +15,6 @@ use App\Repository\Blocks\BlockRepository;
  */
 class BlockController extends Controller
 {
-
     /**
      * @var BlockRepository
      */
@@ -32,14 +31,17 @@ class BlockController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \App\Http\Resources\Blocks\BlockCollection
      */
     public function index(Request $request)
     {
-        $keyword = $request->get('search');
-
-        $blocks = $this->blockRepository->getAll($keyword,$perPage = 25);
-
+        //get data
+        $requestData = $request->all();
+        //get from db
+        $blocks = $this->blockRepository->getAll($requestData,$perPage = 25);
+        //output
         return new BlockCollection($blocks);
     }
     /**
@@ -67,10 +69,10 @@ class BlockController extends Controller
             $requestData['url']
         );
 
-        // return response()->json('Post added!',200);
+        // return response()->json('Block added!',200);
 
-        // return redirect('admin/posts')->with('flash_message', 'Post added!');
-        return $this->sendResponse($block->toArray(), 'Post created successfully.');
+        // return redirect('admin/posts')->with('flash_message', 'Block added!');
+        return $this->sendResponse($block->toArray(), 'Block created successfully.');
     }
 
     /**
@@ -85,7 +87,7 @@ class BlockController extends Controller
         $block = $this->blockRepository->getById($id);
 
         if (is_null($block)) {
-            return $this->sendError('Post not found.');
+            return $this->sendError('Block not found.');
         }
         return new BlockResource($block);
     }
@@ -102,7 +104,7 @@ class BlockController extends Controller
         $block = $this->blockRepository->getById($id);
 
         if (is_null($block)) {
-            return $this->sendError('Post not found.');
+            return $this->sendError('Block not found.');
         }
         return new BlockResource($block);
     }
@@ -127,7 +129,7 @@ class BlockController extends Controller
         $block = $this->blockRepository->getById($id);
 
         if (is_null($block)) {
-            return $this->sendError('Post not found.');
+            return $this->sendError('Block not found.');
         }
 
         $block = $this->blockRepository->update(
@@ -138,7 +140,7 @@ class BlockController extends Controller
             $requestData['url']
         );
 
-        return $this->sendResponse($block->toArray(), 'Post updated successfully.');
+        return $this->sendResponse($block->toArray(), 'Block updated successfully.');
         // return redirect('admin/posts')->with('flash_message', 'Post updated!');
     }
 
@@ -154,12 +156,12 @@ class BlockController extends Controller
         $block = $this->blockRepository->getById($id);
 
         if (is_null($block)) {
-            return $this->sendError('Post not found.');
+            return $this->sendError('Block not found.');
         }
 
         $this->blockRepository->delete($id);
 
-        return $this->sendResponse($id, 'Tag deleted successfully.');
-        // return redirect('admin/posts')->with('flash_message', 'Post deleted!');
+        return $this->sendResponse($id, 'Block deleted successfully.');
+        // return redirect('admin/posts')->with('flash_message', 'Block deleted!');
     }
 }

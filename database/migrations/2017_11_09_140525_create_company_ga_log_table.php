@@ -16,7 +16,7 @@ class CreateCompanyGaLogTable extends Migration {
 		{
 			$table->integer('id', true);
 			$table->integer('company_id')->unsigned()->index('company_id');
-			$table->dateTime('created_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('created_at');//->default('0000-00-00 00:00:00');
 			$table->string('payment_transaction_id');
 			$table->string('client_id');
 			$table->string('user_id');

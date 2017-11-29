@@ -18,7 +18,7 @@ class CreateTicketFieldValuesHistoryTable extends Migration {
 			$table->integer('ticket_id')->unsigned()->index('ticket_id');
 			$table->integer('ticket_field_id')->unsigned()->index('ticket_field_id');
 			$table->string('value')->nullable();
-			$table->dateTime('changed_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('changed_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

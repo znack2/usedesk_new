@@ -18,7 +18,7 @@ class CreateTickets2Users2UserGroupsTable extends Migration {
 			$table->integer('ticket_id')->unsigned()->index('ticket_id');
 			$table->integer('user_id')->unsigned()->nullable()->index('user_id');
 			$table->integer('group_id')->unsigned()->nullable()->index('group_id');
-			$table->dateTime('updated_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('updated_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

@@ -17,8 +17,8 @@ class CreateChatUserStatusTable extends Migration {
 			$table->integer('id', true);
 			$table->integer('user_id');
 			$table->boolean('status');
-			$table->dateTime('connected_at')->default('0000-00-00 00:00:00');
-			$table->dateTime('disconnected_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('connected_at');//->default('0000-00-00 00:00:00');
+			$table->dateTime('disconnected_at');//->default('0000-00-00 00:00:00');
 			$table->string('token', 80);
 			$table->boolean('online');
 		});

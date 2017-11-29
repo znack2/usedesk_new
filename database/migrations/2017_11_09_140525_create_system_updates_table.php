@@ -20,7 +20,7 @@ class CreateSystemUpdatesTable extends Migration {
 			$table->text('content', 65535);
 			$table->string('button_name')->nullable();
 			$table->string('button_url')->nullable();
-			$table->dateTime('last_updated_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('last_updated_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

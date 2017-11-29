@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\BaseController;
 use App\Repository\UserRepository;
-use App\Repository\RequestRepository;
 /**
- * User resource representation.
+ * Auth representation.
  *
  * @Resource("Users", uri="/users")
  */
@@ -23,18 +22,16 @@ class AuthController extends BaseController
     protected redirect()->routeTo = '/home';
 
     protected $userRepository;
-    protected $requestRepository;
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    function __construct(UserRepository $userRepository,RequestRepository $requestRepository)
+    function __construct(UserRepository $userRepository)
     {
         $this->middleware('guest')->except('logout');
         $this->userRepository = $userRepository;
-        $this->requestRepository = $requestRepository;
     }
     /**
      * Show login page
@@ -47,7 +44,7 @@ class AuthController extends BaseController
     public function getLogin()
     {
         //output
-        return view('user.auth.login');
+        return view('auth.login');
     }
     /**
      * Show thank_you page
@@ -60,7 +57,7 @@ class AuthController extends BaseController
     public function getThankYou()
     {
         //output
-        return view('user.auth.thank_you');
+        return view('auth.thank_you');
     }
     /**
      * Logout
@@ -78,7 +75,7 @@ class AuthController extends BaseController
         $user->logout();
         //output
         return $this->redirect
-                    ->route('user.auth.get_login');
+                    ->route('auth.get_login');
     }
     /**
      * Post login
@@ -110,13 +107,12 @@ class AuthController extends BaseController
                             ->to($redirect);
             }
             return $this->redirect
-                        ->route('user.dashboard.get_index');
+                        ->route('dashboard.get_index');
         } else {
             return $this->redirect
-                        ->route('user.auth.get_login', ['redirect_to' => $redirect])
+                        ->route('auth.get_login', ['redirect_to' => $redirect])
                         ->withInput()
-                        ->with('message_danger', $this->lang()
-                        ->get('text._help.auth.invalid_email_or_password'));
+                        ->with('message_danger', $this->lang()->get('text._help.auth.invalid_email_or_password'));
         }
     }
     /**
@@ -144,39 +140,11 @@ class AuthController extends BaseController
             $this->userRepository->setLastLoginAt($user);
             //output
             return $this->redirect
-                        ->route('user.dashboard.get_index');
+                        ->route('dashboard.get_index');
         } else {
             return $this->redirect
-                        ->route('user.auth.get_login');
+                        ->route('auth.get_login');
         }
     }
-    /**
-     * Show all users
-     *
-     * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     * })
-     */
-    public function redirectByHash($hash) 
-    {
-        $registrationRequest = $this->requestRepository->getRegistrationByHash($hash);
-        if (!$registrationRequest) {
-            //output
-            return $this->redirect
-                        ->route('user.auth.get_registration');
-        } else {
-            $input = [
-                'company_name' =>  $registrationRequest->data['company_name'],
-                'user_name' =>  $registrationRequest->data['user_name'],
-            ];
-            //output
-            return $this->redirect
-                        ->route('user.auth.get_registration')
-                        ->withInput($input);
-        }
-    }   
+ 
 }

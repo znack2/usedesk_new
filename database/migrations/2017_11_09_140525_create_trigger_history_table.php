@@ -18,7 +18,7 @@ class CreateTriggerHistoryTable extends Migration {
 			$table->integer('trigger_id')->unsigned()->index('trigger_history_trigger_id_foreign');
 			$table->integer('updated_users')->default(0);
 			$table->integer('updated_tickets')->default(0);
-			$table->dateTime('started_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('started_at');//->default('0000-00-00 00:00:00');
 		});
 	}
 

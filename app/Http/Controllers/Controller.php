@@ -23,15 +23,27 @@ class Controller extends BaseController
     public function __construct(Auth $auth)
     {
         // $this->currentUser = $auth->user();//Auth $auth
-         $this->now = new Carbon;
          $this->CurrentCompany = $auth->user()->user()->company;
-
          // $this->request->get('company_id') ?: Company::current();
     }
-    
+
+    public function carbon()
+    {
+        return $this->now = new Carbon;
+    }
+
     public function logs($e)
     {
         return Log::alert($e);
+    }    
+
+    public function getStarted($company,$key)
+    {
+        $getStarted = $company->getStartedByKey($key);
+        if($getStarted) {
+            $getStarted->done = true;
+            $getStarted->save();
+        }
     }
 
     public function sendResponse($result, $message)

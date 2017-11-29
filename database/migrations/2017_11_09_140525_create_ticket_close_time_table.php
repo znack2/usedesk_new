@@ -22,7 +22,7 @@ class CreateTicketCloseTimeTable extends Migration {
 			$table->integer('close_time')->unsigned()->default(0);
 			$table->integer('work_time')->unsigned()->default(0);
 			$table->boolean('by_first')->default(0);
-			$table->dateTime('updated_at')->default('0000-00-00 00:00:00');
+			$table->dateTime('updated_at');//->default('0000-00-00 00:00:00');
 			$table->index(['company_id','updated_at','ticket_id'], 'company_id_updated_at_ticket_id');
 		});
 	}

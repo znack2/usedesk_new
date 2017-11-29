@@ -5,14 +5,14 @@ use Illuminate\Http\Request;
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1', function ($api) {
-
+	    /* ================== account ================== */
 	$api->get('/wiki', 												['uses' => 'App\Http\Controllers\Wiki\AccountController@getIndex', 								    'as' => 'user.support.get_index']);
 	$api->get('/wiki/{id}', 										['uses' => 'App\Http\Controllers\Wiki\AccountController@getAccount', 								'as' => 'user.support.get_account'])->where('id', '[0-9]+');
 	$api->get('/wiki/create', 										['uses' => 'App\Http\Controllers\Wiki\AccountController@getEdit', 								    'as' => 'user.support.get_create']);
 	$api->get('/wiki/edit/{id}', 									['uses' => 'App\Http\Controllers\Wiki\AccountController@getEdit', 								    'as' => 'user.support.get_edit']);
 	$api->post('/wiki/edit/{id?}', 									['uses' => 'App\Http\Controllers\Wiki\AccountController@postEdit', 								    'as' => 'user.support.post_edit']);
 	$api->get('/wiki/delete/{id}', 									['uses' => 'App\Http\Controllers\Wiki\AccountController@getDelete', 								'as' => 'user.support.get_delete']);
-	//collection				
+	    /* ================== collection ================== */				
 	$api->get('/wiki/{account_id}/collection/create', 				['uses' => 'App\Http\Controllers\Wiki\CollectionController@getCollectionEdit', 					    'as' => 'user.support.get_collection_create']);
 	$api->get('/wiki/{account_id}/collection/edit/{id}', 			['uses' => 'App\Http\Controllers\Wiki\CollectionController@getCollectionEdit', 					    'as' => 'user.support.get_collection_edit']);
 	$api->post('/wiki/{account_id}/collection/edit/{id}', 			['uses' => 'App\Http\Controllers\Wiki\CollectionController@postCollectionEdit', 					'as' => 'user.support.post_collection_edit']);
@@ -22,7 +22,7 @@ $api->version('v1', function ($api) {
 	$api->get('/wiki/{account_id}/collection/copy/{id}', 			['uses' => 'App\Http\Controllers\Wiki\CollectionController@getCollectionCopy', 					    'as' => 'user.support.get_collection_copy']);
 	$api->post('/wiki/{account_id}/collection/delete-multiple/', 	['uses' => 'App\Http\Controllers\Wiki\CollectionController@postCollectionDeleteMultiple',           'as' => 'user.support.post_collection_delete_multiple']);
 	$api->post('/wiki/{account_id}/collection/copy-multiple/', 		['uses' => 'App\Http\Controllers\Wiki\CollectionController@postCollectionCopyMultiple', 	        'as' => 'user.support.post_collection_copy_multiple']);
-	//category				
+	 /* ================== category ================== */				
 	$api->get('/wiki/{account_id}/category/create', 				['uses' => 'App\Http\Controllers\Wiki\CategoryController@getCategoryEdit', 						    'as' => 'user.support.get_category_create']);
 	$api->get('/wiki/{account_id}/category/edit/{id}', 				['uses' => 'App\Http\Controllers\Wiki\CategoryController@getCategoryEdit', 						    'as' => 'user.support.get_category_edit']);
 	$api->post('/wiki/{account_id}/category/edit/{id}', 			['uses' => 'App\Http\Controllers\Wiki\CategoryController@postCategoryEdit', 						'as' => 'user.support.post_category_edit']);
@@ -32,7 +32,7 @@ $api->version('v1', function ($api) {
 	$api->get('/wiki/{account_id}/category/copy/{id}', 				['uses' => 'App\Http\Controllers\Wiki\CategoryController@getCategoryCopy', 						    'as' => 'user.support.get_category_copy']);
 	$api->post('/wiki/{account_id}/category/delete-multiple/', 		['uses' => 'App\Http\Controllers\Wiki\CategoryController@postCategoryDeleteMultiple', 	            'as' => 'user.support.post_category_delete_multiple']);
 	$api->post('/wiki/{account_id}/category/copy-multiple/', 		['uses' => 'App\Http\Controllers\Wiki\CategoryController@postCategoryCopyMultiple', 		        'as' => 'user.support.post_category_copy_multiple']);
-	//article				
+	 /* ================== article ================== */					
 	$api->get('/wiki/{account_id}/article/create', 					['uses' => 'App\Http\Controllers\Wiki\ArticleController@getArticleEdit', 							'as' => 'user.support.get_article_create']);
 	$api->get('/wiki/{account_id}/article/edit/{id}', 				['uses' => 'App\Http\Controllers\Wiki\ArticleController@getArticleEdit', 							'as' => 'user.support.get_article_edit']);
 	$api->post('/wiki/{account_id}/article/edit/{id}', 				['uses' => 'App\Http\Controllers\Wiki\ArticleController@postArticleEdit', 						    'as' => 'user.support.post_article_edit']);

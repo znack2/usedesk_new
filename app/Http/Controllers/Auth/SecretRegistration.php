@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Repository\RequestRepository;
 use App\Http\Requests\Auth\postSecretRegistration;
 /**
- * User resource representation.
+ * Secret Registration representation.
  *
  * @Resource("Users", uri="/users")
  */
@@ -27,7 +27,7 @@ class SecretController extends BaseController
      */
  	public function getSecretRegistration()
     {
-        return view('user.auth.secret_registration');
+        return view('auth.secret_registration');
     }
 /**
      * Show all users
@@ -51,7 +51,7 @@ class SecretController extends BaseController
             $var = md5($registrationRequest->id . 'SALT1313');
             //output
             return $this->redirect
-                        ->route('user.auth.get_secret_registration_final', [$var]);
+                        ->route('auth.get_secret_registration_final', [$var]);
         } catch (Exception $e) {
             $this->logs($e);
             return $this->redirect
@@ -78,10 +78,10 @@ class SecretController extends BaseController
         $registrationRequest = $this->requestRepository->getRegistrationByHash($hash);
         if (!$registrationRequest || !$registrationRequest->confirmed) {
             return $this->redirect
-                        ->route('user.auth.get_secret_registration');
+                        ->route('auth.get_secret_registration');
         }
         //output
-        return view('user.auth.secret_registration_final', [
+        return view('auth.secret_registration_final', [
             'hideBack'
         ]);
     }

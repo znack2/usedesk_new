@@ -29,6 +29,11 @@ class Company extends BaseModel
          'lang'
      ];
 
+    public function blocks()
+    {
+        return $this->hasMany('CompanyCustomBlock');
+    }
+
     public function contacts()
     {
         return $this->hasOne('CompanyContacts');

@@ -19,7 +19,7 @@ class CreateApiUsersTable extends Migration {
 			$table->integer('user')->unsigned()->index('api_users_user_foreign');
 			$table->integer('client')->unsigned()->index('api_users_client_foreign');
 			$table->integer('company');
-			$table->dateTime('expired')->default('0000-00-00 00:00:00');
+			$table->dateTime('expired');//->default('0000-00-00 00:00:00');
 		});
 	}
 

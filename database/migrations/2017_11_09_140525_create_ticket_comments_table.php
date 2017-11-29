@@ -29,7 +29,7 @@ class CreateTicketCommentsTable extends Migration {
 			$table->string('mandrill_id')->nullable()->unique('mandrill_id');
 			$table->boolean('mandrill_delivered')->default(0);
 			$table->boolean('mandrill_readed')->default(0);
-			$table->dateTime('published_at')->default('0000-00-00 00:00:00')->index('published_at');
+			$table->dateTime('published_at');//->default('0000-00-00 00:00:00')->index('published_at');
 			$table->string('extra_headers', 500)->nullable();
 			$table->integer('vk_id')->nullable();
 			$table->string('twitter_id', 24)->nullable();

@@ -11,9 +11,10 @@ class RequestRepository extends AbstractRepository
      * @param int $active
      * @return $customBlock
      */
-    public function getBy($email)
+    public function getPasswordByEmail($email)
     {
-        $model = DB::table('PasswordRestoreRequest')->firstOrNew(['email' => $email]);
+        $model = DB::table('PasswordRestoreRequest')
+                    ->firstOrNew(['email' => $email]);
         return $model;
     }
     /**
@@ -21,15 +22,26 @@ class RequestRepository extends AbstractRepository
      * @param int $active
      * @return $customBlock
      */
-    public function passwordRestoreUpdate($email)
+    public function passwordUpdate($email,$hash)
     {
-        $model = $this->getBy($email);
+        $model = $this->getPasswordByEmail($email);
         $model->fill([
-            'hash' => md5(uniqid(time())),
+            'hash' => $hash,
             'created_at' => $this->carbon(),
         ])->save();
         return $model;
     }
+    /**
+     * @param int $company_id
+     * @param int $active
+     * @return $customBlock
+     */
+     public function getPasswordByHash($hash) 
+     {
+        return DB::table('PasswordRestoreRequest')
+            ->where('hash',  $hash)
+            ->firstOrFail();
+     }
     /**
      * @param int $company_id
      * @param int $active
@@ -50,31 +62,40 @@ class RequestRepository extends AbstractRepository
      * @param int $active
      * @return $customBlock
      */
-     public function getPasswordRestoreByHash($hash) 
-     {
-        return DB::table('PasswordRestoreRequest')->where('hash',  $hash)->firstOrFail();
-     }
-    /**
-     * @param int $company_id
-     * @param int $active
-     * @return $customBlock
-     */
      public function getRegistrationByHash($hash) 
      {
-        return DB::table('RegistrationRequest')->whereRaw('MD5(CONCAT(id, "SALT1313")) = ?', [$hash])->firstOrFail();
+        return DB::table('RegistrationRequest')
+            ->whereRaw('MD5(CONCAT(id, "SALT1313")) = ?', [$hash])
+            ->firstOrFail();
      }
     /**
-     * @param int $company_id
-     * @param int $active
+     * @param int $hash
      * @return $customBlock
      */
-     public function confirm($hash) 
+     public function confirmRegistration($hash) 
      {
-        $model = $this->getByHash($hash);
+        $model = $this->getRegistrationByHash($hash);
         $model->confirmed = true;
         $model->save();
         return $model;
      }
+    /**
+     * @param int $company_id
+     * @param int $active
+     * @return $customBlock
+     */
+    public function registrationUpdate($registrationRequest,$data)
+    {
+        $registrationRequest->data = $registrationRequest->data + $data['user_password','company_users_number'];
+        if (!$secret_reg) {
+            $registrationRequest->data = $registrationRequest->data + $data['email'];
+        }
+        $registrationRequest->save();
+        return $registrationRequest;
+    }
+
+
+            
 }
 
                 

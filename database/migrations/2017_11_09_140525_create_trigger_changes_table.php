@@ -19,7 +19,7 @@ class CreateTriggerChangesTable extends Migration {
 			$table->integer('user_id')->unsigned()->nullable()->index('user_id');
 			$table->integer('ticket_id')->unsigned()->index('trigger_changes_ticket_id_foreign');
 			$table->text('data', 65535)->nullable();
-			$table->dateTime('changed_at')->default('0000-00-00 00:00:00')->index('changed_at');
+			$table->dateTime('changed_at');//->default('0000-00-00 00:00:00')->index('changed_at');
 			$table->integer('old_status');
 			$table->integer('new_status');
 			$table->integer('company_id')->unsigned()->nullable()->index('trigger_changes_company_id_foreign');

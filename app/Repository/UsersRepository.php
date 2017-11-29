@@ -8,7 +8,7 @@ class UsersRepository extends AbstractRepository
 {
     /**
      * @param int $user
-     * @return $user
+     * @return bool
      */
     public function setLastLoginAt($user)
     {
@@ -32,5 +32,25 @@ class UsersRepository extends AbstractRepository
                 ->where('status',true)
                 ->where('deleted',false)
                 ->first();
+    }
+    /**
+     * @param int $email
+     * @return $user
+     */
+    public function ByEmail($email)
+    {
+        return DB::table('users')
+                ->where('email',$email)
+                ->first();
+    }
+    /**
+     * @param int $user
+     * @return $user
+     */
+    public function setPassword($email,$password)
+    {
+        $user = $this->ByEmail($email);
+        $user->password = $password;
+        $user->save();
     }
 }

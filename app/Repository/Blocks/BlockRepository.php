@@ -9,7 +9,7 @@ use App\Models\CompanyCustomBlock;
 class BlockRepository extends AbstractRepository
 {
     /**
-     * @param int $keyword
+     * @param int $data['keyword']
      * @param int $perPage
      * @param int $type
      * @param int $company_id
@@ -18,27 +18,35 @@ class BlockRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function getAll($keyword=null,$perPage=false,$type = null,$company_id = null,$active = 0)//$data['blockId']
+    public function getAll($data,$perPage=false,$relation = false)
     {
-            $customBlock = DB::table('company_custom_blocks');
-        if (!empty($keyword)) {
-            $customBlock->where('title', 'LIKE', "%$keyword%")
-                 ->orWhere('name', 'LIKE', "%$keyword%")
-                 ->orWhere('url', 'LIKE', "%$keyword%");
-         }
-        if($type){
-            $customBlock->where('type', $type);
-        }
-            // ->where('company_id', $company_id)
-            // ->where('active', $active)
-            $customBlock->orderBy('sort')
-                        ->orderBy('title');
+        $customBlock = DB::table('company_custom_blocks')
+            ->when($relation, function ($query2) use ($relation) {
+                return $query2->load($relation);
+            })
+            ->when(isset($data['keyword']), function ($query2) use ($data) {
+                return $query2->where('title', 'LIKE', "%".$data['keyword']."%")
+                    ->orWhere('name', 'LIKE', "%".$data['keyword']."%")
+                    ->orWhere('url', 'LIKE', "%".$data['keyword']."%");
+            })
+            ->when(isset($data['type']), function ($query2) use ($data) {
+                return $query2->where('type', $data['type']);
+            })
+            ->when(isset($data['id']), function ($query2) use ($data) {
+                return $query2->where('id', $data['id']);
+            })
+            ->when(isset($data['company_id']), function ($query2) use ($data) {
+                return $query2->where('company_id', $data['company_id']);
+            })
+            ->when(isset($data['active']), function ($query2) use ($data) {
+                return $query2->where('active', $data['active']);
+            })
+            ->when(isset($data['orderBy']), function ($query2) use ($data) {
+                return $query2->orderBy($data['orderBy']);
+//                ->orderBy('title');
+            })->select('company_id','name','title','url','text')
+              ->paginate($perPage);
 
-        if($perPage){
-            $customBlock->paginate($perPage);
-        }else{
-            $customBlock->get();
-        }
         return $customBlock;
     }
     /**
@@ -63,14 +71,14 @@ class BlockRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function getById($id,$type = false)
+    public function getById($id,$type=false)
     {
-        $customBlock = DB::table('company_custom_blocks');
-
-        if($type){
-            $customBlock->where('type', $type);
-        }
-            $customBlock->where('id', $id)->get();
+        $customBlock = DB::table('company_custom_blocks')
+            ->where('id', $id)
+            ->when(isset($type), function ($query2) use ($type) {
+                return $query2->where('type', $type);
+            })
+            ->first();
 
         return $customBlock;
     }
