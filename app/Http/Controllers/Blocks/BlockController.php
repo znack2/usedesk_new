@@ -54,7 +54,15 @@ class BlockController extends Controller
      */
     public function show($id)
     {
-        $block = $this->blockRepository->getById($id);
+        //get data
+        // $type = $request->only('type');
+        // $blockParams = [];
+
+        $block = $this->blockRepository->getById($id,'CompanyCustomBlock');
+        // if($type == 'dynamic'){
+        //     $blockParams = $this->blockRepository->getCustomBlockParams($id);
+        // }
+        
 
         if (is_null($block)) {
             return $this->sendError('Block not found.');

@@ -21,9 +21,19 @@ class Users extends Resource
             'lang' => $this->lang,
             'is_first' => $this->is_first,
             'reply_behavior' => $this->reply_behavior,
-            'company_id' => $this->company_id,
             'last_su_viewed' => $this->last_su_viewed,
+            'password' => $this->password,
+            'remember_token' => $this->remember_token,
+            'confirmation_code' => $this->confirmation_code,
+            'confirmed' => $this->confirmed,
+            'default_group' => $this->default_group,
+            'status' => $this->status,
+            'deleted' => $this->deleted,
+            'deleted_at' => $this->deleted_at,
+
             'zendesk_id' => $this->zendesk_id
+            'user_group_id' => $this->user_group_id,
+//            'company_id' => Company::collection($this->posts),
         ];
 
     }

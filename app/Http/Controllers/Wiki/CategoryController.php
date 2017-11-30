@@ -127,4 +127,61 @@ class CategoryController extends Controller
         //output
         return $this->sendResponse('Category_id:'.$id, 'Category deleted successfully.');
     }
+
+    /**
+     * sort
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function copy(Request $request)
+    {
+        //get data
+        $order = $request->get('order');
+        //update in db
+        foreach ($order as $sort => $id) {
+            $block = $this->blockRepository->updateSort($id,$sort);
+        }
+        //output
+        return $this->sendResponse('blocks:'.$block, 'Blocks have been sorted successfully.');
+    }
+
+    /**
+     * sort
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function copyMultiple(Request $request)
+    {
+        //get data
+        $order = $request->get('order');
+        //update in db
+        foreach ($order as $sort => $id) {
+            $block = $this->blockRepository->updateSort($id,$sort);
+        }
+        //output
+        return $this->sendResponse('blocks:'.$block, 'Blocks have been sorted successfully.');
+    }
+
+    /**
+     * sort
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function destroyMultiple(Request $request)
+    {
+        //get data
+        $order = $request->get('order');
+        //update in db
+        foreach ($order as $sort => $id) {
+            $block = $this->blockRepository->updateSort($id,$sort);
+        }
+        //output
+        return $this->sendResponse('blocks:'.$block, 'Blocks have been sorted successfully.');
+    }
 }

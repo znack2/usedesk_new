@@ -14,6 +14,15 @@ class TriggerResource extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'enabled' => $this->enabled,
+            'manual_starting' => $this->manual_starting,
+            'position' => $this->position,
+            'use_word_forms' => $this->use_word_forms,
+            'deleted' => $this->deleted,
+//            'company_id' => Company::collection($this->posts),
+        ];
     }
 }

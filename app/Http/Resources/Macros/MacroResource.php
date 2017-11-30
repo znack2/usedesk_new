@@ -14,6 +14,18 @@ class MacroResource extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'privacy' => $this->privacy,
+            'name' => $this->name,
+            'message' => $this->message,
+            'enabled' => $this->enabled,
+            'blocked' => $this->blocked,
+            'for_user_id' => $this->for_user_id,
+            'sort' => $this->sort,
+            'deleted' => $this->deleted,
+//            'company_id' => Company::collection($this->posts),
+//            'changed_by_user' => User::collection($this->posts),
+        ];
     }
 }

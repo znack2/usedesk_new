@@ -14,8 +14,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    protected $webNamespace = 'App\Http\Controllers\Web';
-    protected $apiNamespace = 'App\Http\Controllers\Api';
+    protected $apiNamespace = 'App\Http\Controllers';
     protected $adminNamespace = 'App\Http\Controllers\Admin';
 
     // protected $namespace = 'App\Http\Controllers/chat';
@@ -60,9 +59,6 @@ class RouteServiceProvider extends ServiceProvider
     public function map()
     {
         $this->mapApiRoutes();
-
-        $this->mapWebRoutes();
-
         $this->mapAdminRoutes();
     }
 
@@ -73,23 +69,24 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function mapWebRoutes()
+    protected function mapApiRoutes()
     {
-        Route::middleware('web')
-             ->namespace($this->webNamespace)
+        Route::middleware('api')
+             ->namespace($this->apiNamespace)
              ->group(function($router){
-                // require base_path('routes/web/auth.php');
-                require base_path('routes/web/blocks.php');
-                require base_path('routes/web/wiki.php');
+                require base_path('routes/api/auth.php');
+                require base_path('routes/api/automatization.php');
+                require base_path('routes/api/blocks.php');
+                require base_path('routes/api/channels.php');
+                require base_path('routes/api/chat.php');
+                require base_path('routes/api/clients.php');
+                require base_path('routes/api/company.php');
+                require base_path('routes/api/files.php');
+                require base_path('routes/api/reports.php');
+                require base_path('routes/api/settings.php');
+                require base_path('routes/api/tickets.php');
+                require base_path('routes/api/wiki.php');
 
-                // require base_path('routes/web/channels.php');
-                // require base_path('routes/web/clients.php');
-                // require base_path('routes/web/other.php');
-                // require base_path('routes/web/pages.php');
-                // require base_path('routes/web/reports.php');
-                // require base_path('routes/web/settings.php');
-                // require base_path('routes/web/tickets.php');
-                // require base_path('routes/web/automatization.php');
              });
 
 
@@ -103,25 +100,6 @@ class RouteServiceProvider extends ServiceProvider
         // });
     }
 
-    /**
-     * Define the "api" routes for the application.
-     *
-     * These routes are typically stateless.
-     *
-     * @return void
-     */
-    protected function mapApiRoutes()
-    {
-        Route::prefix('api')
-             ->middleware('api')
-             ->namespace($this->apiNamespace)
-             ->group(function($router){
-                // require base_path('routes/api/chat.php');
-                // require base_path('routes/api/usedesk.php');
-            });
-//             ->group(base_path('routes/api/api.php'));
-
-    }
 
     /**
      * Define the "admin" routes for the application.

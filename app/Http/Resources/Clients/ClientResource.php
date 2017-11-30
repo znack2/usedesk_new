@@ -14,6 +14,17 @@ class ClientResource extends Resource
      */
     public function toArray($request)
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'name' => $this->name,
+            'avatar' => $this->avatar,
+            'position' => $this->position,
+            'note' => $this->note,
+            'zendesk_id' => $this->zendesk_id,
+            'spammer' => $this->spammer,
+            'vip' => $this->vip,
+//            'company_id' => Post::collection($this->posts),
+//            'client_company_id' => Post::collection($this->posts),
+        ];
     }
 }

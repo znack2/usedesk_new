@@ -21,7 +21,7 @@ $api->version('v1', function ($api) {
 	$api->get('/mailing-schedule/edit/{id}', 	['uses' => 'MailingScheduleController@getEdit', 	'as' => 'admin.mailing_schedule.get_edit']);
 	$api->post('/mailing-schedule/create', 		['uses' => 'MailingScheduleController@postEdit', 	'as' => 'admin.mailing_schedule.post_create']);
 	$api->post('/mailing-schedule/edit/{id}', 	['uses' => 'MailingScheduleController@postEdit', 	'as' => 'admin.mailing_schedule.post_edit']);
-	$api->get('/mailing-schedule/delete/{id}', ['uses' => 'MailingScheduleController@getDelete', 	'as' => 'admin.mailing_schedule.get_delete']);
+	$api->get('/mailing-schedule/delete/{id}',  ['uses' => 'MailingScheduleController@getDelete', 	'as' => 'admin.mailing_schedule.get_delete']);
 
 	$api->get('/regexp-helpers', 				['uses' => 'RegexpHelpersController@getIndex', 		'as' => 'admin.regexp_helpers.get_index']);
 	$api->get('/regexp-helpers/create', 		['uses' => 'RegexpHelpersController@getEdit', 		'as' => 'admin.regexp_helpers.get_create']);

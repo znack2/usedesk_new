@@ -1,5 +1,19 @@
 <?php
 
+
+$factory->define(App\Models\Report::class, function (Faker\Generator $faker) {
+    return [
+
+
+
+
+
+
+
+        
+    ];
+});
+
 $factory->define(App\Models\Account::class, function (Faker\Generator $faker) {
     return [
     ];
@@ -144,7 +158,7 @@ $factory->define(App\Models\Company::class, function (Faker\Generator $faker) {
         'registered_at' => $faker->dateTimeBetween(),
         'import_enabled' => $faker->boolean,
         'get_started' => $faker->boolean,
-        'lang' => $faker->word,
+        'lang' => $faker->randomElement(['en','ru','es','gr']),
     ];
 });
 
@@ -249,7 +263,7 @@ $factory->define(App\Models\Nps::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\NpsSetting::class, function (Faker\Generator $faker) {
     return [
         'company_id' => $faker->randomNumber(),
-        'channel_type' => $faker->word,
+        'channel_type' => $faker->randomElement(['en','ru','es','gr']),
         'condition' => $faker->randomNumber(),
         'text' => $faker->text,
         'active' => $faker->boolean,
@@ -312,7 +326,7 @@ $factory->define(App\Models\SettingsLog::class, function (Faker\Generator $faker
     return [
         'model_id' => $faker->randomNumber(),
         'model_name' => $faker->word,
-        'type' => $faker->word,
+        'type' => $faker->randomElement(['en','ru','es','gr']),
         'module' => $faker->word,
         'user_id' => $faker->randomNumber(),
         'company_id' => $faker->randomNumber(),
@@ -516,7 +530,7 @@ $factory->define(App\Models\ChatSettings::class, function (Faker\Generator $fake
         'auto_init' => $faker->boolean,
         'z_index' => $faker->randomNumber(),
         'docs' => $faker->boolean,
-        'language' => $faker->word,
+        'language' => $faker->randomElement(['en','ru','es','gr']),
         'reaction' => $faker->boolean,
         'reaction_text' => $faker->text,
         'icon' => $faker->word,

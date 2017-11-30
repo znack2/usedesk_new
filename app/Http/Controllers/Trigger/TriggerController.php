@@ -127,4 +127,18 @@ class TriggerController extends Controller
         //output
         return $this->sendResponse('Trigger_id:'.$id, 'Trigger deleted successfully.');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function updatePositions($id)
+    {
+        $this->triggerRepository->delete($id);
+        //output
+        return $this->sendResponse('Trigger_id:'.$id, 'Trigger update Position successfully.');
+    }
 }

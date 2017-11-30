@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 use App\Repository\AbstractRepository;
 use App\Models\Collection;
 
-class CollectionRepository extends AbstractRepository
+class ContactRepository extends AbstractRepository
 {
     /**
      * @param int $data

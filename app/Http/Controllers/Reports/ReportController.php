@@ -35,7 +35,7 @@ class ReportController extends Controller
      *
      * @return \App\Http\Resources\Reports\ReportCollection
      */
-    public function index(Request $request)
+    public function index(ReportRequest $request)
     {
         //get data
         $requestData = $request->all();
@@ -61,70 +61,5 @@ class ReportController extends Controller
         }
         //output
         return new ReportResource($Report);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \App\Http\Requests\Reports\ReportRequest $request
-     *
-     * @return mixed
-     */
-    public function store(ReportRequest $request)
-    {
-        //get data
-        $requestData = $request->all();
-//        $company_id = $this->CurrentCompany->id;
-
-//        if($validator->fails()){
-//            return $this->sendError('Validation Error.', $validator->errors());
-//        }
-
-        $Report_id = $this->reportRepository->createCustomReport(
-            $company_id =1,
-            $requestData
-        );
-        //output
-        return $this->sendResponse('Report_id:'.$Report_id, 'Report created successfully.');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \App\Http\Requests\Reports\ReportRequest $request
-     * @param  int  $id
-     *
-     * @return mixed
-     */
-    public function update(ReportRequest $request, $id)
-    {
-        $requestData = $request->all();
-//        $company_id = $this->CurrentCompany->id;
-
-//        if($validator->fails()){
-//            return $this->sendError('Validation Error.', $validator->errors());
-//        }
-
-        $Report_id = $this->reportRepository->update(
-            $id,
-            $company_id=1,
-            $requestData
-        );
-        //output
-        return $this->sendResponse('Report_id:'.$Report_id, 'Report updated successfully.');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     *
-     * @return mixed
-     */
-    public function destroy($id)
-    {
-        $this->reportRepository->delete($id);
-        //output
-        return $this->sendResponse('Report_id:'.$id, 'Report deleted successfully.');
     }
 }

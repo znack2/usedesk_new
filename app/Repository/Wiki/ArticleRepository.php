@@ -17,7 +17,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function getAll($data,$category_id=null,$perPage=false,$relation = false)
     {
-        $article = DB::table('uh_articles')
+        $article = DB::table('tickets')
             ->when($relation, function ($query) use ($relation) {
                 return $query->load($relation);
             })
@@ -50,7 +50,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function getById($id,$category_id=null)
     {
-        $article = DB::table('uh_articles')
+        $article = DB::table('tickets')
             ->where('id', $id)
             ->when(isset($category_id), function ($query) use ($category_id) {
                 return $query->where('category_id', $category_id);
@@ -72,7 +72,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function createarticle($category_id,$requestData)
     {
-        $article = DB::table('uh_articles')->insertGetId([
+        $article = DB::table('tickets')->insertGetId([
 	        'title' => $requestData['title'],
 	        'text' => $requestData['text'],
 	        'public' => $requestData['public'],
@@ -96,7 +96,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function update($id,$category_id,$requestData)
     {
-        $article = DB::table('uh_articles')
+        $article = DB::table('tickets')
         ->where(['id' => $id])
         ->update([
 	        'title' => $requestData['title'],
@@ -114,7 +114,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function updateSort($id,$sort)
     {
-        $article = DB::table('uh_articles')
+        $article = DB::table('tickets')
             ->where(['id' => $id])
             ->update(['order' => $sort]);
         return $article;
@@ -141,7 +141,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function delete($id,$company_id=null,$url=null)
     {
-        $article = DB::table('uh_articles')
+        $article = DB::table('tickets')
                     ->where('id', $id)
                     ->delete();
         return $article;

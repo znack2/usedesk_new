@@ -13,7 +13,7 @@ class postRegistrationFinal extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -34,3 +34,16 @@ class postRegistrationFinal extends FormRequest
         return $rules;
     }
 }
+
+
+
+        // $arUrl = parse_url($referer);
+        // $url = $arUrl["scheme"] . "://" . $arUrl["host"];
+        // $now = Carbon::now('Europe/Moscow');
+        // $secret_reg = false;
+        // if ($referer && strpos($referer, '/secretsignup') !== false) {
+        //     $secret_reg = true;
+        // }
+        // if (!$secret_reg) {
+        //     $rules['user_email'] = 'required|email|unique:users,email';
+        // }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Clients;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Clients\ClientRequest;
+use App\Http\Requests\Clients\ClientMergeRequest;
 use App\Http\Resources\Clients\ClientResource;
 use App\Http\Resources\Clients\ClientCollection;
 use App\Repository\Clients\ClientRepository;
@@ -126,5 +127,23 @@ class ClientController extends Controller
         $this->clientRepository->delete($id);
         //output
         return $this->sendResponse('Client_id:'.$id, 'Client deleted successfully.');
+    }
+
+    /**
+     * post Merge
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function merge(ClientMergeRequest $request)
+    {
+        //get data
+        // $company_id = $this->CurrentCompany->id;
+        $requestData = $request->all();
+        
+        $this->clientRepository->merge($requestData);
+        //output
+        return $this->sendResponse('Client_id:', 'Client deleted successfully.');
     }
 }

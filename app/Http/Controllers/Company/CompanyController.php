@@ -127,4 +127,18 @@ class CompanyController extends Controller
         //output
         return $this->sendResponse('Company_id:'.$id, 'Company deleted successfully.');
     }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function deleteLogotype($id)
+    {
+        $this->companyRepository->delete($id);
+        //output
+        return $this->sendResponse('Company_id:'.$id, 'Company deleted successfully.');
+    }
 }

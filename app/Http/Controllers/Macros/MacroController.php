@@ -127,4 +127,32 @@ class MacroController extends Controller
         //output
         return $this->sendResponse('Macro_id:'.$id, 'Macro deleted successfully.');
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function copyMultiple($id)
+    {
+        $this->macroRepository->delete($id);
+        //output
+        return $this->sendResponse('Macro_id:'.$id, 'Macro deleted successfully.');
+    }
+    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function deleteMultiple($id)
+    {
+        $this->macroRepository->delete($id);
+        //output
+        return $this->sendResponse('Macro_id:'.$id, 'Macro deleted successfully.');
+    }
 }
