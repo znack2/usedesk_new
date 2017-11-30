@@ -24,6 +24,6 @@ class CompanyCustomBlock extends BaseModel
 
     public function company()
     {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 }

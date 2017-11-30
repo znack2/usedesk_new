@@ -17,7 +17,7 @@ class ClientMessenger extends BaseModel {
     protected $fillable = ['identity', 'type', 'client_id'];
 
     public function client() {
-        return $this->belongsTo('Client');
+        return $this->belongsTo('App\Models\Client');
     }
 
 }

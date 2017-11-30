@@ -16,6 +16,6 @@ class ClientPhone extends BaseModel {
     protected $fillable = ['phone', 'type', 'client_id'];
 
     public function client() {
-        return $this->belongsTo('Client');
+        return $this->belongsTo('App\Models\Client');
     }
 }

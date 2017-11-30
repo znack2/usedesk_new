@@ -10,6 +10,6 @@ class ClientEmail extends BaseModel {
     protected $fillable = ['email', 'client_id', 'fullcontact'];
 
     public function client() {
-        return $this->belongsTo('Client');
+        return $this->belongsTo('App\Models\Client');
     }
 }

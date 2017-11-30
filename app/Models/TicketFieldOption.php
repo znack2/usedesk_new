@@ -10,7 +10,7 @@ class TicketFieldOption extends BaseModel
     protected $fillable = [ 'ticket_field_id', 'value'];
 
     public function ticketField() {
-        return $this->BelongsTo('TicketField');
+        return $this->belongsTo('App\Models\TicketField');
     }
 
 }

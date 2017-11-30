@@ -10,7 +10,7 @@ class TicketTagsChange extends BaseModel {
     protected $fillable = ['ticket_id', 'changed_at'];
 
     public function ticket() {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     public function tags() {

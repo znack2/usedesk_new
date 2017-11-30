@@ -19,12 +19,12 @@ class ClientCompany extends BaseModel
 
     public function company()
     {
-        return $this->belongsTo('company_id');
+        return $this->belongsTo('App\Models\Company');
     }
 
     public function clients()
     {
-        return $this->hasMany('Client');
+        return $this->hasMany('App\Models\Client');
     }
 
     public function tags()

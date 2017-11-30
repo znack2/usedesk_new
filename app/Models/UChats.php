@@ -10,6 +10,6 @@ class UChats extends BaseModel
 
     public function ticket()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 }

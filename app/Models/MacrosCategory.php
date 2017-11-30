@@ -15,11 +15,11 @@ class MacrosCategory extends BaseModel
 
     public function parent()
     {
-        return $this->belongsTo('MacrosCategory', 'parent_id');
+        return $this->belongsTo('App\Models\MacrosCategory', 'parent_id');
     }
 
     public function children()
     {
-        return $this->hasMany('MacrosCategory', 'parent_id');
+        return $this->hasMany('App\Models\MacrosCategory', 'parent_id');
     }
 }

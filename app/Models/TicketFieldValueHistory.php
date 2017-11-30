@@ -13,10 +13,10 @@ class TicketFieldValueHistory extends BaseModel
     ];
 
     public function ticket() {
-        return $this->BelongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     public function ticketField() {
-        return $this->BelongsTo('TicketField');
+        return $this->belongsTo('App\Models\TicketField');
     }
 }

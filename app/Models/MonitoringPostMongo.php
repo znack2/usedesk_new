@@ -2,16 +2,13 @@
 
 namespace App\Models;
 
-use Jenssegers\Eloquent\Model as Eloquent;
+//use Jenssegers\Eloquent\Model as Eloquent;
 
-class MonitoringPostMongo extends Eloquent {
+class MonitoringPostMongo extends BaseModel {
 
     public $collection = 'posts';
-
-    public $connection = 'mongodb';
-
+    // public $connection = 'mongodb';
     public $timestamps = false;
-
     //public $dates = ['created'];
 
     public $fillable = [

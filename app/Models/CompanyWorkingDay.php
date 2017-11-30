@@ -18,6 +18,6 @@ class CompanyWorkingDay extends BaseModel {
     protected $fillable = ['day', 'start', 'end', 'is_working', 'company_id'];
 
     public function company() {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 }

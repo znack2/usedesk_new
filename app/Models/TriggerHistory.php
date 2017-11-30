@@ -10,6 +10,6 @@ class TriggerHistory extends BaseModel {
     protected $fillable = ['trigger_id', 'updated_tickets', 'updated_users', 'started_at'];
 
     public function trigger() {
-        return $this->belongsTo('Trigger');
+        return $this->belongsTo('App\Models\Trigger');
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use Illuminate\Mail\Message;
+use App\Services\AbstractService;
 
 class MailService extends AbstractService
 {

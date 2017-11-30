@@ -4,7 +4,7 @@ namespace App\Models;
 
 class MacrosFile extends BaseModel {
 
-    use FileModelTrait;
+//    use FileModelTrait;
 
     public $timestamps = false;
 
@@ -12,7 +12,7 @@ class MacrosFile extends BaseModel {
     protected $fillable = ['file', 'macros_id'];
    
     public function macros() {
-        return $this->belongsTo('Macros');
+        return $this->belongsTo('App\Models\Macros');
     }
 
 }

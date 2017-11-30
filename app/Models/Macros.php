@@ -19,15 +19,15 @@ class Macros extends BaseModel {
     ];
 
     public function company() {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
     public function files() {
-        return $this->hasMany('MacrosFile');
+        return $this->hasMany('App\Models\MacrosFile');
     }
 
     public function changedBy() {
-        return $this->belongsTo('User', 'changed_by_user');
+        return $this->belongsTo('App\Models\User', 'changed_by_user');
     }
 
     public function groups()
@@ -40,10 +40,10 @@ class Macros extends BaseModel {
     }
    
     public function actions() {
-        return $this->hasMany('MacrosAction');
+        return $this->hasMany('App\Models\MacrosAction');
     }
 
     public function macrosHistory() {
-        return $this->hasMany('MacrosHistory');
+        return $this->hasMany('App\Models\MacrosHistory');
     }
 }

@@ -84,9 +84,9 @@ class RequestRepository extends AbstractRepository
      * @param int $active
      * @return $customBlock
      */
-    public function registrationUpdate($registrationRequest,$data)
+    public function registrationUpdate($registrationRequest,$secret_reg,$data)
     {
-        $registrationRequest->data = $registrationRequest->data + $data['user_password','company_users_number'];
+        $registrationRequest->data = $registrationRequest->data + $data['user_password'].$data['company_users_number'];
         if (!$secret_reg) {
             $registrationRequest->data = $registrationRequest->data + $data['email'];
         }

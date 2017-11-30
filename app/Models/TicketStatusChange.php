@@ -10,11 +10,11 @@ class TicketStatusChange extends BaseModel {
     protected $fillable = ['ticket_id', 'ticket_status_id', 'changed_at'];
 
     public function ticket() {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     public function ticketStatus() {
-        return $this->belongsTo('TicketStatus');
+        return $this->belongsTo('App\Models\TicketStatus');
     }
 
 

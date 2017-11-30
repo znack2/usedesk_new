@@ -2,12 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Auth\UserInterface;
-use Illuminate\Auth\UserTrait;
+//use Illuminate\Auth\UserInterface;
+//use Illuminate\Auth\UserTrait;
 
-class Admin extends BaseModel implements UserInterface {
+class Admin extends BaseModel  {//implements UserInterface
 
-    use UserTrait;
+//    use UserTrait;
 
     public $timestamps = false;
 

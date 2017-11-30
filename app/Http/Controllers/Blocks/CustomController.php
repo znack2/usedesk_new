@@ -21,27 +21,6 @@ class CustomController extends Controller
     {
         $this->blockRepository = $blockRepository;
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \App\Http\Resources\Blocks\CustomCollection
-     */
-    public function index()
-    {
-        $blocks = $this->blockRepository->getAll($type = 'custom');
-
-        return new CustomCollection($blocks);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a RetailCrm Block
@@ -49,13 +28,15 @@ class CustomController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function storeRetailCrmBlock(CustomBlockRequest $request)
+    public function createRetailCrmBlock(CustomBlockRequest $request)
     {
         $arr = parse_url($_SERVER['HTTP_REFERER']);
         $url = $arr["scheme"] . "://" . $arr["host"].'/settings/blocks/retail_crm';
         $url = str_replace($_ENV['app.admin_domain'], $_ENV['app.secure_domain'], $url);
-
-        $blocks = $this->blockRepository->addRetailCrmBlock($$url);
+        //'%/blocks/retail_crm%'
+        if (!$this->blockRepository->getAll($data,$company_id)->exists()){
+            $blocks = $this->blockRepository->addRetailCrmBlock($url);
+        }
     }
 
     /**
@@ -70,53 +51,8 @@ class CustomController extends Controller
         $url = $arr["scheme"] . "://" . $arr["host"].'/settings/blocks/retail_crm';
         $url = str_replace($_ENV['app.admin_domain'], $_ENV['app.secure_domain'], $url);
 
-        $blocks = $this->blockRepository->addRetailCrmBlock($$url);
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \App\Http\Resources\Blocks\CustomResource
-     */
-    public function show($id)
-    {
-        $block = $this->blockRepository->getById($type = 'custom',$id);
-
-        return new CustomResource($block);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(CustomBlockRequest $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        if (!$this->blockRepository->getAll($data,$company_id)->exists()){
+            $blocks = $this->blockRepository->createYandexDefaultBlock($url);
+        }
     }
 }

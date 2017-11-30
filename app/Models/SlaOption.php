@@ -11,18 +11,18 @@ class SlaOption extends BaseModel
 
     
     public function sla() {
-        return $this->BelongsTo('Sla');
+        return $this->belongsTo('App\Models\Sla');
     }
 
     public function priority() {
-        return $this->BelongsTo('SlaPriority');
+        return $this->belongsTo('App\Models\SlaPriority');
     }
 
     public function slaOptionType() {
-        return $this->BelongsTo('SlaOptionType');
+        return $this->belongsTo('App\Models\SlaOptionType');
     }
 
     public function slaData() {
-        return $this->HasMany('SlaData');
+        return $this->hasMany('App\Models\SlaData');
     }
 }

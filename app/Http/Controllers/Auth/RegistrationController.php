@@ -7,6 +7,7 @@ use App\Repository\Company\ContactsRepository;
 use App\Service\Sms;
 use App\Helper\PhoneHelper;
 use App\Http\Requests\postRegistrationConfirmation;
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -15,16 +16,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
  *
  * @Resource("Users", uri="/users")
  */
-class RegistrationController extends BaseController
+class RegistrationController extends Controller
 {
     use RegistersUsers;
-
-    /**
-     * Where to redirect()->route users after registration.
-     *
-     * @var string
-     */
-    protected redirect()->routeTo = '/home';
 
     protected $requestRepository;
     protected $contactsRepository;
@@ -107,7 +101,7 @@ class RegistrationController extends BaseController
         //send SMS
         if ($sms_confirmation_status == 1) {
             $smsConfirmation = $this->OtherRepository->createSmsConfirmation($data['input_phone']);
-            $message = $this->lang()->trans('text._sms.registration_code', ['code' => $smsConfirmation->code])
+            $message = $this->lang()->trans('text._sms.registration_code', ['code' => $smsConfirmation->code]);
             $address= $smsConfirmation->to;
             $this->smsService->send($address, $message);
         }
@@ -115,7 +109,7 @@ class RegistrationController extends BaseController
         try {
             $sms_confirmation_id = $sms_confirmation_status == 1 
                 ? $smsConfirmation->id 
-                : NULL
+                : NULL;
             $confirmation = ($sms_confirmation_status == 1);
             $registrationRequest = $this->requestRepository->createRegistrationRequest($data,$sms_confirmation_id,$confirmation);
             $hash = md5($registrationRequest->id . 'SALT1313');
@@ -160,7 +154,7 @@ class RegistrationController extends BaseController
         }
         //output
         return view('auth.registration_confirmation', [
-            'hideBack'
+            'hideBack',
             'hash'
         ]);
     }

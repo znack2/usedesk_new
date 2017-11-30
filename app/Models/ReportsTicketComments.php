@@ -22,22 +22,22 @@ class ReportsTicketComments extends BaseModel
     
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function ticket()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     public function comment()
     {
-        return $this->belongsTo('TicketComment');
+        return $this->belongsTo('App\Models\TicketComment');
     }
 
     public function company()
     {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
 }

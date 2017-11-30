@@ -11,10 +11,10 @@ abstract class AbstractService
     public $now;
     public $user;
 
-    public __construct()
+    function __construct()
     {
     	$this->curlhelper = new CurlHelper;
         $this->now = new Carbon; //date('Y-m-d H:i:s')
-        $this->user = Auth::user()->user()
+        $this->user = Auth::user()->user();
     }
 }

@@ -11,11 +11,11 @@ class TicketFilter extends BaseModel
 
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function groups()
     {
-        return $this->hasMany('TicketFilterToUserGroups');
+        return $this->hasMany('App\Models\TicketFilterToUserGroups');
     }
 }

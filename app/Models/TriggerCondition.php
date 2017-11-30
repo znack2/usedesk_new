@@ -102,7 +102,7 @@ class TriggerCondition extends BaseModel
 
     public function trigger()
     {
-        return $this->belongsTo('Trigger');
+        return $this->belongsTo('App\Models\Trigger');
     }
 
 

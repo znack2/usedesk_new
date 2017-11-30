@@ -20,6 +20,6 @@ class ClientAddress extends BaseModel {
 	 ];
 
     public function client() {
-        return $this->belongsTo('Client');
+        return $this->belongsTo('App\Models\Client');
     }
 }

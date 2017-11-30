@@ -56,17 +56,17 @@ class User extends Authenticatable
 
     public function company()
     {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
     public function assignedTickets()
     {
-        return $this->hasMany('Ticket');
+        return $this->hasMany('App\Models\Ticket');
     }
 
     public function ticketComments()
     {
-        return $this->hasMany('TicketComment');
+        return $this->hasMany('App\Models\TicketComment');
     }
 
     public function notification()
@@ -76,11 +76,11 @@ class User extends Authenticatable
 
     public function userTicketViews()
     {
-        return $this->hasMany('UserTicketView');
+        return $this->hasMany('App\Models\UserTicketView');
     }
 
     public function ticketFilters()
     {
-        return $this->hasMany('TicketFilter');
+        return $this->hasMany('App\Models\TicketFilter');
     }
 }

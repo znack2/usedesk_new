@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Wiki;
+namespace App\Http\Controllers\Articles;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,10 +9,14 @@ use App\Http\Resources\Wiki\ArticleResource;
 use App\Http\Resources\Wiki\ArticleCollection;
 use App\Repository\Wiki\ArticleRepository;
 
+/**
+ * Class ArticleController
+ * @package App\Http\Controllers\Articles
+ */
 class ArticleController extends Controller
 {
     /**
-     * @var BlockRepository
+     * @var articleRepository
      */
     protected $articleRepository;
     /**
@@ -27,80 +31,100 @@ class ArticleController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $articles = $this->articleRepository->getAll();
-
-        return new ArticleCollection($articles);
-    }
-
-    /**
-     * Show the form for creating a new resource.
+     * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\Articles\ArticleCollection
      */
-    public function create()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(ArticleRequest $request)
-    {
-        //
+        //get data
+        $requestData = $request->all();
+        //get from db
+        $Articles = $this->articleRepository->getAll($requestData,$perPage = 25);
+        //output
+        return new ArticleCollection($Articles);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return \App\Http\Resources\Articles\ArticleResource
      */
     public function show($id)
     {
-        $article = Article::find($id);
+        $Article = $this->articleRepository->getById($id);
 
-        return new ArticleResource($article);
+        if (is_null($Article)) {
+            return $this->sendError('Article not found.');
+        }
+        //output
+        return new ArticleResource($Article);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\Articles\ArticleRequest $request
+     *
+     * @return mixed
      */
-    public function edit($id)
+    public function store(ArticleRequest $request)
     {
-        //
+        //get data
+        $requestData = $request->all();
+//        $company_id = $this->CurrentCompany->id;
+
+//        if($validator->fails()){
+//            return $this->sendError('Validation Error.', $validator->errors());
+//        }
+
+        $Article_id = $this->articleRepository->createCustomArticle(
+            $company_id =1,
+            $requestData
+        );
+        //output
+        return $this->sendResponse('Article_id:'.$Article_id, 'Article created successfully.');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\Articles\ArticleRequest $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return mixed
      */
     public function update(ArticleRequest $request, $id)
     {
-        //
+        $requestData = $request->all();
+//        $company_id = $this->CurrentCompany->id;
+
+//        if($validator->fails()){
+//            return $this->sendError('Validation Error.', $validator->errors());
+//        }
+
+        $Article_id = $this->articleRepository->update(
+            $id,
+            $company_id=1,
+            $requestData
+        );
+        //output
+        return $this->sendResponse('Article_id:'.$Article_id, 'Article updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return mixed
      */
     public function destroy($id)
     {
-        //
+        $this->articleRepository->delete($id);
+        //output
+        return $this->sendResponse('Article_id:'.$id, 'Article deleted successfully.');
     }
 }

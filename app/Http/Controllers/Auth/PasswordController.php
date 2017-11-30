@@ -2,32 +2,25 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-use Illuminate\Foundation\Auth\ResetsPasswords;
+//use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+//use Illuminate\Foundation\Auth\ResetsPasswords;
 
 use App\Repository\RequestRepository;
 use App\Repository\UserRepository;
 use App\Service\Mailer;
 use App\Http\Requests\postPasswordRestore;
 use App\Http\Requests\postPasswordRestoreNew;
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Controller;
 
 /**
  * Password representation.
  *
  * @Resource("Users", uri="/users")
  */
-class PasswordController extends BaseController
+class PasswordController extends Controller
 {
-    use SendsPasswordResetEmails;
-    use ResetsPasswords;
-
-    /**
-     * Where to redirect()->route users after resetting their password.
-     *
-     * @var string
-     */
-    protected redirect()->routeTo = '/home';
+//    use SendsPasswordResetEmails;
+//    use ResetsPasswords;
 
     protected $requestRepository;
     protected $userRepository;

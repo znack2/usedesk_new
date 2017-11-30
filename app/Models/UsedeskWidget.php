@@ -24,16 +24,16 @@ class UsedeskWidget extends BaseModel
 
     public function company()
     {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
     public function channel()
     {
-        return $this->belongsTo('CompanyEmailChannel');
+        return $this->belongsTo('App\Models\CompanyEmailChannel');
     }
 
     public function account()
     {
-        return $this->belongsTo('Account');
+        return $this->belongsTo('App\Models\Account');
     }
 }

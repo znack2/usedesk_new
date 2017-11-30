@@ -4,12 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Repository\RequestRepository;
 use App\Http\Requests\Auth\postSecretRegistration;
+use App\Http\Controllers\Controller;
 /**
  * Secret Registration representation.
  *
  * @Resource("Users", uri="/users")
  */
-class SecretController extends BaseController
+class SecretController extends Controller
 {
     protected $requestRepository;
 

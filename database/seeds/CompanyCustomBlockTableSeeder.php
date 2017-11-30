@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class CompanyCustomBlockSeeder extends Seeder
+class CompanyCustomBlockTableSeeder extends Seeder
 {
     public function run()
     {

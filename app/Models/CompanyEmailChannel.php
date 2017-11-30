@@ -56,7 +56,7 @@ class CompanyEmailChannel extends BaseModel
      */
     public function company()
     {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
     /**
@@ -64,7 +64,7 @@ class CompanyEmailChannel extends BaseModel
      */
     public function tickets()
     {
-        return $this->hasMany('Ticket', 'email_channel_id');
+        return $this->hasMany('App\Models\Ticket', 'email_channel_id');
     }
 
     /**

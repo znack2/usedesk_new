@@ -3,23 +3,16 @@
 namespace App\Http\Controllers\Auth;
 
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use App\Http\Controllers\BaseController;
+use App\Http\Controllers\Controller;
 use App\Repository\UserRepository;
 /**
  * Auth representation.
  *
  * @Resource("Users", uri="/users")
  */
-class AuthController extends BaseController
+class AuthController extends Controller
 {
     use AuthenticatesUsers;
-
-    /**
-     * Where to redirect()->route users after login.
-     *
-     * @var string
-     */
-    protected redirect()->routeTo = '/home';
 
     protected $userRepository;
 

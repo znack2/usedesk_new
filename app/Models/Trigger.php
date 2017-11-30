@@ -17,18 +17,18 @@ class Trigger extends BaseModel {
     ];
 
     public function company() {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
     public function conditions() {
-        return $this->hasMany('TriggerCondition');
+        return $this->hasMany('App\Models\TriggerCondition');
     }
 
     public function actions() {
-        return $this->hasMany('TriggerAction');
+        return $this->hasMany('App\Models\TriggerAction');
     }
 
     public function triggerHistory() {
-        return $this->hasMany('TriggerHistory');
+        return $this->hasMany('App\Models\TriggerHistory');
     }
 }

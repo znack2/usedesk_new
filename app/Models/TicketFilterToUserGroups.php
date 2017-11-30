@@ -10,6 +10,6 @@ class TicketFilterToUserGroups extends BaseModel {
     protected $fillable = ['ticket_filter_id', 'user_group_id'];
 
     public function ticketFilter() {
-        return $this->belongsTo('TicketFilter');
+        return $this->belongsTo('App\Models\TicketFilter');
     }
 }

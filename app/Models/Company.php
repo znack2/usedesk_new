@@ -31,7 +31,7 @@ class Company extends BaseModel
 
     public function blocks()
     {
-        return $this->hasMany('CompanyCustomBlock');
+        return $this->hasMany('App\Models\CompanyCustomBlock');
     }
 
     public function contacts()
@@ -46,52 +46,52 @@ class Company extends BaseModel
 
     public function workingDays()
     {
-        return $this->hasMany('CompanyWorkingDay');
+        return $this->hasMany('App\Models\CompanyWorkingDay');
     }
 
     public function users()
     {
-        return $this->hasMany('User');
+        return $this->hasMany('App\Models\User');
     }
 
     public function sla()
     {
-        return $this->hasMany('Sla');
+        return $this->hasMany('App\Models\Sla');
     }
 
     public function emailChannels()
     {
-        return $this->hasMany('CompanyEmailChannel');
+        return $this->hasMany('App\Models\CompanyEmailChannel');
     }
 
     public function tickets()
     {
-        return $this->hasMany('Ticket');
+        return $this->hasMany('App\Models\Ticket');
     }
 
     public function invoices()
     {
-        return $this->hasMany('Invoice');
+        return $this->hasMany('App\Models\Invoice');
     }
 
     public function triggers()
     {
-        return $this->hasMany('Trigger');
+        return $this->hasMany('App\Models\Trigger');
     }
 
     public function macroses()
     {
-        return $this->hasMany('Macros');
+        return $this->hasMany('App\Models\Macros');
     }
 
     public function userGroups()
     {
-        return $this->hasMany('UserGroup');
+        return $this->hasMany('App\Models\UserGroup');
     }
 
     public function blackWhiteList()
     {
-        return $this->hasMany('BlackWhiteList');
+        return $this->hasMany('App\Models\BlackWhiteList');
     }
 
     public function textSettings()
@@ -106,7 +106,7 @@ class Company extends BaseModel
 
     public function getStarted()
     {
-        return $this->hasMany('GetStarted');
+        return $this->hasMany('App\Models\GetStarted');
     }
 
     public function mailingSchedule()

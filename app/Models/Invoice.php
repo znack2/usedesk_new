@@ -22,6 +22,6 @@ class Invoice extends BaseModel {
     const STATUS_AWAITING_CONFIRMATION = 'awaiting_confirmation';
 
     public function company() {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 }

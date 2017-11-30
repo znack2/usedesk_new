@@ -10,10 +10,10 @@ class TriggerAction extends BaseAction {
     protected $fillable = ['action', 'value', 'trigger_id'];
 
     public function trigger() {
-        return $this->belongsTo('Trigger');
+        return $this->belongsTo('App\Models\Trigger');
     }
 
     public function files() {
-        return $this->hasMany('TriggerActionFile');
+        return $this->hasMany('App\Models\TriggerActionFile');
     }
 }

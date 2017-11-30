@@ -10,6 +10,6 @@ class RegistrationRequest extends BaseModel {
     protected $fillable = ['data', 'sms_confirmation_id', 'requested_at', 'confirmed'];
 
     public function smsConfirmation() {
-        return $this->belongsTo('SmsConfirmation');
+        return $this->belongsTo('App\Models\SmsConfirmation');
     }
 }

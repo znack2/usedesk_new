@@ -4,14 +4,15 @@ namespace App\Http\Controllers\Auth;
 
 use App\Repository\Auth\RequestRepository;
 use App\Service\TelegramService;
-use App\Service\DemoData'
+use App\Service\DemoData;
 use App\Http\Requests\PostRegistrationFinal;
+use App\Http\Controllers\Controller;
 /**
  * RegistrationFinal representation.
  *
  * @Resource("Users", uri="/users")
  */
-class RegistrationFinalController extends BaseController
+class RegistrationFinalController extends Controller
 {
     protected $requestRepository;
     protected $demoService;
@@ -19,24 +20,24 @@ class RegistrationFinalController extends BaseController
     protected $MailChimpService;
 
 
-    companyRepository
-    companyEmailRepository + channelRepository
-    CompanyContactsRepository
-    CompanyBillingRepository
-    CompanyWorkingDayRepository
-    BlackWhiteListRepository
-    IntegrationRepository
-    GetStartedRepository
-
-
-    NotificationRepository
-    NotificationUserRepository
-    TextSettingsRepository
-    MonitoringRepository
-    MailingScheduleRepository
-    userRepository
-    UserGroupRepository
-    UserGroupPermissionRepository
+//    companyRepository
+//    companyEmailRepository + channelRepository
+//    CompanyContactsRepository
+//    CompanyBillingRepository
+//    CompanyWorkingDayRepository
+//    BlackWhiteListRepository
+//    IntegrationRepository
+//    GetStartedRepository
+//
+//
+//    NotificationRepository
+//    NotificationUserRepository
+//    TextSettingsRepository
+//    MonitoringRepository
+//    MailingScheduleRepository
+//    userRepository
+//    UserGroupRepository
+//    UserGroupPermissionRepository
 
 
     function __construct(RequestRepository $requestRepository)
@@ -89,6 +90,10 @@ class RegistrationFinalController extends BaseController
     {
         //get data
         $referer = $request->server('HTTP_REFERER');
+        $secret_reg = false;
+        if ($referer && strpos($referer, '/secretsignup') !== false) {
+            $secret_reg = true;
+        }
 
         $data =  $request->only([
             'user_email',
@@ -112,7 +117,7 @@ class RegistrationFinalController extends BaseController
         }
          try {
             //update request
-            $this->requestRepository->registrationUpdate($registrationRequest,$data);
+            $this->requestRepository->registrationUpdate($registrationRequest,$secret_reg,$data);
             //add to mailchimp
             $this->MailChimpService->mailcimpAddList(
                  $registrationRequest->data['user_email'],
@@ -143,15 +148,13 @@ class RegistrationFinalController extends BaseController
 
 
 
-
-
              //create user
-            $user = $this->userRepository->create($company->id,$registrationRequest->data[
-                'user_email',
-                'user_password',
-                'user_name',
-                'company_phone'
-            ]);
+            $user = $this->userRepository->create($company->id,
+                $registrationRequest->data['user_email'],
+                $registrationRequest->data['user_password'],
+                $registrationRequest->data['user_name'],
+                $registrationRequest->data['company_phone']
+            );
             //create notification
             $notifications = $this->NotificationRepository->getByStatus('true');
             foreach ($notifications as $notification) {

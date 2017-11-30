@@ -11,16 +11,16 @@ class Sla extends BaseModel
 
     public function options()
     {
-        return $this->hasMany('SlaOption');
+        return $this->hasMany('App\Models\SlaOption');
     }
 
     public function company()
     {
-        return $this->BelongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
     public function companyEmailChannel()
     {
-        return $this->BelongsTo('CompanyEmailChannel');
+        return $this->belongsTo('App\Models\CompanyEmailChannel');
     }
 }

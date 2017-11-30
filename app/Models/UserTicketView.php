@@ -10,11 +10,11 @@ class UserTicketView extends BaseAction {
     protected $fillable = ['user_id', 'ticket_id', 'last_viewed_at'];
 
     public function user() {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function ticket() {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
 }

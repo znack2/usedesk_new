@@ -23,15 +23,15 @@ class TicketField extends BaseModel
     ];
 
     public function company() {
-        return $this->BelongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
 
     public function ticketFieldType() {
-        return $this->BelongsTo('TicketFieldType');
+        return $this->belongsTo('App\Models\TicketFieldType');
     }
 
     public function options() {
-        return $this->HasMany('TicketFieldOption');
+        return $this->hasMany('App\Models\TicketFieldOption');
     }
 
 }

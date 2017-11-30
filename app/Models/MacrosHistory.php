@@ -10,7 +10,7 @@ class MacrosHistory extends BaseModel {
     protected $fillable = ['macros_id', 'used_at', 'ticket_id'];
 
     public function macros() {
-        return $this->belongsTo('Macros');
+        return $this->belongsTo('App\Models\Macros');
     }
 
 }

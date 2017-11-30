@@ -22,6 +22,6 @@ class TicketStatus extends BaseModel {
     protected $fillable = ['name', 'key'];
    
     public function tickets() {
-        return $this->hasMany('Ticket');
+        return $this->hasMany('App\Models\Ticket');
     }
 }

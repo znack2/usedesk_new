@@ -11,7 +11,7 @@ class CompanyCustomBlockParam extends BaseModel
 
     public function block()
     {
-        return $this->belongsTo('CompanyCustomBlock');
+        return $this->belongsTo('App\Models\CompanyCustomBlock');
     }
 
 }

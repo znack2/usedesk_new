@@ -41,7 +41,7 @@ class TicketComment extends BaseModel
      */
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -49,7 +49,7 @@ class TicketComment extends BaseModel
      */
     public function client()
     {
-        return $this->belongsTo('Client');
+        return $this->belongsTo('App\Models\Client');
     }
 
     /**
@@ -57,7 +57,7 @@ class TicketComment extends BaseModel
      */
     public function ticket()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     /**
@@ -65,7 +65,7 @@ class TicketComment extends BaseModel
      */
     public function files()
     {
-        return $this->hasMany('TicketCommentFile');
+        return $this->hasMany('App\Models\TicketCommentFile');
     }
 
     /**
@@ -73,6 +73,6 @@ class TicketComment extends BaseModel
      */
     public function copyEmail()
     {
-        return $this->hasMany('TicketCommentCopyEmail');
+        return $this->hasMany('App\Models\TicketCommentCopyEmail');
     }
 }

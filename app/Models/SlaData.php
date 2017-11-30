@@ -23,11 +23,11 @@ class SlaData extends BaseModel
 
     public function ticket()
     {
-        return $this->BelongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     public function slaOption()
     {
-        return $this->BelongsTo('SlaOption');
+        return $this->belongsTo('App\Models\SlaOption');
     }
 }

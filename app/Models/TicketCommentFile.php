@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\File\File;
 
 class TicketCommentFile extends BaseModel {
 
-    use FileModelTrait;
+//    use FileModelTrait;
 
     public $timestamps = false;
 
@@ -15,6 +15,6 @@ class TicketCommentFile extends BaseModel {
     protected $fillable = ['file', 'ticket_comment_id'];
 
     public function comment() {
-        return $this->belongsTo('TicketComment', 'ticket_comment_id');
+        return $this->belongsTo('App\Models\TicketComment', 'ticket_comment_id');
     }
 }

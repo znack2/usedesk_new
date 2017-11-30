@@ -10,7 +10,7 @@ class MacrosAction extends BaseAction {
     protected $fillable = ['action', 'value', 'macros_id'];
 
     public function macros() {
-        return $this->belongsTo('Macros');
+        return $this->belongsTo('App\Models\Macros');
     }
 
 }

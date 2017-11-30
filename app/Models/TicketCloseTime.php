@@ -20,11 +20,11 @@ class TicketCloseTime extends BaseModel
 
     public function ticket()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     public function company()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 }

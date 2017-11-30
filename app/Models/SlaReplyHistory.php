@@ -27,32 +27,32 @@ class SlaReplyHistory extends BaseModel
     
     public function ticket()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     public function company()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
     
     public function comment()
     {
-        return $this->belongsTo('TicketComment');
+        return $this->belongsTo('App\Models\TicketComment');
     }
 
     public function slaOption()
     {
-        return $this->belongsTo('SlaOption');
+        return $this->belongsTo('App\Models\SlaOption');
     }
 
     public function group()
     {
-        return $this->belongsTo('UserGroup');
+        return $this->belongsTo('App\Models\UserGroup');
     }
 
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 }

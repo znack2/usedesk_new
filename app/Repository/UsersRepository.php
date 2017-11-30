@@ -53,4 +53,19 @@ class UsersRepository extends AbstractRepository
         $user->password = $password;
         $user->save();
     }
+    /**
+     * @param int $user
+     * @return $user
+     */
+    public function create($company_id,$user_email,$user_password,$user_name,$company_phone)
+    {
+
+
+        $user = DB::table('users')->create([
+            // data['user_email'],
+            // data['user_password'],
+            // data['user_name'],
+            // data['company_phone']
+        ]);
+    }
 }

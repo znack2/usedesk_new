@@ -13,7 +13,7 @@ class BlockRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,8 +23,15 @@ class BlockRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            //
+        $rules = [
+            'name' => 'required',
+            'title' => 'required'
         ];
+        if($this->get('type') == 'static'){
+            $rules['text'] = 'required';
+        }else if($this->get('type') == 'dynamic'){
+            $rules['url'] = 'required';
+        }
+        return $rules;
     }
 }

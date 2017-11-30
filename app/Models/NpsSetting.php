@@ -4,7 +4,7 @@ namespace App\Models;
 
 class NpsSetting extends BaseModel
 {
-    use \UseDesk\Lang\LanguageListTrait;
+//    use \UseDesk\Lang\LanguageListTrait;
         
     protected static $langList = [
         'ru',

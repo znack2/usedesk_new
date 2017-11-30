@@ -4,7 +4,7 @@ namespace App\Models;
 
 class TriggerActionFile extends BaseModel {
 
-    use FileModelTrait;
+//    use FileModelTrait;
 
     public $timestamps = false;
 
@@ -12,6 +12,6 @@ class TriggerActionFile extends BaseModel {
     protected $fillable = ['file', 'trigger_action_id'];
 
     public function triggerAction() {
-        return $this->belongsTo('TriggerAction', 'trigger_action_id');
+        return $this->belongsTo('App\Models\TriggerAction', 'trigger_action_id');
     }
 }

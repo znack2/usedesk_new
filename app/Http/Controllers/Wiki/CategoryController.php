@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Wiki;
+namespace App\Http\Controllers\Categorys;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -9,10 +9,14 @@ use App\Http\Resources\Wiki\CategoryResource;
 use App\Http\Resources\Wiki\CategoryCollection;
 use App\Repository\Wiki\CategoryRepository;
 
+/**
+ * Class CategoryController
+ * @package App\Http\Controllers\Categorys
+ */
 class CategoryController extends Controller
 {
     /**
-     * @var BlockRepository
+     * @var categoryRepository
      */
     protected $categoryRepository;
     /**
@@ -27,80 +31,100 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $categories = $this->categoryRepository->getAll();
-
-        return new CategoryCollection($categories);
-    }
-
-    /**
-     * Show the form for creating a new resource.
+     * @param \Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \App\Http\Resources\Categorys\CategoryCollection
      */
-    public function create()
+    public function index(Request $request)
     {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(CategoryRequest $request)
-    {
-        //
+        //get data
+        $requestData = $request->all();
+        //get from db
+        $Categorys = $this->categoryRepository->getAll($requestData,$perPage = 25);
+        //output
+        return new CategoryCollection($Categorys);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return \App\Http\Resources\Categorys\CategoryResource
      */
     public function show($id)
     {
-        $category = Category::find($id);
+        $Category = $this->categoryRepository->getById($id);
 
-        return new CategoryResource($category);
+        if (is_null($Category)) {
+            return $this->sendError('Category not found.');
+        }
+        //output
+        return new CategoryResource($Category);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param \App\Http\Requests\Categorys\CategoryRequest $request
+     *
+     * @return mixed
      */
-    public function edit($id)
+    public function store(CategoryRequest $request)
     {
-        //
+        //get data
+        $requestData = $request->all();
+//        $company_id = $this->CurrentCompany->id;
+
+//        if($validator->fails()){
+//            return $this->sendError('Validation Error.', $validator->errors());
+//        }
+
+        $Category_id = $this->categoryRepository->createCustomCategory(
+            $company_id =1,
+            $requestData
+        );
+        //output
+        return $this->sendResponse('Category_id:'.$Category_id, 'Category created successfully.');
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\Categorys\CategoryRequest $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return mixed
      */
     public function update(CategoryRequest $request, $id)
     {
-        //
+        $requestData = $request->all();
+//        $company_id = $this->CurrentCompany->id;
+
+//        if($validator->fails()){
+//            return $this->sendError('Validation Error.', $validator->errors());
+//        }
+
+        $Category_id = $this->categoryRepository->update(
+            $id,
+            $company_id=1,
+            $requestData
+        );
+        //output
+        return $this->sendResponse('Category_id:'.$Category_id, 'Category updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     *
+     * @return mixed
      */
     public function destroy($id)
     {
-        //
+        $this->categoryRepository->delete($id);
+        //output
+        return $this->sendResponse('Category_id:'.$id, 'Category deleted successfully.');
     }
 }

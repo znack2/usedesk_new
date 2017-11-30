@@ -44,36 +44,6 @@ class BlockController extends Controller
         //output
         return new BlockCollection($blocks);
     }
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     * @return \Illuminate\Http\Response
-     */
-    public function store(BlockRequest $request)
-    {
-        $requestData = $request->all();
-        $company_id = $this->CurrentCompany->id;
-
-//        if($validator->fails()){
-//            return $this->sendError('Validation Error.', $validator->errors());
-//        }
-
-        $block = $this->blockRepository->createCustomBlock(
-            $requestData['name'],
-            $requestData['title'],
-            $requestData['type'],
-            $company_id,
-            $requestData['url']
-        );
-
-        // return response()->json('Block added!',200);
-
-        // return redirect('admin/posts')->with('flash_message', 'Block added!');
-        return $this->sendResponse($block->toArray(), 'Block created successfully.');
-    }
 
     /**
      * Display the specified resource.
@@ -89,59 +59,64 @@ class BlockController extends Controller
         if (is_null($block)) {
             return $this->sendError('Block not found.');
         }
+        //output
         return new BlockResource($block);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Store a newly created resource in storage.
      *
-     * @param  int  $id
+     * @param \App\Http\Requests\Blocks\BlockRequest $request
      *
-     * @return \App\Http\Resources\Blocks\BlockResource
+     * @return mixed
      */
-    public function edit($id)
+    public function store(BlockRequest $request)
     {
-        $block = $this->blockRepository->getById($id);
-
-        if (is_null($block)) {
-            return $this->sendError('Block not found.');
-        }
-        return new BlockResource($block);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param  int  $id
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function update(BlockRequest $request, $id)
-    {
+        //get data
         $requestData = $request->all();
-        $company_id = $this->CurrentCompany->id;
+//        $company_id = $this->CurrentCompany->id;
 
 //        if($validator->fails()){
 //            return $this->sendError('Validation Error.', $validator->errors());
 //        }
 
-        $block = $this->blockRepository->getById($id);
-
-        if (is_null($block)) {
-            return $this->sendError('Block not found.');
-        }
-
-        $block = $this->blockRepository->update(
-            $requestData['name'],
-            $requestData['title'],
-            $requestData['type'],
-            $company_id,
-            $requestData['url']
+        $block_id = $this->blockRepository->createCustomBlock(
+            $company_id =1,
+            $requestData
         );
 
-        return $this->sendResponse($block->toArray(), 'Block updated successfully.');
-        // return redirect('admin/posts')->with('flash_message', 'Post updated!');
+        // return response()->json('Block added!',200);
+        // return redirect('admin/posts')->with('flash_message', 'Block added!');
+        // return redirect('admin/posts')->with('flash_message', 'Block updated!');
+        // return redirect('admin/posts')->with('flash_message', 'Block deleted!');
+        //output
+        return $this->sendResponse('block_id:'.$block_id, 'Block created successfully.');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param \App\Http\Requests\Blocks\BlockRequest $request
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function update(BlockRequest $request, $id)
+    {
+        $requestData = $request->all();
+//        $company_id = $this->CurrentCompany->id;
+
+//        if($validator->fails()){
+//            return $this->sendError('Validation Error.', $validator->errors());
+//        }
+
+        $block_id = $this->blockRepository->update(
+            $id,
+            $company_id=1,
+            $requestData
+        );
+        //output
+        return $this->sendResponse('block_id:'.$block_id, 'Block updated successfully.');
     }
 
     /**
@@ -149,19 +124,31 @@ class BlockController extends Controller
      *
      * @param  int  $id
      *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return mixed
      */
     public function destroy($id)
     {
-        $block = $this->blockRepository->getById($id);
-
-        if (is_null($block)) {
-            return $this->sendError('Block not found.');
-        }
-
         $this->blockRepository->delete($id);
+        //output
+        return $this->sendResponse('block_id:'.$id, 'Block deleted successfully.');
+    }
 
-        return $this->sendResponse($id, 'Block deleted successfully.');
-        // return redirect('admin/posts')->with('flash_message', 'Block deleted!');
+    /**
+     * sort
+     *
+     * @param  int  $id
+     *
+     * @return mixed
+     */
+    public function sort(Request $request)
+    {
+        //get data
+        $order = $request->get('order');
+        //update in db
+        foreach ($order as $sort => $id) {
+            $block = $this->blockRepository->updateSort($id,$sort);
+        }
+        //output
+        return $this->sendResponse('blocks:'.$block, 'Blocks have been sorted successfully.');
     }
 }

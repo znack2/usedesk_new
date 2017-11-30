@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\HttpFoundation\File\File;
-use UseDesk\Notifications\SystemNotification;
+//use UseDesk\Notifications\SystemNotification;
 
 class Ticket extends BaseModel
 {
@@ -67,7 +67,7 @@ class Ticket extends BaseModel
      */
     public function status()
     {
-        return $this->belongsTo('TicketStatus');
+        return $this->belongsTo('App\Models\TicketStatus');
     }
 
     /**
@@ -75,7 +75,7 @@ class Ticket extends BaseModel
      */
     public function client()
     {
-        return $this->belongsTo('Client');
+        return $this->belongsTo('App\Models\Client');
     }
 
     /**
@@ -83,7 +83,7 @@ class Ticket extends BaseModel
      */
     public function assignee()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 
     /**
@@ -91,7 +91,7 @@ class Ticket extends BaseModel
      */
     public function emailChannel()
     {
-        return $this->belongsTo('CompanyEmailChannel');
+        return $this->belongsTo('App\Models\CompanyEmailChannel');
     }
 
     /**
@@ -99,11 +99,11 @@ class Ticket extends BaseModel
      */
     public function company()
     {
-        return $this->belongsTo('Company');
+        return $this->belongsTo('App\Models\Company');
     }
     public function chats()
     {
-        return $this->hasMany('UChats');
+        return $this->hasMany('App\Models\UChats');
     }
     /**
      * @return BelongsToMany
@@ -118,7 +118,7 @@ class Ticket extends BaseModel
      */
     public function comments()
     {
-        return $this->hasMany('TicketComment');
+        return $this->hasMany('App\Models\TicketComment');
     }
 
     /**
@@ -126,7 +126,7 @@ class Ticket extends BaseModel
      */
     public function triggerChanges()
     {
-        return $this->hasMany('TriggerChange');
+        return $this->hasMany('App\Models\TriggerChange');
     }
 
     /**
@@ -134,7 +134,7 @@ class Ticket extends BaseModel
      */
     public function userTicketViews()
     {
-        return $this->hasMany('UserTicketView');
+        return $this->hasMany('App\Models\UserTicketView');
     }
 
     /**
@@ -142,7 +142,7 @@ class Ticket extends BaseModel
      */
     public function slaData()
     {
-        return $this->hasMany('SlaData');
+        return $this->hasMany('App\Models\SlaData');
     }
 
     /**
@@ -150,7 +150,7 @@ class Ticket extends BaseModel
      */
     public function slaCloseTimeHistory()
     {
-        return $this->hasMany('SlaCloseTimeHistory');
+        return $this->hasMany('App\Models\SlaCloseTimeHistory');
     }
 
     /**
@@ -158,7 +158,7 @@ class Ticket extends BaseModel
      */
     public function slaReplyHistory()
     {
-        return $this->hasMany('SlaReplyHistory');
+        return $this->hasMany('App\Models\SlaReplyHistory');
     }
 
     /**
@@ -174,7 +174,7 @@ class Ticket extends BaseModel
      */
     public function ticketFieldValues()
     {
-        return $this->hasMany('TicketFieldValue');
+        return $this->hasMany('App\Models\TicketFieldValue');
     }
 
 }

@@ -15,6 +15,6 @@ class TicketCommentCopyEmail extends BaseModel
 
     public function ticketComment()
     {
-        return $this->belongsTo('TicketComment','ticket_comment_id');
+        return $this->belongsTo('App\Models\TicketComment','ticket_comment_id');
     }
 }

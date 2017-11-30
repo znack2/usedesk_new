@@ -46,16 +46,16 @@ class TriggerChange extends BaseModel
 
     public function trigger()
     {
-        return $this->belongsTo('Trigger');
+        return $this->belongsTo('App\Models\Trigger');
     }
 
     public function user()
     {
-        return $this->belongsTo('User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function ticket()
     {
-        return $this->belongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 }

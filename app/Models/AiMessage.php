@@ -19,7 +19,7 @@ class AiMessage extends BaseModel
 
     public function ticket() 
     {
-        return $this->BelongsTo('Ticket');
+        return $this->belongsTo('App\Models\Ticket');
     }
 
 
