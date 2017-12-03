@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Ticket;
+namespace App\Http\Resources\Tickets;
 
 use Illuminate\Http\Resources\Json\ResourceCollection;
 

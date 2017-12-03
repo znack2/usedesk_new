@@ -15,31 +15,31 @@ class BlockRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function getAll($data,$company_id=null,$perPage=false,$relation = false)
+    public function getAll($data,$perPage=false,$company_id=NULL,$relation = false)
     {
         $customBlock = DB::table('company_custom_blocks')
-            ->when($relation, function ($query2) use ($relation) {
-                return $query2->load($relation);
+            //relation
+            ->when($relation, function ($query) use ($relation) {
+                return $query->load($relation);
             })
-            ->when(isset($data['keyword']), function ($query2) use ($data) {
-                return $query2->where('title', 'LIKE', "%".$data['keyword']."%")
+            //search
+            ->when(isset($data['keyword']), function ($query) use ($data) {
+                return $query->where('title', 'LIKE', "%".$data['keyword']."%")
                     ->orWhere('name', 'LIKE', "%".$data['keyword']."%")
                     ->orWhere('url', 'LIKE', "%".$data['keyword']."%");
             })
-            ->when(isset($data['type']), function ($query2) use ($data) {
-                return $query2->where('type', $data['type']);
+            //enum
+            ->when(isset($data['type']), function ($query) use ($data) {
+                return $query->where('type', $data['type']);
             })
-            ->when(isset($data['id']), function ($query2) use ($data) {
-                return $query2->where('id', $data['id']);
+            ->when(isset($company_id), function ($query) use ($company_id) {
+                return $query->where('company_id', $company_id);
             })
-            ->when(isset($company_id), function ($query2) use ($data) {
-                return $query2->where('company_id', $data['company_id']);
+            ->when(isset($data['active']), function ($query) use ($data) {
+                return $query->where('active', $data['active']);
             })
-            ->when(isset($data['active']), function ($query2) use ($data) {
-                return $query2->where('active', $data['active']);
-            })
-            ->when(isset($data['orderBy']), function ($query2) use ($data) {
-                return $query2->orderBy($data['orderBy']);
+            ->when(isset($data['orderBy']), function ($query) use ($data) {
+                return $query->orderBy($data['orderBy']);
             })->select('company_id','name','title','url','text')
               ->orderBy('sort')
               ->paginate($perPage);
@@ -52,14 +52,15 @@ class BlockRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function getById($id,$type=null)
+    public function getById($id,$relation = false)
     {
         $customBlock = DB::table('company_custom_blocks')
+            // ->when($relation, function ($query) use ($relation) {
+            //     return $query->load($relation);
+            // })
             ->where('id', $id)
-            ->when(isset($type), function ($query2) use ($type) {
-                return $query2->where('type', $type);
-            })
             ->first();
+            
 
         return $customBlock;
     }
@@ -69,17 +70,15 @@ class BlockRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function createYandexDefaultBlock($company_id,$data)
+    public function createYandexDefaultBlock($company_id,$url)
     {
-        $link = 'https://yandex.ru/search?text={{ticket_subject}}';
-        $text = '<p><a href="'.$link.'" target="_blank">Искать в яндексе по теме письма</a></p>';
         $customBlock = $this->createCustomBlock(
-            'Яндекс',
-            '{{ticket_subject}} в яндексе',
-            $text,
-            CompanyCustomBlock::TYPE_STATIC,
+            config('CompanyCustomBlock.YANDEX_NAME'),
+            config('CompanyCustomBlock.YANDEX_TITLE'),
+            config('CompanyCustomBlock.YANDEX_TEXT'),
+            config('CompanyCustomBlock.TYPE_STATIC'),
             $company_id,
-            $data['url']
+            $url
         );
         $this->createCustomBlockParams($customBlock,'subdomain');
         return $customBlock;
@@ -94,9 +93,10 @@ class BlockRepository extends AbstractRepository
     {
         if (!$this->getCustomBlock($company_id,$url)->exists()) {
             $customBlock = $this->createCustomBlock(
-                'Retail CRM',
-                'Retail CRM',
-                CompanyCustomBlock::TYPE_DYNAMIC,
+                config('CompanyCustomBlock.RETAIL_NAME'),
+                config('CompanyCustomBlock.RETAIL_TITLE'),
+                config('CompanyCustomBlock.RETAIL_TEXT'),
+                config('CompanyCustomBlock.TYPE_DYNAMIC'),
                 $company_id,
                 $url
             );
@@ -124,15 +124,13 @@ class BlockRepository extends AbstractRepository
             'title' => $requestData['title'],
             'text' => $requestData['text'],
             'type' => $requestData['type'],
-            'active' => true
+            'active' => true,
+            'url' => (DB::raw( 'type') == 'dynamic' && isset($requestData['url'])) ? $requestData['url'] : '',
+            'secret_key' => (DB::raw( 'type') == 'dynamic' && isset($requestData['secret_key'])) ? $requestData['secret_key'] : ''
         ]);
 
         if($requestData['type'] =='dynamic')
         {
-            $customBlock->update([
-                'url' => $requestData['url'],
-                'secret_key' => $requestData['secret_key']
-            ]);
             $this->createCustomBlockParams($customBlock,'subdomain');
         }
         return $customBlock;
@@ -182,12 +180,15 @@ class BlockRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function trigger($id)
+    public function toggleActive($id)
     {
         $customBlock = $this->getById($id);
-        $customBlock->update([
-            'active' => ($customBlock->active!=false)
-        ]);
+        $customBlock->active = !$customBlock->active; 
+        $customBlock->save();
+
+        // $customBlock->update([
+        //     'active' =>  ($customBlock->active!=false)
+        // ]);
         return $customBlock;
 
     }
@@ -216,6 +217,7 @@ class BlockRepository extends AbstractRepository
     /**
      * @param int $company_id
      * @param int $active
+     * @param int $customBlock_id
      *
      * @return $customBlockParam
      */
@@ -230,14 +232,17 @@ class BlockRepository extends AbstractRepository
             ->get();
         return $customBlockParam;
     }
-
-
-
-
-    private function createCustomBlockParams($customBlock,$subdomain,$value = null)
+    /**
+     * @param int $customBlock_id
+     * @param int $subdomain
+     * @param int $value
+     *
+     * @return $customBlockParam
+     */
+    private function createCustomBlockParams($customBlock_id,$subdomain,$value = null)
     {
         $customBlockParam = DB::table('companyCustomBlockParams')->insert([
-            'company_custom_block_id' => $customBlock->id,
+            'company_custom_block_id' => $customBlock_id,
             'key' => $subdomain,
             'value' => $value,
         ]);

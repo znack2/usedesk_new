@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Elasticquent\ElasticquentTrait;
+
+
 class CompanyCustomBlock extends BaseModel
 {
-    const TYPE_STATIC = 'static';
-    const TYPE_DYNAMIC = 'dynamic';
+	use ElasticquentTrait;
 
     public $timestamps = false;
 
@@ -21,6 +23,22 @@ class CompanyCustomBlock extends BaseModel
 		'sort',
 		'active'
  	];
+
+ 	protected $mappingProperties = [
+	    'title' => [
+	      'type' => 'string',
+	      "analyzer" => "standard",
+	    ],
+	    'text' => [
+	      'type' => 'string',
+	      "analyzer" => "standard",
+	    ],
+	    'url' => [
+	      'type' => 'string',
+	      "analyzer" => "stop",
+	      "stopwords" => ["/"]
+	    ],
+  	];
 
     public function company()
     {

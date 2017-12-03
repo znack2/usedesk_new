@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Tickets;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+/**
+ * 
+ * @resource TicketStatus
+ *
+ * TicketStatus resource representation.
+ */
 class StatusController extends Controller
 {
     /**

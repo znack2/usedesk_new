@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Macros;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+/**
+ * 
+ * @resource QuickMacro
+ *
+ * QuickMacro resource representation.
+ */
 class QuickMacroController extends Controller
 {
     /**

@@ -4,8 +4,7 @@ namespace App\Models;
 
 class TicketCommentCopyEmail extends BaseModel
 {
-    const TYPE_CC = 'cc';
-    const TYPE_BCC = 'bcc';
+
 
     public $timestamps = false;
 

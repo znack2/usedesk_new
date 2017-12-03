@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Clients;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+/**
+ * @resource Client Phone
+ *
+ * Client Phone resource representation.
+ */
 class PhoneController extends Controller
 {
     /**

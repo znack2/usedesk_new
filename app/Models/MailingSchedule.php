@@ -4,9 +4,6 @@ namespace App\Models;
 
 class MailingSchedule extends BaseModel {
 
-    const STATUS_NOTHING = 'nothing';
-    const STATUS_SOME = 'some';
-    const STATUS_ALL = 'all';
 
     public $timestamps = false;
 

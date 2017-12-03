@@ -4,9 +4,6 @@ namespace App\Models;
 
 class Client extends BaseModel
 {
-    const TYPE_VIP = 'vip';
-    const TYPE_SPAMMER = 'spammer';
-
     public $timestamps = false;
 
     protected $table = 'clients';

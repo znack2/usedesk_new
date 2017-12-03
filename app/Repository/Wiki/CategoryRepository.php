@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Blocks;
+namespace App\Repository\Wiki;
 
 use Illuminate\Support\Facades\DB;
 use App\Repository\AbstractRepository;
@@ -17,7 +17,7 @@ class CategoryRepository extends AbstractRepository
      */
     public function getAll($data,$company_id=null,$perPage=false,$relation = false)
     {
-        $customBlock = DB::table('company_custom_blocks')
+        $customBlock = DB::table('uh_categories')
             ->when($relation, function ($query2) use ($relation) {
                 return $query2->load($relation);
             })
@@ -52,13 +52,13 @@ class CategoryRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function getById($id,$type=null)
+    public function getById($id,$relation=false)
     {
-        $customBlock = DB::table('company_custom_blocks')
-            ->where('id', $id)
-            ->when(isset($type), function ($query2) use ($type) {
-                return $query2->where('type', $type);
+        $customBlock = DB::table('uh_categories')
+            ->when($relation, function ($query) use ($relation) {
+                return $query->load($relation);
             })
+            ->where('id', $id)
             ->first();
 
         return $customBlock;
@@ -76,7 +76,7 @@ class CategoryRepository extends AbstractRepository
      */
     public function createCustomBlock($company_id,$requestData)
     {
-        $customBlock = DB::table('company_custom_blocks')->insertGetId([
+        $customBlock = DB::table('uh_categories')->insertGetId([
             'company_id' => $company_id,
             'name' => $requestData['name'],
             'title' => $requestData['title'],
@@ -109,7 +109,7 @@ class CategoryRepository extends AbstractRepository
      */
     public function update($id,$company_id,$requestData)
     {
-        $customBlock = DB::table('company_custom_blocks')
+        $customBlock = DB::table('uh_categories')
         ->where(['id' => $id])
         ->update([
             'sort' => DB::raw('sort+1'),
@@ -130,7 +130,7 @@ class CategoryRepository extends AbstractRepository
      */
     public function updateSort($id,$sort)
     {
-        $customBlock = DB::table('company_custom_blocks')
+        $customBlock = DB::table('uh_categories')
             ->where(['id' => $id])
             ->update(['sort' => $sort]);
         return $customBlock;
@@ -157,11 +157,11 @@ class CategoryRepository extends AbstractRepository
      */
     public function delete($id,$company_id=null,$url=null)
     {
-        $customBlock = DB::table('company_custom_blocks')
+        $customBlock = DB::table('uh_categories')
                     ->where('id', $id)
                     ->delete();
         return $customBlock;
     }
 
 
-
+}

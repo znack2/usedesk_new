@@ -1,58 +1,54 @@
 <?php
 
-use Illuminate\Http\Request;
-
-$api = app('Dingo\Api\Routing\Router');
-
-$api->version('v1', function ($api) {
+Route::prefix('api')->group(function () {
 
     /* ================== blocks ================== */
 
-	$api->get('/widget.js',            		['uses' => 'apiController@getWidget', 							'as' => 'user.widget.get_widget']);
-	$api->get('/chat.js',              		['uses' => 'apiController@getWidget', 							'as' => 'user.widget.get_chat_widget']);
-	$api->get('/chat/ticket/{id}',          ['uses' => 'chatController@getTicket',           				'as' => 'chat.get.ticket']);
-	$api->post('/widget.js/post',      		['uses' => 'apiController@postWidget', 							'as' => 'user.widget.post_widget']);
-	$api->post('/chat/initChat',            ['uses' => 'chatController@initChat']);
-	$api->post('/chat/disconnectChat',      ['uses' => 'chatController@disconnectChat']);
-	$api->post('/chat/setEmail',            ['uses' => 'chatController@setEmail']);
-	$api->post('/chat/addMessage',          ['uses' => 'chatController@addMessage']);
-	$api->post('/chat/getChatMessages',     ['uses' => 'chatController@getChatMessages']);
-	$api->post('/chat/initOperator',        ['uses' => 'chatController@initOperator']);
-	$api->post('/chat/disconnectOperator',  ['uses' => 'chatController@disconnectOperator']);
-	$api->post('/chat/getMessagesByChat',   ['uses' => 'chatController@getMessagesByChat',   				'as' => 'chat.get.messages']);
-	$api->post('/chat/getActiveChat',       ['uses' => 'chatController@getActiveChat',       				'as' => 'chat.get.active']);
-	$api->post('/chat/closeDialog',         ['uses' => 'chatController@closeDialog',         				'as' => 'chat.close.dialog']);
-	$api->post('/chat/callback',            ['uses' => 'chatController@callback']);			
-	$api->post('/chat/assignee',            ['uses' => 'chatController@AssigneeDialog',      				'as' => 'chat.assignee']);
-	$api->post('/chat/assigneeJson',        ['uses' => 'chatController@getAssigneeJson',     				'as' => 'chat.assignee.json']);
-	$api->post('/chat/replaceVar',          ['uses' => 'chatController@replaceVar',          				'as' => 'chat.replace.var']);
-	$api->post('/chat/getUrl',              ['uses' => 'chatController@getUrl',              				'as' => 'chat.get.url']);
-	$api->post('/chat/pushAction',          ['uses' => 'chatController@pushAction']);		
-	$api->post('/chat/getProperties',       ['uses' => 'chatController@getChatProperties',   				'as' => 'user.chat.properties']);
-	$api->post('/chat/browser/getHtml',     ['uses' => 'chatController@getHtml',             				'as' => 'user.chat.browser.html']);
+	Route::get('/widget.js',            	 ['uses' => 'chatController@getWidget', 							'as' => 'user.widget.get_widget']);
+	Route::get('/chat.js',              	 ['uses' => 'chatController@getWidget', 							'as' => 'user.widget.get_chat_widget']);
+	Route::get('/chat/ticket/{id}',          ['uses' => 'chatController@getTicket',           					'as' => 'chat.get.ticket']);
+	Route::post('/widget.js/post',      	 ['uses' => 'chatController@postWidget', 							'as' => 'user.widget.post_widget']);
+	Route::post('/chat/initChat',            ['uses' => 'chatController@initChat']);
+	Route::post('/chat/disconnectChat',      ['uses' => 'chatController@disconnectChat']);
+	Route::post('/chat/setEmail',            ['uses' => 'chatController@setEmail']);
+	Route::post('/chat/addMessage',          ['uses' => 'chatController@addMessage']);
+	Route::post('/chat/getChatMessages',     ['uses' => 'chatController@getChatMessages']);
+	Route::post('/chat/initOperator',        ['uses' => 'chatController@initOperator']);
+	Route::post('/chat/disconnectOperator',  ['uses' => 'chatController@disconnectOperator']);
+	Route::post('/chat/getMessagesByChat',   ['uses' => 'chatController@getMessagesByChat',   				'as' => 'chat.get.messages']);
+	Route::post('/chat/getActiveChat',       ['uses' => 'chatController@getActiveChat',       				'as' => 'chat.get.active']);
+	Route::post('/chat/closeDialog',         ['uses' => 'chatController@closeDialog',         				'as' => 'chat.close.dialog']);
+	Route::post('/chat/callback',            ['uses' => 'chatController@callback']);			
+	Route::post('/chat/assignee',            ['uses' => 'chatController@AssigneeDialog',      				'as' => 'chat.assignee']);
+	Route::post('/chat/assigneeJson',        ['uses' => 'chatController@getAssigneeJson',     				'as' => 'chat.assignee.json']);
+	Route::post('/chat/replaceVar',          ['uses' => 'chatController@replaceVar',          				'as' => 'chat.replace.var']);
+	Route::post('/chat/getUrl',              ['uses' => 'chatController@getUrl',              				'as' => 'chat.get.url']);
+	Route::post('/chat/pushAction',          ['uses' => 'chatController@pushAction']);		
+	Route::post('/chat/getProperties',       ['uses' => 'chatController@getChatProperties',   				'as' => 'user.chat.properties']);
+	Route::post('/chat/browser/getHtml',     ['uses' => 'chatController@getHtml',             				'as' => 'user.chat.browser.html']);
 
 
-	$api->post('/chat/getClientByChat',     ['uses' => 'chatController@getClientByChat',     				'as' => 'chat.get.client']);
-	$api->post('/chat/getClientInfoView',   ['uses' => 'chatController@getClientInfoView',   				'as' => 'chat.get.client.info']);
+	Route::post('/chat/getClientByChat',     ['uses' => 'chatController@getClientByChat',     				'as' => 'chat.get.client']);
+	Route::post('/chat/getClientInfoView',   ['uses' => 'chatController@getClientInfoView',   				'as' => 'chat.get.client.info']);
 
     /* ================== check ================== */
 
-	$api->post('/chat/checkChat',           ['uses' => 'chatController@checkChat']);
-	$api->post('/chat/check/operatorStatus',['uses' => 'chatController@checkOperatorStatusAjax',			'as' => 'user.chat.check.operator.status']);
-	$api->post('/chat/checkTicketStatus',   ['uses' => 'chatController@checkTicketStatus',   				'as' => 'chat.check.status']);
-	$api->post('/chat/checkCobrowsingToken',['uses' => 'chatController@checkCobrowsingToken']);		
-	$api->post('/chat/checkCobrowsingChat', ['uses' => 'chatController@checkCobrowsingChat']);		
+	Route::post('/chat/checkChat',           ['uses' => 'chatController@checkChat']);
+	Route::post('/chat/check/operatorStatus',['uses' => 'chatController@checkOperatorStatusAjax',			'as' => 'user.chat.check.operator.status']);
+	Route::post('/chat/checkTicketStatus',   ['uses' => 'chatController@checkTicketStatus',   				'as' => 'chat.check.status']);
+	Route::post('/chat/checkCobrowsingToken',['uses' => 'chatController@checkCobrowsingToken']);		
+	Route::post('/chat/checkCobrowsingChat', ['uses' => 'chatController@checkCobrowsingChat']);		
 
     /* ================== macros ================== */
 
-	$api->post('/chat/getMacrosesJson',     ['uses' => 'chatController@getMacrosesJson',     				'as' => 'chat.macros.json']);
-	$api->post('/chat/runMacroses',         ['uses' => 'chatController@runMacroses',         				'as' => 'chat.run.macros']);
-	$api->post('/chat/saveQuickMacros',   	['uses' => 'MacrosesController@chatSaveQuickMacros',  			'as' => 'channel.ajax.chat.save.macros']);
-	$api->post('/chat/deleteQuickMacros', 	['uses' => 'MacrosesController@chatDeleteQuickMacros',			'as' => 'channel.ajax.chat.delete.macros']);
+	Route::post('/chat/getMacrosesJson',     ['uses' => 'chatController@getMacrosesJson',     				'as' => 'chat.macros.json']);
+	Route::post('/chat/runMacroses',         ['uses' => 'chatController@runMacroses',         				'as' => 'chat.run.macros']);
+	Route::post('/chat/saveQuickMacros',   	 ['uses' => 'MacrosesController@chatSaveQuickMacros',  			'as' => 'channel.ajax.chat.save.macros']);
+	Route::post('/chat/deleteQuickMacros', 	 ['uses' => 'MacrosesController@chatDeleteQuickMacros',			'as' => 'channel.ajax.chat.delete.macros']);
 
 });
 
-// $api->middleware('auth:api')->get('/user', function (Request $request) {
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
 

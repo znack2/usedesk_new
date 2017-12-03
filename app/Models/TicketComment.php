@@ -6,14 +6,7 @@ use UseDesk\Notifications\SystemNotification;
 
 class TicketComment extends BaseModel
 {
-    const TYPE_PUBLIC = 'public';
-    const TYPE_PRIVATE = 'private';
 
-    const FROM_USER = 'user';
-    const FROM_CLIENT = 'client';
-    const FROM_TRIGGER = 'trigger';
-
-    const AUTO_PERIOD = 30; //время определения срабатывания автоответчика
 
     public $timestamps = false;
 

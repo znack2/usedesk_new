@@ -16,15 +16,6 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    const LANG_EN = 'en';
-    const LANG_RU = 'ru';
-    const LANG_ES = 'es';
-    const ROLE_ADMIN = 'admin';
-    const ROLE_EMPLOYEE = 'employee';
-    const ROLE_SUPPORT = 'support';
-    const REPLY_BEHAVIOR_CURRENT = 'current';
-    const REPLY_BEHAVIOR_NEXT = 'next';
-    const REPLY_BEHAVIOR_LIST = 'list';
 
     public $timestamps = false;
 

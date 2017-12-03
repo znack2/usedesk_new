@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Categorys;
+namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,8 +10,10 @@ use App\Http\Resources\Wiki\CategoryCollection;
 use App\Repository\Wiki\CategoryRepository;
 
 /**
- * Class CategoryController
- * @package App\Http\Controllers\Categorys
+ * 
+ * @resource Category
+ *
+ * Category resource representation.
  */
 class CategoryController extends Controller
 {

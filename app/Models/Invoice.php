@@ -17,9 +17,6 @@ class Invoice extends BaseModel {
 		'company_id'
  	];
 
-    const STATUS_PAID = 'paid';
-    const STATUS_NOT_PAID = 'not_paid';
-    const STATUS_AWAITING_CONFIRMATION = 'awaiting_confirmation';
 
     public function company() {
         return $this->belongsTo('App\Models\Company');

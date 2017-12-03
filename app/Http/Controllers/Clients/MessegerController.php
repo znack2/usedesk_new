@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Clients;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+/**
+ * @resource Client Messeger
+ *
+ * Client Messeger resource representation.
+ */
 class MessegerController extends Controller
 {
     /**

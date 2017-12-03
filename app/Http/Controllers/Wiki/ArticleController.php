@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Articles;
+namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,8 +10,10 @@ use App\Http\Resources\Wiki\ArticleCollection;
 use App\Repository\Wiki\ArticleRepository;
 
 /**
- * Class ArticleController
- * @package App\Http\Controllers\Articles
+ * 
+ * @resource Articles
+ *
+ * Articles resource representation.
  */
 class ArticleController extends Controller
 {

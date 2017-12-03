@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Blocks;
+namespace App\Repository\Wiki;
 
 use Illuminate\Support\Facades\DB;
 use App\Repository\AbstractRepository;
@@ -17,12 +17,12 @@ class ArticleRepository extends AbstractRepository
      */
     public function getAll($data,$category_id=null,$perPage=false,$relation = false)
     {
-        $article = DB::table('tickets')
+        $article = DB::table('uh_articles')
             ->when($relation, function ($query) use ($relation) {
                 return $query->load($relation);
             })
             ->when(isset($data['keyword']), function ($query) use ($data) {
-                return $query->where('title', 'LIKE', "%".$data['keyword']."%")
+                return $query->where('title', 'LIKE', "%".$data['keyword']."%");
             })
             ->when(isset($data['public']), function ($query) use ($data) {
                 return $query->where('public', $data['public']);
@@ -48,13 +48,13 @@ class ArticleRepository extends AbstractRepository
      *
      * @return $article
      */
-    public function getById($id,$category_id=null)
+    public function getById($id,$relation=null)
     {
-        $article = DB::table('tickets')
-            ->where('id', $id)
-            ->when(isset($category_id), function ($query) use ($category_id) {
-                return $query->where('category_id', $category_id);
+        $article = DB::table('uh_articles')
+            ->when($relation, function ($query) use ($relation) {
+                return $query->load($relation);
             })
+            ->where('id', $id)
             ->first();
 
         return $article;
@@ -72,17 +72,16 @@ class ArticleRepository extends AbstractRepository
      */
     public function createarticle($category_id,$requestData)
     {
-        $article = DB::table('tickets')->insertGetId([
+        $article = DB::table('uh_articles')->insertGetId([
 	        'title' => $requestData['title'],
 	        'text' => $requestData['text'],
 	        'public' => $requestData['public'],
-	        'category_id' => $category_id
+	        'category_id' => $category_id,
 	        'order' => DB::raw('sort+1'),
         ]);
         
         return $article;
     }
-
     /**
      * @param int $name
      * @param int $title
@@ -96,7 +95,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function update($id,$category_id,$requestData)
     {
-        $article = DB::table('tickets')
+        $article = DB::table('uh_articles')
         ->where(['id' => $id])
         ->update([
 	        'title' => $requestData['title'],
@@ -114,7 +113,7 @@ class ArticleRepository extends AbstractRepository
      */
     public function updateSort($id,$sort)
     {
-        $article = DB::table('tickets')
+        $article = DB::table('uh_articles')
             ->where(['id' => $id])
             ->update(['order' => $sort]);
         return $article;
@@ -131,7 +130,6 @@ class ArticleRepository extends AbstractRepository
             'public' => ($article->public != false)
         ]);
         return $article;
-
     }
     /**
      * @param int $company_id
@@ -141,11 +139,11 @@ class ArticleRepository extends AbstractRepository
      */
     public function delete($id,$company_id=null,$url=null)
     {
-        $article = DB::table('tickets')
+        $article = DB::table('uh_articles')
                     ->where('id', $id)
                     ->delete();
         return $article;
     }
-
+}
 
 

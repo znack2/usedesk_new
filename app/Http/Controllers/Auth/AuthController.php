@@ -6,9 +6,10 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use App\Http\Controllers\Controller;
 use App\Repository\UserRepository;
 /**
- * Auth representation.
+ * 
+ * @resource Block
  *
- * @Resource("Users", uri="/users")
+ * Block resource representation.
  */
 class AuthController extends Controller
 {
@@ -30,9 +31,6 @@ class AuthController extends Controller
      * Show login page
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
      */
     public function getLogin()
     {
@@ -43,9 +41,6 @@ class AuthController extends Controller
      * Show thank_you page
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
      */
     public function getThankYou()
     {
@@ -56,9 +51,6 @@ class AuthController extends Controller
      * Logout
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
      */
     public function getLogout()
     {
@@ -74,13 +66,6 @@ class AuthController extends Controller
      * Post login
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function postLogin()
     {
@@ -112,13 +97,6 @@ class AuthController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function getLoginToken()
     {

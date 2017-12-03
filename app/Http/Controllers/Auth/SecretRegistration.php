@@ -6,9 +6,10 @@ use App\Repository\RequestRepository;
 use App\Http\Requests\Auth\postSecretRegistration;
 use App\Http\Controllers\Controller;
 /**
- * Secret Registration representation.
+ * 
+ * @resource Block
  *
- * @Resource("Users", uri="/users")
+ * Block resource representation.
  */
 class SecretController extends Controller
 {
@@ -22,9 +23,6 @@ class SecretController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
      */
  	public function getSecretRegistration()
     {
@@ -34,13 +32,6 @@ class SecretController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function postSecretRegistration(postSecretRegistration $request)
     {
@@ -63,13 +54,6 @@ class SecretController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function getSecretRegistrationFinal($hash)
     {

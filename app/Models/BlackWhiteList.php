@@ -4,8 +4,6 @@ namespace App\Models;
 
 class BlackWhiteList extends BaseModel {
 
-    const TYPE_BLACK = 'black';
-    const TYPE_WHITE = 'white';
 
     public $timestamps = false;
 

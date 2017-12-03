@@ -5,18 +5,6 @@ namespace App\Models;
 class CompanyBilling extends BaseModel
 {
 
-    const TYPE_DEFAULT = 'default';
-    const TYPE_FIXED = 'fixed';
-
-    const DATA_PLAN_TRIAL = 'trial';
-    const DATA_PLAN_FREE = 'free';
-    const DATA_PLAN_PAID = 'paid';
-
-    const PAYMENT_TYPE_BANK_CARD = 'bank_card';
-    const PAYMENT_TYPE_SETTLEMENT_ACCOUNT = 'settlement_account';
-
-    const INVOICING_PERIOD_MONTH = 'month';
-    const INVOICING_PERIOD_YEAR = 'year';
 
     public $timestamps = false;
 

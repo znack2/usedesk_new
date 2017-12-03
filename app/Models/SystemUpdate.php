@@ -4,9 +4,6 @@ namespace App\Models;
 
 class SystemUpdate extends BaseModel {
 
-    const TYPE_PROBLEM = 'problem';
-    const TYPE_FEATURE = 'feature';
-    const TYPE_ARTICLE = 'article';
 
     public $timestamps = false;
 

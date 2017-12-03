@@ -6,9 +6,7 @@ use App\Models\BaseModel;
 
 class Company extends BaseModel
 {
-    const BLOCK_NONE = 'none';
-    const BLOCK_ACTIVITY = 'activity';
-    const BLOCK_FULL = 'full';
+
 
     protected static $currentCompany;
 

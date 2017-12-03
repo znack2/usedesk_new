@@ -4,10 +4,6 @@ namespace App\Models;
 
 class Payment extends BaseModel {
 
-    const STATUS_NEW = 'new';
-    const STATUS_PENDING = 'pending';
-    const STATUS_PAID = 'paid';
-    const STATUS_FAILED = 'failed';
 
     public $timestamps = false;
 

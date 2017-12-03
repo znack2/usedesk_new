@@ -180,7 +180,9 @@ return [
 
 
         Barryvdh\Debugbar\ServiceProvider::class,
-        Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class
+        Mpociot\LaravelTestFactoryHelper\TestFactoryHelperServiceProvider::class,
+        Mpociot\ApiDoc\ApiDocGeneratorServiceProvider::class,
+        Elasticquent\ElasticquentServiceProvider::class,
     ],
 
     /*
@@ -199,7 +201,7 @@ return [
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
-        'Blade' => Illuminate\Support\Facades\Blade::class,
+        // 'Blade' => Illuminate\Support\Facades\Blade::class,
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
@@ -218,7 +220,7 @@ return [
         'Notification' => Illuminate\Support\Facades\Notification::class,
         'Password' => Illuminate\Support\Facades\Password::class,
         'Queue' => Illuminate\Support\Facades\Queue::class,
-        'Redirect' => Illuminate\Support\Facades\Redirect::class,
+        // 'Redirect' => Illuminate\Support\Facades\Redirect::class,
         'Redis' => Illuminate\Support\Facades\Redis::class,
         'Request' => Illuminate\Support\Facades\Request::class,
         'Response' => Illuminate\Support\Facades\Response::class,
@@ -228,8 +230,9 @@ return [
         'Storage' => Illuminate\Support\Facades\Storage::class,
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
-        'View' => Illuminate\Support\Facades\View::class,
+        // 'View' => Illuminate\Support\Facades\View::class,
 
+        'Es' => Elasticquent\ElasticquentElasticsearchFacade::class,
     ],
 
 ];

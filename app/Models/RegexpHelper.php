@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class RegexpHelper extends BaseMOdel
+class RegexpHelper extends BaseModel
 {
     public $timestamps = false;
 

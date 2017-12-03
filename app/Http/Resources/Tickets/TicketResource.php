@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Resources\Ticket;
+namespace App\Http\Resources\Tickets;
 
 use Illuminate\Http\Resources\Json\Resource;
 
@@ -33,7 +33,7 @@ class TicketResource extends Resource
             'contact' => $this->contact,
 
             'zendesk_id' => $this->zendesk_id,
-            'owner_id' => $this->owner_id
+            'owner_id' => $this->owner_id,
             'additional_id' => $this->additional_id,
             'telephony_id' => $this->telephony_id,
             'social_id' => $this->social_id,

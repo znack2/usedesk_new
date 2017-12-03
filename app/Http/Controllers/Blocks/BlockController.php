@@ -10,8 +10,10 @@ use App\Http\Resources\Blocks\BlockCollection;
 use App\Repository\Blocks\BlockRepository;
 
 /**
- * Class BlockController
- * @package App\Http\Controllers\Blocks
+ * 
+ * @resource Block
+ *
+ * Block resource representation.
  */
 class BlockController extends Controller
 {
@@ -29,10 +31,9 @@ class BlockController extends Controller
         $this->blockRepository = $blockRepository;
     }
     /**
-     * Display a listing of the resource.
+     * List of blocks.
      *
      * @param \Illuminate\Http\Request $request
-     *
      * @return \App\Http\Resources\Blocks\BlockCollection
      */
     public function index(Request $request)
@@ -40,16 +41,22 @@ class BlockController extends Controller
         //get data
         $requestData = $request->all();
         //get from db
-        $blocks = $this->blockRepository->getAll($requestData,$perPage = 25);
+        // if(isset($requestData['keyword'])){
+        //     // \App\Models\CompanyCustomBlock::createIndex($shards = null, $replicas = null);
+        //     // \App\Models\CompanyCustomBlock::putMapping($ignoreConflicts = true);
+        //     // \App\Models\CompanyCustomBlock::addAllToIndex();
+        //     $blocks = \App\Models\CompanyCustomBlock::search($requestData['keyword']);
+        // }else{
+            $blocks = $this->blockRepository->getAll($requestData,$perPage = 25);
+        // }
         //output
         return new BlockCollection($blocks);
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified block.
      *
      * @param  int  $id
-     *
      * @return \App\Http\Resources\Blocks\BlockResource
      */
     public function show($id)
@@ -72,24 +79,29 @@ class BlockController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new block.
+     *
+     * @response {
+     *  success: true,
+     *  data: [],
+     *  code: 200,
+     *}
      *
      * @param \App\Http\Requests\Blocks\BlockRequest $request
-     *
      * @return mixed
      */
     public function store(BlockRequest $request)
     {
         //get data
         $requestData = $request->all();
-//        $company_id = $this->CurrentCompany->id;
+        $company_id = $this->CurrentCompany->id;
 
 //        if($validator->fails()){
 //            return $this->sendError('Validation Error.', $validator->errors());
 //        }
 
         $block_id = $this->blockRepository->createCustomBlock(
-            $company_id =1,
+            $company_id,
             $requestData
         );
 
@@ -102,7 +114,7 @@ class BlockController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified block.
      *
      * @param \App\Http\Requests\Blocks\BlockRequest $request
      * @param  int  $id
@@ -112,7 +124,7 @@ class BlockController extends Controller
     public function update(BlockRequest $request, $id)
     {
         $requestData = $request->all();
-//        $company_id = $this->CurrentCompany->id;
+        $company_id = $this->CurrentCompany->id;
 
 //        if($validator->fails()){
 //            return $this->sendError('Validation Error.', $validator->errors());
@@ -120,7 +132,7 @@ class BlockController extends Controller
 
         $block_id = $this->blockRepository->update(
             $id,
-            $company_id=1,
+            $company_id,
             $requestData
         );
         //output
@@ -128,10 +140,9 @@ class BlockController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified block.
      *
      * @param  int  $id
-     *
      * @return mixed
      */
     public function destroy($id)
@@ -142,10 +153,9 @@ class BlockController extends Controller
     }
 
     /**
-     * sort
+     * sort blocks
      *
      * @param  int  $id
-     *
      * @return mixed
      */
     public function sort(Request $request)

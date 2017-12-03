@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests\Blocks;
 
+use Auth;
+
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class BlockRequest extends FormRequest
 {
@@ -13,7 +16,7 @@ class BlockRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return Auth::check();
     }
 
     /**
@@ -23,6 +26,25 @@ class BlockRequest extends FormRequest
      */
     public function rules()
     {
+//        switch($this->method())
+//        {
+//            case 'GET':
+//            case 'DELETE':
+//            {
+//                return [];
+//            }
+//            case 'POST':
+//            {
+//                return [];
+//            }
+//            case 'PUT':
+//            case 'PATCH':
+//            {
+//                return [];
+//            }
+//            default:break;
+//        }
+
         $rules = [
             'name' => 'required',
             'title' => 'required'

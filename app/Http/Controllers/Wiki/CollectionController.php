@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Collections;
+namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,8 +10,10 @@ use App\Http\Resources\Wiki\CollectionCollection;
 use App\Repository\Wiki\CollectionRepository;
 
 /**
- * Class CollectionController
- * @package App\Http\Controllers\Collections
+ * 
+ * @resource Collection
+ *
+ * Collection resource representation.
  */
 class CollectionController extends Controller
 {

@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Clients;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+/**
+ * @resource Client Social Networks
+ *
+ * Client Social Networks resource representation.
+ */
 class SocialNetworkController extends Controller
 {
     /**

@@ -9,27 +9,7 @@ use Symfony\Component\HttpFoundation\File\File;
 class Ticket extends BaseModel
 {
 
-    const TYPE_QUESTION = 'question';
-    const TYPE_TASK = 'task';
-    const TYPE_PROBLEM = 'problem';
-    const TYPE_INCIDENT = 'incident';
 
-    const PRIORITY_LOW = 'low';
-    const PRIORITY_MEDIUM = 'medium';
-    const PRIORITY_URGENT = 'urgent';
-    const PRIORITY_EXTREME = 'extreme';
-    const CHANNEL_VK = 'vk';
-    const CHANNEL_FB = 'facebook';
-    const CHANNEL_EMAIL = 'email';
-    const CHANNEL_API = 'api';
-    const CHANNEL_GRAVITEL = 'gravitel';
-    const CHANNEL_MANGO = 'mango';
-    const CHANNEL_TELEPHONY = 'telephony';
-    const CHANNEL_WHATSHELP = 'whatshelp';
-    const UPDATE_BY_EMAIL_REGEXP = 'by_email_from_regexp';
-    const UPDATE_BY_PHONE_REGEXP = 'by_phone_from_regexp';
-    const UPDATE_BY_NAME_REGEXP = 'by_name_from_regexp';
-    const USEDESK_CHAT = 'usedesk_chat';
     public $regexp_matches = array();
     public $trigger_values = array();
     public $use_word_forms = false;

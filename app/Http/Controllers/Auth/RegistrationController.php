@@ -12,9 +12,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 /**
- * Registration representation.
+ * 
+ * @resource Block
  *
- * @Resource("Users", uri="/users")
+ * Block resource representation.
  */
 class RegistrationController extends Controller
 {
@@ -37,12 +38,6 @@ class RegistrationController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     * })
      */
     public function redirectByHash($hash) 
     {
@@ -66,9 +61,6 @@ class RegistrationController extends Controller
      * Show registration page
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
      */
     public function getRegistration()
     {
@@ -79,13 +71,6 @@ class RegistrationController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function postRegistration(postRegistration $request)
     {       
@@ -134,13 +119,6 @@ class RegistrationController extends Controller
      * Registration Confirmation view
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function getRegistrationConfirmation($hash)
     {
@@ -162,13 +140,6 @@ class RegistrationController extends Controller
      * Registration Confirmation
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function postRegistrationConfirmation(postRegistrationConfirmation $request,$hash)
     {
@@ -190,13 +161,6 @@ class RegistrationController extends Controller
      * verifyemail
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function verifyemail($confirmation_code)
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Repository\Blocks;
+namespace App\Repository\Wiki;
 
 use Illuminate\Support\Facades\DB;
 use App\Repository\AbstractRepository;
@@ -52,13 +52,13 @@ class AccountRepository extends AbstractRepository
      *
      * @return $customBlock
      */
-    public function getById($id,$type=null)
+    public function getById($id,$relation=false)
     {
         $customBlock = DB::table('uh_accounts')
-            ->where('id', $id)
-            ->when(isset($type), function ($query2) use ($type) {
-                return $query2->where('type', $type);
+            ->when($relation, function ($query) use ($relation) {
+                return $query->load($relation);
             })
+            ->where('id', $id)
             ->first();
 
         return $customBlock;
@@ -163,5 +163,5 @@ class AccountRepository extends AbstractRepository
         return $customBlock;
     }
 
-
+}
 

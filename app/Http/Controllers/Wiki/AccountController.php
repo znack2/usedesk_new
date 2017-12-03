@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Accounts;
+namespace App\Http\Controllers\Wiki;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,8 +10,10 @@ use App\Http\Resources\Wiki\AccountCollection;
 use App\Repository\Wiki\AccountRepository;
 
 /**
- * Class AccountController
- * @package App\Http\Controllers\Accounts
+ * 
+ * @resource Account
+ *
+ * Account resource representation.
  */
 class AccountController extends Controller
 {

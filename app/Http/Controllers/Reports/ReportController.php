@@ -10,8 +10,10 @@ use App\Http\Resources\Reports\ReportCollection;
 use App\Repository\Reports\ReportRepository;
 
 /**
- * Class ReportController
- * @package App\Http\Controllers\Reports
+ * 
+ * @resource Reports
+ *
+ * Reports resource representation.
  */
 class ReportController extends Controller
 {

@@ -4,7 +4,11 @@ namespace App\Http\Controllers\Clients;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+/**
+ * @resource Client Site
+ *
+ * Client Site resource representation.
+ */
 class SiteController extends Controller
 {
     /**

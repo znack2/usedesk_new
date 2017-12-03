@@ -4,13 +4,14 @@ namespace App\Http\Controllers\Auth;
 
 use App\Repository\Auth\RequestRepository;
 use App\Service\TelegramService;
-use App\Service\DemoData;
+use App\Service\DemoDataService;
 use App\Http\Requests\PostRegistrationFinal;
 use App\Http\Controllers\Controller;
 /**
- * RegistrationFinal representation.
+ * 
+ * @resource Block
  *
- * @Resource("Users", uri="/users")
+ * Block resource representation.
  */
 class RegistrationFinalController extends Controller
 {
@@ -45,19 +46,12 @@ class RegistrationFinalController extends Controller
         $this->requestRepository = $requestRepository;
         $this->MailChimpService = new MailChimpService;
         $this->phoneService = new PhoneService;
-        $this->demoService = new DemoData;
+        $this->demoService = new DemoDataService;
     }
 /**
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function getRegistrationFinal($hash)
     {
@@ -78,13 +72,6 @@ class RegistrationFinalController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     *      @Parameter("limit", description="The amount of results per page.", default=10)
-     * })
      */
     public function postRegistrationFinal(PostRegistrationFinal $request,$hash)
     {
@@ -106,8 +93,7 @@ class RegistrationFinalController extends Controller
 
         //validate
         // $this->service->getValidation('postRegistrationFinal',$referer);
-
-        $this->telegramService->sendTelegramWithError();
+        $this->telegramService->sendTelegramWithError($data,$validator->messages()->getMessages());
 
         //get from db
         $registrationRequest = $this->requestRepository->getRegistrationByHash($hash);

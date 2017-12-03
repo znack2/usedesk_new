@@ -13,9 +13,10 @@ use App\Http\Requests\postPasswordRestoreNew;
 use App\Http\Controllers\Controller;
 
 /**
- * Password representation.
+ * 
+ * @resource Block
  *
- * @Resource("Users", uri="/users")
+ * Block resource representation.
  */
 class PasswordController extends Controller
 {
@@ -42,9 +43,6 @@ class PasswordController extends Controller
      * Show password_restore page
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
      */
     public function getPasswordRestore()
     {
@@ -55,12 +53,6 @@ class PasswordController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     * })
      */
     public function postPasswordRestore(postPasswordRestore $request)
     {
@@ -85,12 +77,6 @@ class PasswordController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     * })
      */
     public function getPasswordRestoreNew($hash)
     {
@@ -103,12 +89,6 @@ class PasswordController extends Controller
      * Show all users
      *
      * Get a JSON representation of all the registered users.
-     *
-     * @Get("/{?page,limit}")
-     * @Versions({"v1"})
-     * @Parameters({
-     *      @Parameter("page", description="The page of results to view.", default=1),
-     * })
      */
     public function postPasswordRestoreNew($hash)
     {

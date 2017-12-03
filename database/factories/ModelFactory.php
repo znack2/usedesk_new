@@ -491,6 +491,35 @@ $factory->define(App\Models\FbGroup::class, function (Faker\Generator $faker) {
 
 
 
+$factory->define(App\Models\Ticket::class, function (Faker\Generator $faker) {
+    return [
+        'client_id' => $faker->randomNumber(),
+        'assignee_id' => $faker->randomNumber(),
+        'company_id' => $faker->randomNumber(),
+        'status_id' => $faker->randomNumber(),
+        'telephony_id' => $faker->randomNumber(),
+        'additional_id' => $faker->randomNumber(),
+        'social_id' => $faker->randomNumber(),
+        'email_channel_id' => $faker->randomNumber(),
+        'zendesk_id' => $faker->randomNumber(),
+        'owner_id' => $faker->randomNumber(),
+        'notification_email' => $faker->text,
+        'nps_sent' => $faker->text,
+        'contact' => $faker->text,
+        'subject' => $faker->text,
+        'email_channel_subject' => $faker->text,
+        'email_channel_email' => $faker->text,
+        'spam_score' => $faker->text,
+        'group' => $faker->text,
+        'status_updated_at' => $faker->dateTimeBetween(),
+        'last_updated_at' => $faker->dateTimeBetween(),
+        'published_at' => $faker->dateTimeBetween(),
+        'last_viewed_at' => $faker->dateTimeBetween(),
+        'type' => $faker->randomElement(['question','task','problem','incident']),
+        'priority' => $faker->randomElement(['low','medium','urgent','extreme']),
+        'channel' => $faker->randomElement(['email','facebook','twitter-direct','twitter-mention','vk','chat','api','gravitel','telephony','whatshelp','usedesk_chat']),
+    ];
+});
 
 
 

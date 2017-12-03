@@ -4,9 +4,6 @@ namespace App\Models;
 
 class ClientAddress extends BaseModel {
 
-    const TYPE_HOME = 'home';
-    const TYPE_WORK = 'work';
-    const TYPE_POSTAL = 'postal';
 
     public $timestamps = false;
 

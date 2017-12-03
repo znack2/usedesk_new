@@ -9,11 +9,13 @@ use App\Http\Resources\Clients\ClientResource;
 use App\Http\Resources\Clients\ClientCollection;
 use App\Repository\Clients\ClientRepository;
 
+
 /**
- * Class ClientController
- * @package App\Http\Controllers\Clients
+ * @resource Address
+ *
+ * Address resource representation.
  */
-class ClientController extends Controller
+class AddressController extends Controller
 {
     /**
      * @var clientRepository

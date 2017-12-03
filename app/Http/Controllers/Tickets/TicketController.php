@@ -5,13 +5,15 @@ namespace App\Http\Controllers\Tickets;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Tickets\TicketRequest;
+use App\Http\Requests\Tickets\TicketMergeRequest;
 use App\Http\Resources\Tickets\TicketResource;
 use App\Http\Resources\Tickets\TicketCollection;
 use App\Repository\Tickets\TicketRepository;
 
 /**
- * Class TicketController
- * @package App\Http\Controllers\Tickets
+ * @resource Ticket
+ *
+ * Ticket resource representation.
  */
 class TicketController extends Controller
 {
@@ -29,10 +31,9 @@ class TicketController extends Controller
         $this->ticketRepository = $ticketRepository;
     }
     /**
-     * Display a listing of the resource.
+     * List of tickets.
      *
      * @param \Illuminate\Http\Request $request
-     *
      * @return \App\Http\Resources\Tickets\TicketCollection
      */
     public function index(Request $request)
@@ -46,10 +47,9 @@ class TicketController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified ticket.
      *
      * @param  int  $id
-     *
      * @return \App\Http\Resources\Tickets\TicketResource
      */
     public function show($id)
@@ -64,10 +64,9 @@ class TicketController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a new ticket.
      *
      * @param \App\Http\Requests\Tickets\TicketRequest $request
-     *
      * @return mixed
      */
     public function store(TicketRequest $request)
@@ -89,11 +88,10 @@ class TicketController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified ticket.
      *
      * @param \App\Http\Requests\Tickets\TicketRequest $request
      * @param  int  $id
-     *
      * @return mixed
      */
     public function update(TicketRequest $request, $id)
@@ -113,12 +111,27 @@ class TicketController extends Controller
         //output
         return $this->sendResponse('Ticket_id:'.$Ticket_id, 'Ticket updated successfully.');
     }
-
     /**
-     * Remove the specified resource from storage.
+     * post Merge
      *
      * @param  int  $id
+     * @return mixed
+     */
+    public function merge(TicketMergeRequest $request)
+    {
+        //get data
+        // $company_id = $this->CurrentCompany->id;
+        $requestData = $request->all();
+        
+        $this->ticketRepository->merge($requestData);
+        //output
+        return $this->sendResponse('Client_id:', 'Ticket merged successfully.');
+    }
+
+    /**
+     * Remove the specified ticket.
      *
+     * @param  int  $id
      * @return mixed
      */
     public function destroy($id)

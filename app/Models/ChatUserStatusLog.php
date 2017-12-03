@@ -9,9 +9,6 @@ class ChatUserStatusLog extends BaseModel
     protected $table = 'chat_user_status_log';
     protected $fillable = [ 'user_id', 'company_id', 'action', 'date'];
 
-    const ACTION_CONNECTED = 'connected';
-    const ACTION_DISCONNECTED = 'disconnected';
-
     public function user()
     {
         return $this->belongsTo('App\Models\User');

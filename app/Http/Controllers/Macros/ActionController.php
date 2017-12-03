@@ -4,7 +4,12 @@ namespace App\Http\Controllers\Macros;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+/**
+ * 
+ * @resource Macro Action
+ *
+ * Macro Action resource representation.
+ */
 class ActionController extends Controller
 {
     /**

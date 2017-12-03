@@ -7,15 +7,6 @@ use UseDesk\Email\SmtpConnection;
 class CompanyEmailChannel extends BaseModel
 {
 
-    const CONNECTION_INTERNAL = 'internal';
-    const CONNECTION_EXTERNAL = 'external';
-
-    const TYPE_SYNC = 'sync_engine';
-    const FROM_NAME_COMPANY = 'company';
-    const FROM_NAME_USER = 'user';
-
-    const IGNORE_TIME = 30; // ignore comment if it was posted in less than 30 sec after last comment
-    const NO_SUBJECT = 'No subject';
 
     public $timestamps = false;
 

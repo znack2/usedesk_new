@@ -41,10 +41,11 @@ class Controller extends BaseController
     public $CurrentCompany;
     public $now = null;
 
-    public function __construct(Auth $auth)
+    public function __construct()//Auth $auth
     {
         // $this->currentUser = $auth->user();//Auth $auth
-         $this->CurrentCompany = $auth->user()->user()->company;
+         Auth::loginUsingId(3);
+         $this->CurrentCompany = Auth::user()->company; // $auth->user()->user()->company;
          // $this->request->get('company_id') ?: Company::current();
     }
 
@@ -57,15 +58,6 @@ class Controller extends BaseController
     {
         return Log::alert($e);
     }    
-
-    public function getStarted($company,$key)
-    {
-        $getStarted = $company->getStartedByKey($key);
-        if($getStarted) {
-            $getStarted->done = true;
-            $getStarted->save();
-        }
-    }
 
     public function sendResponse($result, $message)
     {

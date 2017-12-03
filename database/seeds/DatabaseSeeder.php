@@ -34,15 +34,15 @@ class DatabaseSeeder extends Seeder
 
 
 //		$this->call('CompanyTableSeeder');
-		$this->call('CompanyCustomBlockTableSeeder');
-//        $this->call('ClientTableSeeder');
+		// $this->call('CompanyCustomBlockTableSeeder');
+        // $this->call('ClientTableSeeder');
 //        $this->call('ReportTableSeeder');
 //
 //        $this->call('ArticleTableSeeder');
 //        $this->call('CategoryTableSeeder');
 //        $this->call('SCollectionTableSeeder');
 //
-//        $this->call('TicketTableSeeder');
+       $this->call('TicketTableSeeder');
 //        $this->call('TicketTagTableSeeder');
 //        $this->call('TicketStatusTableSeeder');
 //        $this->call('TicketVariableTableSeeder');

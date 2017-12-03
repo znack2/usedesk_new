@@ -10,8 +10,10 @@ use App\Http\Resources\Macros\MacroCollection;
 use App\Repository\Macros\MacroRepository;
 
 /**
- * Class MacroController
- * @package App\Http\Controllers\Macros
+ * 
+ * @resource Macro
+ *
+ * Macro resource representation.
  */
 class MacroController extends Controller
 {
